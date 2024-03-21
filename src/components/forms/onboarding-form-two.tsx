@@ -1,0 +1,117 @@
+'use client';
+
+import React from 'react'
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+
+import { Button } from "@/components/ui/button"
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { OnboardingSchemaTwo } from '@/schemas';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { updateProfile, updateProfileTwo } from '@/queries';
+import { useRouter } from 'next/navigation';
+import { Database, Tables, } from '@/lib/database.types';
+
+type Props = {
+  user: Tables<'profiles'> | null;
+  setEmail: React.Dispatch<React.SetStateAction<string>>;
+  setPhoneNumber: React.Dispatch<React.SetStateAction<string>>;
+  setJobTitle: React.Dispatch<React.SetStateAction<string>>;
+  setWebsite: React.Dispatch<React.SetStateAction<string>>;
+  options?: boolean;
+}
+
+const OnboardingFormTwo = ({ user, setEmail, setPhoneNumber, setJobTitle, setWebsite, options }: Props) => {
+  const router = useRouter()
+  const form = useForm<z.infer<typeof OnboardingSchemaTwo>>({
+    resolver: zodResolver(OnboardingSchemaTwo),
+    defaultValues: {
+      job_title: user?.job_title || "",
+      phone_number: user?.phone_number || "",
+      email: user?.email || "",
+      website: user?.website || "",
+    },
+  })
+
+  const onSubmit = async (values: z.infer<typeof OnboardingSchemaTwo>) => {
+    try {
+      const user = await updateProfileTwo(values)
+
+      if (user?.data && user.data[0].onboarding == true) {
+        router.push('/account');
+      }
+    } catch (error) {
+      console.error('Error updating profile:', error);
+    }
+  }
+
+  return (
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className='w-full flex flex-col gap-y-4 text-card-foreground'>
+        <FormField
+          control={form.control}
+          name="job_title"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className='text-card-bg-dark text-lg shadow-sm'>Job Title</FormLabel>
+              <FormControl>
+                <Input onChangeCapture={e => setJobTitle(e.currentTarget.value)} className="py-6" type="string" placeholder='Real Estate Agent' {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="phone_number"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className='text-card-bg-dark text-lg shadow-sm'>Phone Number</FormLabel>
+              <FormControl>
+                <Input onChangeCapture={e => setPhoneNumber(e.currentTarget.value)} className="py-6" type="tel" placeholder='(123) 456-7890' {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className='text-card-bg-dark text-lg shadow-sm'>Email</FormLabel>
+              <FormControl>
+                <Input onChangeCapture={e => setEmail(e.currentTarget.value)} className="py-6" type="string" placeholder='email@vex.cards' {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="website"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className='text-card-bg-dark text-lg shadow-sm'>Website</FormLabel>
+              <FormControl>
+                <Input onChangeCapture={e => setWebsite(e.currentTarget.value)} className="py-6" type="string" placeholder='www.website.com' {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button type="submit" className='w-full p-6 mt-4 bg-card-bg-dark'>{options ? 'Save' : 'Continue'}</Button>
+      </form>
+    </Form>
+  )
+}
+
+export default OnboardingFormTwo
