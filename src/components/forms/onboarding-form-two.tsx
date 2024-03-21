@@ -19,6 +19,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { updateProfile, updateProfileTwo } from '@/queries';
 import { useRouter } from 'next/navigation';
 import { Database, Tables, } from '@/lib/database.types';
+import { toast } from 'sonner';
 
 type Props = {
   user: Tables<'profiles'> | null;
@@ -44,7 +45,7 @@ const OnboardingFormTwo = ({ user, setEmail, setPhoneNumber, setJobTitle, setWeb
   const onSubmit = async (values: z.infer<typeof OnboardingSchemaTwo>) => {
     try {
       const user = await updateProfileTwo(values)
-
+      toast('Profile updated!', { position: 'top-center' })
       if (user?.data && user.data[0].onboarding == true) {
         router.push('/account');
       }

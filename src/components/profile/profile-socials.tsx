@@ -7,30 +7,26 @@ import { ArrowUpDown } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { getUserSocials, updateUserSocials } from '@/queries';
 import { Database } from '@/lib/database.types';
+import CustomSocialIcon from '../custom-social-icon';
+import { toast } from 'sonner';
 
-type Props = {}
+type Props = {
+  socials: Database['public']['Tables']['socials']['Row'][]
+}
 
-const ProfileSocials = (props: Props) => {
-  const [items, setItems] = useState<Database['public']['Tables']['socials']['Row'][]>([])
+const ProfileSocials = ({ socials }: Props) => {
+  const [items, setItems] = useState<Database['public']['Tables']['socials']['Row'][]>(socials)
   const [mounted, setMounted] = useState(false)
   const router = useRouter();
 
-  useEffect(() => {
-    async function getSocials() {
-      const socials = await getUserSocials();
-      console.log('socials on account page', socials)
-      setItems(socials)
-      setMounted(true)
-    }
-    getSocials()
-  }, [])
-
-  if (!mounted) return <p className='text-white text-lg mt-10'>Loading Socials...</p>;
-
   const handleUpdateItems = async (order: typeof items) => {
     setItems(order)
-    await updateUserSocials(order)
-    console.log('lol', order);
+    try {
+      await updateUserSocials(order)
+      toast('Socials updated!', { position: 'top-center' })
+    } catch (error) {
+      console.log('error', error)
+    }
   }
 
   return (
@@ -40,7 +36,7 @@ const ProfileSocials = (props: Props) => {
           <h1 className='text-white text-xl mt-2 -mb-1'>Socials</h1>
           {items && items.map((item, index) => (
             <Reorder.Item key={item.id} value={item} className='flex items-center bg-white/80 text-black w-full p-2 z-50 cursor-pointer rounded-sm' onClick={() => router.push(`/account/setup/edit/${item.id}`)} >
-              <SocialIcon network={item.network} />
+              <CustomSocialIcon network={item.network} />
               <div className='ml-4'>
                 <p className='text-lg'>{item.title !== '' ? item.title : item.network.charAt(0).toUpperCase() + item.network.slice(1)}</p>
                 <p className='text-sm'>@{item.value}</p>

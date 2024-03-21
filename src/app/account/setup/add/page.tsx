@@ -16,7 +16,7 @@ const AddSocialPage = async (props: Props) => {
   return (
     <main className=''>
       <HeaderBackButton title="Add Social" link="account/setup" />
-      <Input placeholder="Search for content" className='py-6 text-lg' />
+      <Input placeholder="Search for content" className='py-6 text-lg rounded-none' />
       <RecommendedSocials />
     </main>
   )

@@ -7,13 +7,13 @@ import { SignInSchema, OnboardingSchema, OnboardingSchemaTwo, AddSocialSchema } 
 import { revalidatePath } from "next/cache";
 import { Database } from "./lib/database.types";
 import { Social } from "./types";
+import { v4 as uuidv4 } from 'uuid';
 
 export const signUp = async (values: z.infer<typeof SignInSchema>) => {
   const { email, password } = values;
   const supabase = createClient();
 
   const user = await supabase.auth.getUser();
-  console.log('user', user)
 
   const { data, error } = await supabase.auth.signUp({
     email,
@@ -140,32 +140,6 @@ export const updateProfileTwo = async (values: z.infer<typeof OnboardingSchemaTw
     return response;
   } catch (error) {
     console.error('Error updating profile:', error);
-  }
-};
-
-export const updateSocials = async (values: z.infer<typeof OnboardingSchemaTwo>) => {
-  const supabase = createClient();
-  const user = await supabase.auth.getUser();
-
-  if (!user) {
-    throw new Error("No authenticated user");
-  }
-
-  const userId = user.data.user?.id;
-
-  try {
-    // const response = await supabase
-    //   .from('profiles')
-    //   .update({
-    //     website: values.website,
-    //   })
-    //   .eq('id', userId)
-    //   .select();
-
-    // revalidatePath('/account');
-    // return response;
-  } catch (error) {
-    console.error('Error updating socials:', error);
   }
 };
 
@@ -329,13 +303,13 @@ export const getUserId = async () => {
   }
 };
 
-//
-//
-//
-// Socials
-//
-//
-//
+////////////////////////////////////////
+////////////////////////////////////////
+////////////////////////////////////////
+/////////////// Socials ////////////////
+////////////////////////////////////////
+////////////////////////////////////////
+////////////////////////////////////////
 
 export const addUserSocial = async (values: z.infer<typeof AddSocialSchema>) => {
   const supabase = createClient();
@@ -346,22 +320,29 @@ export const addUserSocial = async (values: z.infer<typeof AddSocialSchema>) => 
   }
 
   const userId = user.data.user?.id;
+  const socials = await getUserSocials();
+
+  const newObject = {
+    id: uuidv4(),
+    title: values.title,
+    value: values.value,
+    network: values.network,
+    user_id: userId
+  }
+
+  const newSocials = [...socials, newObject];
 
   try {
     const response = await supabase
-      .from('socials')
-      .insert({
-        title: values.title,
-        value: values.value,
-        network: values.network,
-      })
-      .eq('id', userId);
+      .from('profiles')
+      .update({ socials: newSocials })
+      .eq('id', userId)
+      .select();
 
-
-    console.log(response)
-    // return response
+    revalidatePath('/account/setup');
+    return response;
   } catch (error) {
-    console.error('Error getting User ID:', error);
+    console.error('Error adding social:', error);
   }
 };
 
@@ -469,8 +450,7 @@ export const updateUserSocials = async (socials: {}) => {
       .eq('id', userId)
       .select();
 
-
-    console.log(response)
+    revalidatePath('/account');
     return response
   } catch (error) {
     console.error('Error getting User ID:', error);

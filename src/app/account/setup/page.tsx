@@ -31,6 +31,7 @@ const SetupPage = async (props: Props) => {
     redirect('/account/onboarding')
   }
 
+  const socials = user.data[0].socials
 
   return (
     <main className='max-w-[450px] mx-auto'>
@@ -39,8 +40,8 @@ const SetupPage = async (props: Props) => {
       <ProfileCard user={user} options className='px-4' />
       <div className='px-4 mt-6'>
         <h1 className='text-xl mb-2'>Socials</h1>
-        <ProfileEditSocials />
-        <Link href='/account/setup/add'><Button variant={'link'} className='bg-card-bg-dark text-white w-full'>Add Content</Button></Link>
+        <ProfileEditSocials socials={socials} />
+        <Link href='/account/setup/add'><Button variant={'link'} className='bg-card-bg-dark text-white w-full py-6 mb-10'>Add Content</Button></Link>
       </div>
     </main>
   )
