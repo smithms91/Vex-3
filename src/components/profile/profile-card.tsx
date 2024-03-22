@@ -22,6 +22,8 @@ type Props = {
 const ProfileCard = ({ user, options, className }: Props) => {
   const userData = user.data![0];
 
+  const [firstName, setFirstName] = useState(userData.first_name || '')
+  const [lastName, setLastName] = useState(userData.last_name || '')
   const [email, setEmail] = useState(userData.email || '')
   const [phoneNumber, setPhoneNumber] = useState(userData.phone_number || '')
   const [website, setWebsite] = useState(userData.website || '')
@@ -47,7 +49,7 @@ const ProfileCard = ({ user, options, className }: Props) => {
         </div>
         <div className='text-black flex flex-col justify-between pl-2 py-4'>
           <div className='space-y-[-4px] text-card-foreground'>
-            <p className='text-lg xs:text-2xl'>{userData.first_name} {userData.last_name}</p>
+            <p className='text-lg xs:text-2xl'>{firstName} {lastName}</p>
             <p className='text-xs xs:text-md'>{jobTitle}</p>
           </div>
           <div className='text-card-foreground'>
@@ -60,7 +62,7 @@ const ProfileCard = ({ user, options, className }: Props) => {
       {options &&
         <>
           <ThemePicker />
-          <OnboardingFormTwo options user={userData} setEmail={setEmail} setPhoneNumber={setPhoneNumber} setWebsite={setWebsite} setJobTitle={setJobTitle} />
+          <OnboardingFormTwo options user={userData} setEmail={setEmail} setFirstName={setFirstName} setLastName={setLastName} setPhoneNumber={setPhoneNumber} setWebsite={setWebsite} setJobTitle={setJobTitle} />
         </>
       }
       {pictureModalOpen && <EditPictureModal selectedFile={selectedFile!} selectedFileUrl={selectedFileUrl!} setSelectedFile={setSelectedFile} setSelectedFileUrl={setSelectedFileUrl} closeModal={() => setPictureModalOpen(false)} />}

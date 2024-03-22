@@ -13,6 +13,8 @@ export const OnboardingSchema = z.object({
 
 const phoneRegex = new RegExp("^\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$")
 export const OnboardingSchemaTwo = z.object({
+  first_name: z.string(),
+  last_name: z.string(),
   job_title: z.string().optional(),
   phone_number: z.string().optional().or(z.string().regex(phoneRegex, "Invalid phone number")),
   email: z.string().optional().or(z.string().email()),

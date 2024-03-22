@@ -23,6 +23,8 @@ import { toast } from 'sonner';
 
 type Props = {
   user: Tables<'profiles'> | null;
+  setFirstName: React.Dispatch<React.SetStateAction<string>>;
+  setLastName: React.Dispatch<React.SetStateAction<string>>;
   setEmail: React.Dispatch<React.SetStateAction<string>>;
   setPhoneNumber: React.Dispatch<React.SetStateAction<string>>;
   setJobTitle: React.Dispatch<React.SetStateAction<string>>;
@@ -30,11 +32,13 @@ type Props = {
   options?: boolean;
 }
 
-const OnboardingFormTwo = ({ user, setEmail, setPhoneNumber, setJobTitle, setWebsite, options }: Props) => {
+const OnboardingFormTwo = ({ user, setFirstName, setLastName, setEmail, setPhoneNumber, setJobTitle, setWebsite, options }: Props) => {
   const router = useRouter()
   const form = useForm<z.infer<typeof OnboardingSchemaTwo>>({
     resolver: zodResolver(OnboardingSchemaTwo),
     defaultValues: {
+      first_name: user?.first_name || "",
+      last_name: user?.last_name || "",
       job_title: user?.job_title || "",
       phone_number: user?.phone_number || "",
       email: user?.email || "",
@@ -57,6 +61,32 @@ const OnboardingFormTwo = ({ user, setEmail, setPhoneNumber, setJobTitle, setWeb
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className='w-full flex flex-col gap-y-4 text-card-foreground'>
+        <FormField
+          control={form.control}
+          name="first_name"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className='text-card-bg-dark text-lg shadow-sm'>First Name</FormLabel>
+              <FormControl>
+                <Input onChangeCapture={e => setFirstName(e.currentTarget.value)} className="py-6" type="string" placeholder='Mike' {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="last_name"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className='text-card-bg-dark text-lg shadow-sm'>Last Name</FormLabel>
+              <FormControl>
+                <Input onChangeCapture={e => setLastName(e.currentTarget.value)} className="py-6" type="string" placeholder='Smith' {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <FormField
           control={form.control}
           name="job_title"

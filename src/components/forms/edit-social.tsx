@@ -16,7 +16,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { getUserSocial, updateSocial } from '@/queries';
+import { deleteSocial, getUserSocial, updateSocial } from '@/queries';
 import { Plus } from 'lucide-react';
 import { Social } from '@/types';
 import { useRouter } from 'next/navigation';
@@ -60,6 +60,16 @@ const EditSocialForm = ({ social }: Props) => {
     }, 3000)
   };
 
+  const deleteUserSocial = async () => {
+    try {
+      await deleteSocial(social)
+      toast('Social deleted!', { position: 'top-center' })
+    } catch (error) {
+      console.log('error', error)
+    }
+    router.push('/account')
+  }
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 z-10 max-w-[450px] p-6">
@@ -77,7 +87,7 @@ const EditSocialForm = ({ social }: Props) => {
           )}
         />
         <div className="flex justify-between">
-          {!deleteButton ? <Button onClick={() => handleDeleteButton(true)} className='w-[45%] bg-black py-6 text-md active:bg-black hover:bg-black'>Delete</Button> : <Button type="button" variant="destructive" className='w-[45%] py-6 text-md' onClick={() => console.log('test')}>Confirm</Button>}
+          {!deleteButton ? <Button onClick={() => handleDeleteButton(true)} className='w-[45%] bg-black py-6 text-md active:bg-black hover:bg-black'>Delete</Button> : <Button type="button" variant="destructive" className='w-[45%] py-6 text-md' onClick={() => deleteUserSocial()}>Confirm</Button>}
           {/* <Button variant="destructive" className='w-[45%] py-6 text-md'>Delete</Button> */}
           <Button type="button" className='bg-black w-[45%] py-6 text-md'>Test</Button>
         </div>

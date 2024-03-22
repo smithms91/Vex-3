@@ -127,6 +127,8 @@ export const updateProfileTwo = async (values: z.infer<typeof OnboardingSchemaTw
     const response = await supabase
       .from('profiles')
       .update({
+        first_name: values.first_name,
+        last_name: values.last_name,
         job_title: values.job_title,
         phone_number: values.phone_number,
         website: values.website,
@@ -447,6 +449,37 @@ export const updateUserSocials = async (socials: {}) => {
     const response = await supabase
       .from('profiles')
       .update({ socials: socials })
+      .eq('id', userId)
+      .select();
+
+    revalidatePath('/account');
+    return response
+  } catch (error) {
+    console.error('Error getting User ID:', error);
+  }
+};
+
+// Delete a single social object
+export const deleteSocial = async (social: Social) => {
+  const supabase = createClient();
+  const user = await supabase.auth.getUser();
+
+  if (!user) {
+    throw new Error("No authenticated user");
+  }
+
+  const userId = user.data.user?.id;
+  console.log('1s', social)
+  const socials = await getUserSocials();
+  console.log('soc,', socials)
+
+  const newSocials = socials.filter((item: Social) => item.id !== social.id)
+  console.log('new,', newSocials)
+
+  try {
+    const response = await supabase
+      .from('profiles')
+      .update({ socials: newSocials })
       .eq('id', userId)
       .select();
 
