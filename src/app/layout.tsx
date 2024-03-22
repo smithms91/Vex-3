@@ -3,7 +3,7 @@ import { Kanit } from "next/font/google";
 import { cn } from "@/lib/utils";
 import "./globals.css";
 import { Toaster } from "sonner";
-
+import { SpeedInsights } from "@vercel/speed-insights/next"
 const kanit = Kanit({ weight: ['400', '500', '600'], subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -22,6 +22,7 @@ export default async function RootLayout({
       <body className={cn('max-w-[450px] mx-auto', kanit.className)}>
         <Toaster />
         {children}
+        <SpeedInsights />
       </body>
     </html>
   );
