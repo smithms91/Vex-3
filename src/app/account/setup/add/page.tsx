@@ -11,7 +11,7 @@ import { SocialIcon } from 'react-social-icons'
 
 type Props = {}
 
-const AddSocialPage = async (props: Props) => {
+const AddSocialPage = (props: Props) => {
 
   return (
     <main className=''>

@@ -5,6 +5,8 @@ import { getProfileColor } from '@/queries';
 import { Kanit } from 'next/font/google';
 import { redirect } from 'next/navigation';
 import { Metadata } from 'next/types';
+import { SpeedInsights } from "@vercel/speed-insights/next"
+
 import React from 'react'
 
 type Props = {}
@@ -47,6 +49,7 @@ export default async function AccountLayout({
         enableSystem
         disableTransitionOnChange>
         {children}
+        <SpeedInsights />
       </ThemeProvider>
     </main>
   );

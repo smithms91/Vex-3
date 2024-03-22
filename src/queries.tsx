@@ -37,10 +37,13 @@ export const signIn = async (values: z.infer<typeof SignInSchema>) => {
   const { email, password } = values;
   const supabase = createClient();
 
-  const { error } = await supabase.auth.signInWithPassword({
+  const { data, error } = await supabase.auth.signInWithPassword({
     email,
     password,
   });
+
+  console.log('data', data)
+  console.log('error', error)
 
   if (error) {
     return redirect("/sign-in?message=Could not authenticate user");
