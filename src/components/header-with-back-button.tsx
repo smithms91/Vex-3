@@ -13,7 +13,7 @@ const HeaderBackButton = ({ title, link }: Props) => {
   const router = useRouter();
 
   return (
-    <div className='w-full relative bg-slate-600 text-white h-20 flex items-center justify-center text-xl'>
+    <div className='w-full z-50 relative bg-slate-600 text-white h-20 flex items-center justify-center text-xl'>
       <ArrowLeft onClick={() => router.push(`/${link}`)} className="absolute left-8 top-6 bottom-0 border-2 rounded-full box-content p-1 cursor-pointer" size={24} color="white" />
       <h1>{title}</h1>
     </div>
