@@ -39,7 +39,7 @@ const AccountPage = async (props: Props) => {
       <ProfileCard user={user} />
       <EditProfileButton />
       <ProfileSocials socials={socials} />
-      <ProfileFooter />
+      <ProfileFooter user={user} />
       <SparklesCore id="tsparticlesfullpage"
         background="transparent"
         minSize={0.6}

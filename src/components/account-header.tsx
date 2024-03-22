@@ -16,6 +16,7 @@ const AccountHeader = (props: Props) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [profilePicture, setProfilePicture] = useState('')
   const [userID, setUserID] = useState('')
+
   useEffect(() => {
     async function fetchPicture() {
       const pic = await getProfilePicture()

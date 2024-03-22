@@ -16,7 +16,7 @@ const UserSettingsPage = (props: Props) => {
     <main className='min-h-screen z-50 max-w-[450px] mx-auto flex flex-col items-center bg-gradient-to-tl from-from to-to'>
       <HeaderBackButton title='Account Settings' link='account/settings' />
       <section className='flex flex-col gap-y-2 w-full p-6'>
-        <Button onClick={() => router.push('/account/insights')} className='flex justify-start bg-slate-600/50 inset-4 text-white w-full py-9 z-50'>
+        <Button onClick={() => router.push('/account/settings/user-settings/change-email')} className='flex justify-start bg-slate-600/50 inset-4 text-white w-full py-9 z-50'>
           <div className='flex items-center justify-center rounded-full box-content bg-blue-600/20 p-2'>
             <Mail size={18} color='white' />
           </div>
@@ -24,7 +24,7 @@ const UserSettingsPage = (props: Props) => {
             <h1 className='text-md'>Change Email</h1>
           </div>
         </Button>
-        <Button onClick={() => router.push('/account/settings/user-settings')} className='flex justify-start bg-slate-600/50 inset-4 text-white w-full py-9 z-50'>
+        <Button onClick={() => router.push('/account/settings/user-settings/update-username')} className='flex justify-start bg-slate-600/50 inset-4 text-white w-full py-9 z-50'>
           <div className='flex items-center justify-center rounded-full box-content bg-purple-600/20 p-2'>
             <UserRound size={18} color="white" />
           </div>
@@ -32,7 +32,7 @@ const UserSettingsPage = (props: Props) => {
             <h1 className='text-md'>Update Username</h1>
           </div>
         </Button>
-        <Button onClick={() => router.push('/account/settings/help-center')} className='flex justify-start bg-slate-600/50 inset-4 text-white w-full py-9 z-50'>
+        <Button onClick={() => router.push('/account/settings/user-settings/update-password')} className='flex justify-start bg-slate-600/50 inset-4 text-white w-full py-9 z-50'>
           <div className='flex items-center justify-center rounded-full box-content bg-gray-800/20 p-2'>
             <Lock size={18} color="white" />
           </div>

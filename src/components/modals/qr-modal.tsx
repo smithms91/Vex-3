@@ -32,7 +32,6 @@ const QrModal = ({ }: Props) => {
             <X className='bg-blue-500 shadow-lg p-1 box-content rounded-full' />
           </DrawerClose>
           <h1 className='mb-2'>QR Code</h1>
-
         </DrawerContent>
       </Drawer>
     </div>

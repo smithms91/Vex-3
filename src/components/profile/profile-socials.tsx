@@ -9,13 +9,14 @@ import { getUserSocials, updateUserSocials } from '@/queries';
 import { Database } from '@/lib/database.types';
 import CustomSocialIcon from '../custom-social-icon';
 import { toast } from 'sonner';
+import { Social } from '@/types';
 
 type Props = {
-  socials: Database['public']['Tables']['socials']['Row'][]
+  socials: Social[]
 }
 
 const ProfileSocials = ({ socials }: Props) => {
-  const [items, setItems] = useState<Database['public']['Tables']['socials']['Row'][]>(socials)
+  const [items, setItems] = useState<Social[]>(socials)
   const [mounted, setMounted] = useState(false)
   const router = useRouter();
 

@@ -3,11 +3,12 @@
 import { createClient } from "./lib/supabase/server";
 import { redirect } from "next/navigation";
 import { z } from "zod";
-import { SignInSchema, OnboardingSchema, OnboardingSchemaTwo, AddSocialSchema } from "@/schemas";
+import { SignInSchema, OnboardingSchema, OnboardingSchemaTwo, AddSocialSchema, UpdatePasswordSchema, UpdateUsernameSchema } from "@/schemas";
 import { revalidatePath } from "next/cache";
 import { Database } from "./lib/database.types";
 import { Social } from "./types";
 import { v4 as uuidv4 } from 'uuid';
+import { toast } from "sonner";
 
 export const signUp = async (values: z.infer<typeof SignInSchema>) => {
   const { email, password } = values;
@@ -142,6 +143,62 @@ export const updateProfileTwo = async (values: z.infer<typeof OnboardingSchemaTw
     return response;
   } catch (error) {
     console.error('Error updating profile:', error);
+  }
+};
+
+export const updateUserPassword = async (values: z.infer<typeof UpdatePasswordSchema>) => {
+  const supabase = createClient();
+  const user = await supabase.auth.getUser();
+
+  if (!user) {
+    throw new Error("No authenticated user");
+  }
+
+  const verifyResponse = await supabase.rpc('verify_user_password', { password: values.current_password });
+
+  if (verifyResponse.data) {
+    try {
+      const response = await supabase.auth.updateUser({
+        password: values.new_password
+      });
+
+      console.error('GG:');
+      return response;
+    } catch (error) {
+      console.error('Error updating password:', error);
+    }
+  } else {
+    return false;
+  }
+};
+
+export const updateUsername = async (values: z.infer<typeof UpdateUsernameSchema>) => {
+  const supabase = createClient();
+  const user = await supabase.auth.getUser();
+
+  if (!user) {
+    throw new Error("No authenticated user");
+  }
+
+  const verifyResponse = await supabase.rpc('verify_user_password', { password: values.password });
+
+  if (verifyResponse.data) {
+    try {
+      const response = await verifyUsername(values.username);
+
+      if (!response) {
+        console.error('Username Taken');
+        return { msg: 'Username Taken' };
+      }
+
+      const data = await supabase.from('profiles').update({ username: values.username }).eq('id', user.data.user?.id).select();
+      revalidatePath('/account/settings/user-settings/update-username');
+      return { msg: 'Username Updated', data: data };
+    } catch (error) {
+      console.error('Error updating username:', error);
+    }
+  } else {
+    return { msg: 'Password Incorrect' };
   }
 };
 
@@ -435,7 +492,7 @@ export const updateSocial = async (social: Social) => {
 };
 
 // Mostly used for re-ordering the socials on account page. This updates the order and stores them in the DB.
-export const updateUserSocials = async (socials: {}) => {
+export const updateUserSocials = async (socials: Social[]) => {
   const supabase = createClient();
   const user = await supabase.auth.getUser();
 
@@ -444,7 +501,7 @@ export const updateUserSocials = async (socials: {}) => {
   }
 
   const userId = user.data.user?.id;
-  console.log('soc,', socials)
+
   try {
     const response = await supabase
       .from('profiles')
@@ -462,6 +519,7 @@ export const updateUserSocials = async (socials: {}) => {
 // Delete a single social object
 export const deleteSocial = async (social: Social) => {
   const supabase = createClient();
+
   const user = await supabase.auth.getUser();
 
   if (!user) {
@@ -469,12 +527,9 @@ export const deleteSocial = async (social: Social) => {
   }
 
   const userId = user.data.user?.id;
-  console.log('1s', social)
-  const socials = await getUserSocials();
-  console.log('soc,', socials)
 
+  const socials = await getUserSocials();
   const newSocials = socials.filter((item: Social) => item.id !== social.id)
-  console.log('new,', newSocials)
 
   try {
     const response = await supabase

@@ -43,3 +43,14 @@ export const AddSocialSchema = z.object({
   title: z.string().optional(),
   network: z.string(),
 })
+
+export const UpdatePasswordSchema = z.object({
+  current_password: z.string().min(7, { message: "Password has to be at least 7 characters long." }),
+  new_password: z.string().min(7, { message: "Password has to be at least 7 characters long." }),
+  confirm_password: z.string().min(7, { message: "Password has to be at least 7 characters long." }),
+})
+
+export const UpdateUsernameSchema = z.object({
+  username: z.string().min(3, { message: "Username has to be at least 3 characters long." }),
+  password: z.string().min(7, { message: "Password has to be at least 7 characters long." }),
+})
