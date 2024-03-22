@@ -36,7 +36,7 @@ const AccountPage = async (props: Props) => {
   return (
     <main className='min-h-screen max-w-[450px] p-6 mx-auto flex flex-col items-center bg-gradient-to-tl from-from to-to '>
       <AccountHeader />
-      <ProfileCard user={user} />
+      <ProfileCard email={data.user.email!} user={user} />
       <EditProfileButton />
       <ProfileSocials socials={socials} />
       <ProfileFooter user={user} />

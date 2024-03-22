@@ -23,7 +23,11 @@ const UpdateUsernamePage = async (props: Props) => {
   return (
     <section>
       <HeaderBackButton title='Update Username' link='account/settings/user-settings' />
-      <UpdateUsernameForm username={userData.username} />
+      <div className='text-center space-y-4 p-6 mb-4'>
+        <h1 className='text-sm'>Your current username is:</h1>
+        <p className='font-bold inline-block text-lg px-6 py-2 shadow-inner border border-gray-600'>{userData.username}</p>
+        <UpdateUsernameForm />
+      </div>
     </section>
   )
 }

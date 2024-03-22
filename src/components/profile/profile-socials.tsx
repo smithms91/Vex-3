@@ -36,11 +36,11 @@ const ProfileSocials = ({ socials }: Props) => {
         <Reorder.Group className="flex flex-col gap-y-4 z-50" axis="y" values={items} onReorder={handleUpdateItems}>
           <h1 className='text-white text-xl mt-2 -mb-1'>Socials</h1>
           {items && items.map((item, index) => (
-            <Reorder.Item key={item.id} value={item} className='flex items-center bg-white/80 text-black w-full p-2 z-50 cursor-pointer rounded-sm' onClick={() => router.push(`/account/setup/edit/${item.id}`)} >
+            <Reorder.Item key={item.id} value={item} className='flex items-center bg-white/60 text-black w-full p-2 z-50 cursor-pointer rounded-sm' onClick={() => router.push(`/account/setup/edit/${item.id}`)} >
               <CustomSocialIcon network={item.network} />
               <div className='ml-4'>
                 <p className='text-lg'>{item.title !== '' ? item.title : item.network.charAt(0).toUpperCase() + item.network.slice(1)}</p>
-                <p className='text-sm'>@{item.value}</p>
+                <p className='text-sm'>{item.value}</p>
               </div>
               <ArrowUpDown size={16} color="black" className='ml-auto mr-4 cursor-grab active:cursor-grabbing' />
             </Reorder.Item>

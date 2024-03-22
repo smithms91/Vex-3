@@ -13,12 +13,10 @@ import { Input } from '@/components/ui/input';
 import { Button } from '../ui/button';
 
 type Props = {
-  username: string;
 }
 
-const UpdateUsernameForm = ({ username }: Props) => {
+const UpdateUsernameForm = ({ }: Props) => {
   const router = useRouter();
-  const [userName, setUserName] = useState(username);
 
   const form = useForm<z.infer<typeof UpdateUsernameSchema>>({
     resolver: zodResolver(UpdateUsernameSchema),
@@ -48,9 +46,8 @@ const UpdateUsernameForm = ({ username }: Props) => {
 
   return (
     <section>
-      <h1>Current Username: {userName}</h1>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 z-10 max-w-[450px] p-6">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 z-10 max-w-[450px]">
           <FormField
             control={form.control}
             name="username"

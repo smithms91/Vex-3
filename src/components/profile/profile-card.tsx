@@ -15,16 +15,16 @@ import { addScaleCorrector } from 'framer-motion';
 
 type Props = {
   user: PostgrestSingleResponse<any[]>
+  email: string;
   options?: boolean
   className?: string
 }
 
-const ProfileCard = ({ user, options, className }: Props) => {
+const ProfileCard = ({ user, email: authEmail, options, className }: Props) => {
   const userData = user.data![0];
-
   const [firstName, setFirstName] = useState(userData.first_name || '')
   const [lastName, setLastName] = useState(userData.last_name || '')
-  const [email, setEmail] = useState(userData.email || '')
+  const [email, setEmail] = useState(authEmail || '')
   const [phoneNumber, setPhoneNumber] = useState(userData.phone_number || '')
   const [website, setWebsite] = useState(userData.website || '')
   const [jobTitle, setJobTitle] = useState(userData.job_title || '')

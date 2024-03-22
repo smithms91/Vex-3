@@ -37,7 +37,7 @@ const SetupPage = async (props: Props) => {
     <main className='max-w-[450px] mx-auto'>
       <HeaderBackButton title="Setup" link="account" />
       {/* <h1>Enable/Disable</h1> */}
-      <ProfileCard user={user} options className='px-4' />
+      <ProfileCard email={data.user.email!} user={user} options className='px-4' />
       <div className='px-4 mt-6'>
         <h1 className='text-xl mb-2'>Socials</h1>
         <ProfileEditSocials socials={socials} />

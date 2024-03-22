@@ -3,7 +3,7 @@
 import { createClient } from "./lib/supabase/server";
 import { redirect } from "next/navigation";
 import { z } from "zod";
-import { SignInSchema, OnboardingSchema, OnboardingSchemaTwo, AddSocialSchema, UpdatePasswordSchema, UpdateUsernameSchema } from "@/schemas";
+import { SignInSchema, OnboardingSchema, OnboardingSchemaTwo, AddSocialSchema, UpdatePasswordSchema, UpdateUsernameSchema, UpdateEmailSchema } from "@/schemas";
 import { revalidatePath } from "next/cache";
 import { Database } from "./lib/database.types";
 import { Social } from "./types";
@@ -136,7 +136,6 @@ export const updateProfileTwo = async (values: z.infer<typeof OnboardingSchemaTw
         job_title: values.job_title,
         phone_number: values.phone_number,
         website: values.website,
-        email: values.email,
         onboarding: true
       })
       .eq('id', userId)
@@ -175,6 +174,61 @@ export const updateUserPassword = async (values: z.infer<typeof UpdatePasswordSc
   }
 };
 
+
+// Helper function to update the profile table with the new emaik. FIX: Configure a SQL function to automatically update the email in the profiles table when the user updates their email.
+const updateProfileEmail = async (values: z.infer<typeof UpdateEmailSchema>) => {
+  const supabase = createClient();
+  const user = await supabase.auth.getUser();
+
+  if (!user) {
+    throw new Error("No authenticated user");
+  }
+
+  const userId = user.data.user?.id;
+
+  try {
+    const response = await supabase
+      .from('profiles')
+      .update({
+        email: values.email,
+      })
+      .eq('id', userId)
+      .select();
+
+    return response;
+  } catch (error) {
+    console.error('Error updating email:', error);
+  }
+}
+
+export const updateUserEmail = async (values: z.infer<typeof UpdateEmailSchema>) => {
+  const supabase = createClient();
+  const user = await supabase.auth.getUser();
+
+  if (!user) {
+    throw new Error("No authenticated user");
+  }
+
+  const verifyResponse = await supabase.rpc('verify_user_password', { password: values.password });
+
+  if (verifyResponse.data) {
+    try {
+      const response = await supabase.auth.updateUser({
+        email: values.email
+      }, { emailRedirectTo: 'http://localhost:3000/account' });
+
+      await updateProfileEmail(values);
+      console.error('GG:');
+      revalidatePath('/account/settings/user-settings/update-email');
+      return response;
+    } catch (error) {
+      console.error('Error updating email:', error);
+    }
+  } else {
+    return false;
+  }
+};
+
 export const updateUsername = async (values: z.infer<typeof UpdateUsernameSchema>) => {
   const supabase = createClient();
   const user = await supabase.auth.getUser();
@@ -206,7 +260,6 @@ export const updateUsername = async (values: z.infer<typeof UpdateUsernameSchema
 };
 
 export const updateProfileColor = async (color: string) => {
-
   const supabase = createClient();
   const user = await supabase.auth.getUser();
 

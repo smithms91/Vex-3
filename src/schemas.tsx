@@ -17,7 +17,6 @@ export const OnboardingSchemaTwo = z.object({
   last_name: z.string(),
   job_title: z.string().optional(),
   phone_number: z.string().optional().or(z.string().regex(phoneRegex, "Invalid phone number")),
-  email: z.string().optional().or(z.string().email()),
   website: z.string().optional(),
 })
 
@@ -52,5 +51,10 @@ export const UpdatePasswordSchema = z.object({
 
 export const UpdateUsernameSchema = z.object({
   username: z.string().min(3, { message: "Username has to be at least 3 characters long." }),
+  password: z.string().min(7, { message: "Password has to be at least 7 characters long." }),
+})
+
+export const UpdateEmailSchema = z.object({
+  email: z.string().min(3, { message: "Email has to be at least 3 characters long." }),
   password: z.string().min(7, { message: "Password has to be at least 7 characters long." }),
 })

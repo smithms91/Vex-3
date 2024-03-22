@@ -41,7 +41,6 @@ const OnboardingFormTwo = ({ user, setFirstName, setLastName, setEmail, setPhone
       last_name: user?.last_name || "",
       job_title: user?.job_title || "",
       phone_number: user?.phone_number || "",
-      email: user?.email || "",
       website: user?.website || "",
     },
   })
@@ -108,19 +107,6 @@ const OnboardingFormTwo = ({ user, setFirstName, setLastName, setEmail, setPhone
               <FormLabel className='text-card-bg-dark text-lg shadow-sm'>Phone Number</FormLabel>
               <FormControl>
                 <Input onChangeCapture={e => setPhoneNumber(e.currentTarget.value)} className="py-6" type="tel" placeholder='(123) 456-7890' {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className='text-card-bg-dark text-lg shadow-sm'>Email</FormLabel>
-              <FormControl>
-                <Input onChangeCapture={e => setEmail(e.currentTarget.value)} className="py-6" type="string" placeholder='email@vex.cards' {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
