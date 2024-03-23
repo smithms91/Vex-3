@@ -18,8 +18,8 @@ const UserSettingsPage = (props: Props) => {
 
   useEffect(() => {
     async function handleDisabledAccount() {
-      const disabled = await getAccountDisabled();
-      setDisabled(disabled!);
+      const userDisabled = await getAccountDisabled();
+      setDisabled(userDisabled!);
     }
 
     handleDisabledAccount();

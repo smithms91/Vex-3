@@ -24,8 +24,8 @@ export default async function AccountLayout({
 }: {
   children: React.ReactNode
 }) {
-  const color = await getProfileColor();
   const supabase = createClient()
+  const color = await getProfileColor();
 
   const { data, error } = await supabase.auth.getUser()
   if (error || !data?.user) {
@@ -39,9 +39,6 @@ export default async function AccountLayout({
     redirect('/login?message=Something went wrong. Try logging in again.')
   }
 
-  if (user.data[0].onboarding == false) {
-    redirect('/account/onboarding')
-  }
   return (
     <main className={cn('max-w-[450px] mx-auto', kanit.className)}>
       <ThemeProvider
@@ -52,8 +49,8 @@ export default async function AccountLayout({
         <IconBorderProvider roundedProp={user.data[0].border}>
           {children}
         </IconBorderProvider>
-        <SpeedInsights />
       </ThemeProvider>
+      <SpeedInsights />
     </main>
   );
 }

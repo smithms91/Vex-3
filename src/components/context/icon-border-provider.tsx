@@ -22,8 +22,6 @@ const IconBorderProvider: React.FC<IconBorderProviderProps> = ({ children, round
   const [rounded, setRounded] = useState<IconBorderContextType['rounded']>(roundedProp || 'full');
   const [isMounted, setIsMounted] = useState(false);
 
-  console.log()
-
   useEffect(() => {
     setIsMounted(true);
   }, [])
