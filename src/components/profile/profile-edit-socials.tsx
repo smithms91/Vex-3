@@ -30,7 +30,7 @@ const ProfileEditSocials = ({ socials }: Props) => {
 
   return (
     <section className='w-full z-50 mb-4'>
-      {items.length > 0 &&
+      {items && items.length > 0 &&
         <div className='bg-card-bg-dark p-4'>
           <Reorder.Group className="flex flex-col gap-y-4 z-50" axis="y" values={items} onReorder={handleUpdateItems}>
             {items && items.map((item, index) => (

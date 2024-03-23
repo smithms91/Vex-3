@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Reorder } from "framer-motion"
 import { ArrowUpDown } from 'lucide-react';
 import { useRouter } from 'next/navigation';
@@ -17,6 +17,8 @@ const ProfileSocials = ({ socials }: Props) => {
   const [items, setItems] = useState<Social[]>(socials)
   const [mounted, setMounted] = useState(false)
   const router = useRouter();
+
+  console.log('items', items)
 
   const handleUpdateItems = async (order: typeof items) => {
     setItems(order)
