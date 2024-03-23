@@ -1,6 +1,6 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import Image from 'next/image'
-import { Palette, TrendingUp, Users, X } from 'lucide-react'
+import { TrendingUp } from 'lucide-react'
 import StyleThemeModal from '../modals/style-theme-modal';
 import { PostgrestSingleResponse } from '@supabase/supabase-js';
 import { getProfilePicture } from '@/queries';
@@ -19,7 +19,6 @@ const ProfileFooter = async (props: Props) => {
       </div>
       <Image src={profilePicture} className='rounded-full border-2 border-card-bg-dark p-1 box-content w-9' alt='Profile Picture' width={22} height={22} />
       <StyleThemeModal />
-      {/* <Users size={28} color='black' /> */}
     </footer>
   )
 }

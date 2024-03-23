@@ -1,15 +1,11 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { Button } from '../ui/button'
 import { X } from 'lucide-react'
-import Image from 'next/image'
 import AvatarEditor from 'react-avatar-editor';
 import { Slider } from "@/components/ui/slider"
 import { uploadProfileImage } from '@/queries';
-import { useRouter } from 'next/navigation';
-import { createClient } from '@/lib/supabase/server';
-import { revalidatePath } from 'next/cache';
 
 type Props = {
   closeModal: () => void

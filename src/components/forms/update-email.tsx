@@ -1,7 +1,7 @@
 'use client';
 
-import { updateUserEmail, updateUserPassword } from '@/queries';
-import { UpdateEmailSchema, UpdatePasswordSchema } from '@/schemas';
+import { updateUserEmail } from '@/queries';
+import { UpdateEmailSchema } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import React from 'react'
@@ -10,7 +10,6 @@ import { toast } from 'sonner';
 import { z } from 'zod';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../ui/form';
 import { Input } from '../ui/input';
-import CustomSocialIcon from '../custom-social-icon';
 import { Button } from '../ui/button';
 
 type Props = {

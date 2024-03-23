@@ -1,11 +1,10 @@
 'use client';
 
-import { SignInSchema } from '@/schemas';
+import { SignInSchema } from '@/types';
 import { zodResolver } from "@hookform/resolvers/zod"
 import React from 'react'
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-
 import { Button } from "@/components/ui/button"
 import {
   Form,

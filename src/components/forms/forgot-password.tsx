@@ -1,7 +1,7 @@
 'use client';
 
-import { updateUserPassword } from '@/queries';
-import { UpdatePasswordSchema } from '@/types';
+import { updateForgotPassword } from '@/queries';
+import { ForgotPasswordSchema } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import React from 'react'
@@ -14,30 +14,29 @@ import { Button } from '../ui/button';
 
 type Props = {}
 
-const UpdatePasswordForm = (props: Props) => {
+const ForgotPasswordForm = (props: Props) => {
   const router = useRouter();
-  const form = useForm<z.infer<typeof UpdatePasswordSchema>>({
-    resolver: zodResolver(UpdatePasswordSchema),
+  const form = useForm<z.infer<typeof ForgotPasswordSchema>>({
+    resolver: zodResolver(ForgotPasswordSchema),
     defaultValues: {
-      current_password: '',
       new_password: '',
       confirm_password: '',
     },
   });
 
-  async function onSubmit(values: z.infer<typeof UpdatePasswordSchema>) {
+  async function onSubmit(values: z.infer<typeof ForgotPasswordSchema>) {
     if (values.new_password !== values.confirm_password) {
       return toast('Passwords do not match', { position: 'top-center' })
     }
 
     try {
       console.log('values', values)
-      const response = await updateUserPassword(values)
+      const response = await updateForgotPassword(values.new_password)
       if (!response) {
         return toast('Password update failed', { position: 'top-center' })
       }
       toast('Password updated!', { position: 'top-center' })
-      router.push('/account/settings/user-settings')
+      router.push('/account')
     } catch (error) {
       console.log('error', error)
     }
@@ -47,19 +46,6 @@ const UpdatePasswordForm = (props: Props) => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 z-10 max-w-[450px] p-6">
-        <FormField
-          control={form.control}
-          name="current_password"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className='text-black text-lg flex items-center'>Current Password</FormLabel>
-              <FormControl>
-                <Input className="text-black placeholder:text-black/50 bg-[#e8f0fe] border border-white/50 py-6" type="password" placeholder="Current Password" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
         <FormField
           control={form.control}
           name="new_password"
@@ -92,4 +78,4 @@ const UpdatePasswordForm = (props: Props) => {
   )
 }
 
-export default UpdatePasswordForm
+export default ForgotPasswordForm

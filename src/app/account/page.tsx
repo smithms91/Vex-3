@@ -1,8 +1,6 @@
 import React from 'react'
-import { redirect, useRouter } from 'next/navigation';
+import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
-import Image from 'next/image';
-import { Globe, MailIcon, PhoneIcon, Send, UserRoundCog } from 'lucide-react';
 import { SparklesCore } from '@/components/sparkles';
 import EditProfileButton from '@/components/edit-profile-button';
 import AccountHeader from '@/components/account-header';

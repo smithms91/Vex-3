@@ -5,7 +5,7 @@ import { SparklesCore } from '@/components/sparkles';
 import { Button } from '@/components/ui/button'
 import { signOut } from '@/queries'
 import { Instagram, ShieldQuestion, Store, TrendingUp, UserRoundCog } from 'lucide-react'
-import { redirect, useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import React from 'react'
 
 type Props = {}
@@ -16,7 +16,7 @@ const AccountSettingsPage = (props: Props) => {
   return (
     <main className='min-h-screen z-50 max-w-[450px] mx-auto flex flex-col items-center bg-gradient-to-tl from-from to-to'>
       <HeaderBackButton title='Account Settings' link='account' />
-      <section className='flex flex-col gap-y-2 w-full p-6'>
+      <section className='flex flex-col gap-y-2 w-full p-4'>
         <Button onClick={() => router.push('/account/insights')} className='flex justify-start bg-slate-600/50 inset-4 text-white w-full py-9 z-50'>
           <div className='flex items-center justify-center rounded-full box-content bg-blue-600/20 p-2'>
             <TrendingUp size={18} color='white' />
@@ -62,14 +62,13 @@ const AccountSettingsPage = (props: Props) => {
             <p className='text-xs font-thin'>Follow us on instagram</p>
           </div>
         </Button>
-      </section>
-      <form className='z-10 fixed bottom-0 left-0 right-0 max-w-[400px] mx-auto'>
-        <Button className="w-full py-7 text-lg bg-card-bg-dark" formAction={signOut}>Log Out</Button>
-        <div className="relative flex items-center justify-center py-6">
+        <Button className="max-w-[420px] mx-auto py-7 text-lg bg-card-bg-dark mt-4 absolute bottom-14 left-4 right-4" onClick={() => signOut()}>Log Out</Button>
+        <div className="absolute bottom-0 left-4 right-4 flex items-center justify-center py-6">
           <h1 className="absolute text-xs uppercase z-10 text-white drop-shadow-md blur-md opacity-1">Vex 3.0</h1>
           <h1 className="text-xs uppercase z-10 text-white drop-shadow-md">Vex 3.0</h1>
         </div>
-      </form>
+      </section>
+
       <SparklesCore id="tsparticlesfullpage"
         background="transparent"
         minSize={0.6}

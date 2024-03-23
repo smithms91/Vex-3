@@ -3,7 +3,6 @@
 import { QrCode, UserRoundCog, X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
-import QrModal from './modals/qr-modal';
 import { Drawer, DrawerClose, DrawerContent, DrawerTrigger } from './ui/drawer';
 import QRCode from 'react-qr-code';
 import { getProfilePicture, getUserId } from '@/queries';

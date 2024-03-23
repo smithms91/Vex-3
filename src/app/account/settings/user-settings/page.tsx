@@ -3,14 +3,26 @@
 import HeaderBackButton from '@/components/header-with-back-button';
 import { SparklesCore } from '@/components/sparkles';
 import { Button } from '@/components/ui/button'
+import { forgotUserPassword, getAuthUserEmail } from '@/queries';
 import { Instagram, Lock, Mail, Pause, ShieldQuestion, Unlock, UserRound, UserRoundMinus } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import React from 'react'
+import { toast } from 'sonner';
 
 type Props = {}
 
 const UserSettingsPage = (props: Props) => {
   const router = useRouter();
+
+  const handleForgotPassword = async () => {
+    try {
+      const email = await getAuthUserEmail();
+      await forgotUserPassword(email!);
+      toast(`Password reset email sent to this email: <strong>${email}</strong>. <br />Click the <strong>link</strong> in that email to reset your password.`, { position: 'top-center' });
+    } catch (error) {
+      console.log('error', error);
+    }
+  };
 
   return (
     <main className='min-h-screen z-50 max-w-[450px] mx-auto flex flex-col items-center bg-gradient-to-tl from-from to-to'>
@@ -40,7 +52,7 @@ const UserSettingsPage = (props: Props) => {
             <h1 className='text-md'>Update Password</h1>
           </div>
         </Button>
-        <Button onClick={() => router.push('/shop')} className='flex justify-start bg-slate-600/50 inset-4 text-white w-full py-9 z-50'>
+        <Button onClick={() => handleForgotPassword()} className='flex justify-start bg-slate-600/50 inset-4 text-white w-full py-9 z-50'>
           <div className='flex items-center justify-center rounded-full box-content bg-green-400/20 p-2'>
             <Unlock size={18} color='white' />
           </div>

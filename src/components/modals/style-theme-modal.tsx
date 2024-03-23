@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef } from 'react'
+import React from 'react'
 import {
   Drawer,
   DrawerClose,
@@ -11,7 +11,6 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer"
-import { Button } from '../ui/button';
 import ColorPicker from '../color-picker';
 import { Palette, X } from 'lucide-react';
 
@@ -19,7 +18,6 @@ type Props = {
 }
 
 const StyleThemeModal = ({ }: Props) => {
-
   return (
     <Drawer>
       <DrawerTrigger>

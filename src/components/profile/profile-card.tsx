@@ -1,17 +1,13 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image'
 import { PostgrestSingleResponse } from '@supabase/supabase-js'
 import { Globe, MailIcon, PhoneIcon, UploadIcon } from 'lucide-react'
 import OnboardingFormTwo from '../forms/onboarding-form-two';
-import { Button } from '../ui/button';
-import { useTheme } from 'next-themes';
 import ThemePicker from '../color-picker';
 import { cn } from '@/lib/utils';
-import ReactCrop, { type Crop } from 'react-image-crop'
 import EditPictureModal from '../modals/edit-picture-modal';
-import { addScaleCorrector } from 'framer-motion';
 
 type Props = {
   user: PostgrestSingleResponse<any[]>

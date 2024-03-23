@@ -1,8 +1,8 @@
 'use client';
 
-import { EditSocialSchema } from '@/schemas';
+import { EditSocialSchema } from '@/types';
 import { zodResolver } from "@hookform/resolvers/zod"
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
@@ -16,12 +16,11 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { deleteSocial, getUserSocial, updateSocial } from '@/queries';
+import { deleteSocial, updateSocial } from '@/queries';
 import { Plus } from 'lucide-react';
 import { Social } from '@/types';
 import { useRouter } from 'next/navigation';
 import { toast } from "sonner"
-import { Database } from '@/lib/database.types';
 import CustomSocialIcon from '../custom-social-icon';
 
 type Props = {

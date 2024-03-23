@@ -1,13 +1,13 @@
 'use client';
 
-import React, { useState } from 'react'
+import React from 'react'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../ui/form';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { toast } from 'sonner';
-import { UpdateUsernameSchema } from '@/schemas';
+import { UpdateUsernameSchema } from '@/types';
 import { updateUsername } from '@/queries';
 import { Input } from '@/components/ui/input';
 import { Button } from '../ui/button';

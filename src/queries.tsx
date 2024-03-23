@@ -3,12 +3,10 @@
 import { createClient } from "./lib/supabase/server";
 import { redirect } from "next/navigation";
 import { z } from "zod";
-import { SignInSchema, OnboardingSchema, OnboardingSchemaTwo, AddSocialSchema, UpdatePasswordSchema, UpdateUsernameSchema, UpdateEmailSchema } from "@/schemas";
+import { SignInSchema, OnboardingSchema, OnboardingSchemaTwo, AddSocialSchema, UpdatePasswordSchema, UpdateUsernameSchema, UpdateEmailSchema } from "@/types";
 import { revalidatePath } from "next/cache";
-import { Database } from "./lib/database.types";
 import { Social } from "./types";
 import { v4 as uuidv4 } from 'uuid';
-import { toast } from "sonner";
 
 export const signUp = async (values: z.infer<typeof SignInSchema>) => {
   const { email, password } = values;
@@ -20,7 +18,6 @@ export const signUp = async (values: z.infer<typeof SignInSchema>) => {
     email,
     password
   });
-
 
   if (error) {
     return redirect("/sign-up?message=Could not authenticate user");
@@ -41,9 +38,6 @@ export const signIn = async (values: z.infer<typeof SignInSchema>) => {
     email,
     password,
   });
-
-  console.log('data', data)
-  console.log('error', error)
 
   if (error) {
     return redirect("/sign-in?message=Could not authenticate user");
@@ -71,6 +65,7 @@ export const signOut = async () => {
   return redirect("/");
 };
 
+// Checks if username is available to be taken. Returns true if available, false if not.
 export const verifyUsername = async (username: string) => {
   const supabase = createClient();
 
@@ -85,6 +80,44 @@ export const verifyUsername = async (username: string) => {
   }
 
   return true;
+};
+
+
+// Gets the currently authenticated user's email
+export const getAuthUserEmail = async () => {
+  const supabase = createClient();
+  const user = await supabase.auth.getUser();
+
+  if (!user) {
+    throw new Error("No authenticated user");
+  }
+
+  return user.data.user?.email;
+};
+
+export const forgotUserPassword = async (email: string) => {
+  const supabase = createClient();
+  try {
+    const response = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: 'http://localhost:3000/account/settings/user-settings/forgot-password'
+    });
+
+    return response;
+  } catch (error) {
+    console.error('Error resetting password:', error);
+  }
+};
+
+export const updateForgotPassword = async (password: string, token?: string) => {
+  const supabase = createClient();
+
+  try {
+    const response = await supabase.auth.updateUser({ password });
+
+    return response;
+  } catch (error) {
+    console.error('Error updating password:', error);
+  }
 };
 
 export const updateProfile = async (values: z.infer<typeof OnboardingSchema>) => {
@@ -175,7 +208,7 @@ export const updateUserPassword = async (values: z.infer<typeof UpdatePasswordSc
 };
 
 
-// Helper function to update the profile table with the new emaik. FIX: Configure a SQL function to automatically update the email in the profiles table when the user updates their email.
+// Helper function to update the profile table with the new email. FIX: Configure a SQL function to automatically update the email in the profiles table when the user updates their email.
 const updateProfileEmail = async (values: z.infer<typeof UpdateEmailSchema>) => {
   const supabase = createClient();
   const user = await supabase.auth.getUser();
@@ -218,7 +251,6 @@ export const updateUserEmail = async (values: z.infer<typeof UpdateEmailSchema>)
       }, { emailRedirectTo: 'http://localhost:3000/account' });
 
       await updateProfileEmail(values);
-      console.error('GG:');
       revalidatePath('/account/settings/user-settings/update-email');
       return response;
     } catch (error) {
@@ -312,7 +344,6 @@ export const getProfileColor = async () => {
 };
 
 export const uploadProfileImage = async (url: string) => {
-  console.log('file from back', url)
   const supabase = createClient();
   const user = await supabase.auth.getUser();
 
@@ -400,22 +431,9 @@ export const getUserId = async () => {
     throw new Error("No authenticated user");
   }
 
-  const userId = user.data.user?.id;
+  const userId = user.data.user?.id!;
 
-  try {
-    const response = await supabase
-      .from('profiles')
-      .select('id')
-      .eq('id', userId);
-
-    if (!response.data || response.data.length === 0) {
-      return '';
-    }
-
-    return response.data[0].id
-  } catch (error) {
-    console.error('Error getting User ID:', error);
-  }
+  return userId;
 };
 
 ////////////////////////////////////////

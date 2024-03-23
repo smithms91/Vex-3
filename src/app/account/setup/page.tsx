@@ -3,12 +3,9 @@ import ProfileCard from '@/components/profile/profile-card'
 import ProfileEditSocials from '@/components/profile/profile-edit-socials'
 import { Button } from '@/components/ui/button'
 import { createClient } from '@/lib/supabase/server'
-import { Reorder } from 'framer-motion'
-import { ArrowUpDown } from 'lucide-react'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import React from 'react'
-import { SocialIcon } from 'react-social-icons'
 
 type Props = {}
 

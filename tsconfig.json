@@ -31,7 +31,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "src/app/account/settings/user-settings/change-email"
   ],
   "exclude": [
     "node_modules"

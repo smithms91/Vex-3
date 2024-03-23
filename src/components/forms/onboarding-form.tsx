@@ -4,7 +4,6 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-
 import { Button } from "@/components/ui/button"
 import {
   Form,
@@ -15,10 +14,10 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { signIn, updateProfile, verifyUsername } from '@/queries';
-import { OnboardingSchema } from '@/schemas';
+import { updateProfile, verifyUsername } from '@/queries';
+import { OnboardingSchema } from '@/types';
 import { setTimeout } from "timers";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 type Props = {}
 

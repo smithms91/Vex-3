@@ -3,7 +3,6 @@
 import React from 'react'
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-
 import { Button } from "@/components/ui/button"
 import {
   Form,
@@ -14,11 +13,11 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { OnboardingSchemaTwo } from '@/schemas';
+import { OnboardingSchemaTwo } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { updateProfile, updateProfileTwo } from '@/queries';
+import { updateProfileTwo } from '@/queries';
 import { useRouter } from 'next/navigation';
-import { Database, Tables, } from '@/lib/database.types';
+import { Tables } from '@/lib/database.types';
 import { toast } from 'sonner';
 
 type Props = {

@@ -1,12 +1,10 @@
 'use client';
 
-import React, { useCallback, useEffect, useState } from 'react'
-import { SocialIcon } from 'react-social-icons'
-import { Reorder, useDragControls } from "framer-motion"
+import React, { useState } from 'react'
+import { Reorder } from "framer-motion"
 import { Grip, Pencil } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { getUserSocials, updateUserSocials } from '@/queries';
-import { Database } from '@/lib/database.types';
+import { updateUserSocials } from '@/queries';
 import CustomSocialIcon from '../custom-social-icon';
 import { toast } from 'sonner';
 import { Social } from '@/types';

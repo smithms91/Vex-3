@@ -1,4 +1,4 @@
-import { SparklesCore } from '@/components/sparkles'
+// import { SparklesCore } from '@/components/sparkles'
 import React from 'react'
 
 type Props = {}
