@@ -62,7 +62,7 @@ const AccountSettingsPage = (props: Props) => {
             <p className='text-xs font-thin'>Follow us on instagram</p>
           </div>
         </Button>
-        <Button className="max-w-[420px] mx-auto py-7 text-lg bg-card-bg-dark mt-4 absolute bottom-14 left-4 right-4" onClick={() => signOut()}>Log Out</Button>
+        <Button className="max-w-[420px] mx-auto py-7 text-lg bg-card-bg-dark mt-4 absolute bottom-14 left-4 right-4 z-50" onClick={() => signOut()}>Log Out</Button>
         <div className="absolute bottom-0 left-4 right-4 flex items-center justify-center py-6">
           <h1 className="absolute text-xs uppercase z-10 text-white drop-shadow-md blur-md opacity-1">Vex 3.0</h1>
           <h1 className="text-xs uppercase z-10 text-white drop-shadow-md">Vex 3.0</h1>
