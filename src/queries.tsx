@@ -65,6 +65,55 @@ export const signOut = async () => {
   return redirect("/");
 };
 
+export const disableAccount = async (value: boolean) => {
+  const supabase = createClient();
+  const user = await supabase.auth.getUser();
+
+  if (!user) {
+    throw new Error("No authenticated user");
+  }
+
+  const userId = user.data.user?.id;
+
+  try {
+    const response = await supabase
+      .from('profiles')
+      .update({ disabled: value })
+      .eq('id', userId)
+      .select();
+
+    return response;
+  } catch (error) {
+    console.error('Error disabling account:', error);
+  }
+};
+
+export const getAccountDisabled = async () => {
+  const supabase = createClient();
+  const user = await supabase.auth.getUser();
+
+  if (!user) {
+    throw new Error("No authenticated user");
+  }
+
+  const userId = user.data.user?.id;
+
+  try {
+    const response = await supabase
+      .from('profiles')
+      .select('disabled')
+      .eq('id', userId);
+
+    if (!response.data || response.data.length === 0) {
+      return false;
+    }
+    console.log('response', response.data[0].disabled);
+    return response.data[0].disabled === true ? true : false;
+  } catch (error) {
+    console.error('Error getting account disabled:', error);
+  }
+};
+
 // Checks if username is available to be taken. Returns true if available, false if not.
 export const verifyUsername = async (username: string) => {
   const supabase = createClient();
