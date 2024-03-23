@@ -48,7 +48,7 @@ const OnboardingFormTwo = ({ user, setFirstName, setLastName, setEmail, setPhone
     try {
       const user = await updateProfileTwo(values)
       toast('Profile updated!', { position: 'top-center' })
-      if (user?.data && user.data[0].onboarding == true) {
+      if (user?.data) {
         router.push('/account');
       }
     } catch (error) {
