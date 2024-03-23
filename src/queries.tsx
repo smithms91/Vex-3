@@ -169,6 +169,29 @@ export const updateForgotPassword = async (password: string, token?: string) => 
   }
 };
 
+export const setUserBorder = async (border: string) => {
+  const supabase = createClient();
+  const user = await supabase.auth.getUser();
+
+  if (!user) {
+    throw new Error("No authenticated user");
+  }
+
+  const userId = user.data.user?.id;
+
+  try {
+    const response = await supabase
+      .from('profiles')
+      .update({ border })
+      .eq('id', userId)
+      .select();
+
+    return response;
+  } catch (error) {
+    console.error('Error updating border:', error);
+  }
+};
+
 export const updateProfile = async (values: z.infer<typeof OnboardingSchema>) => {
   const supabase = createClient();
   const user = await supabase.auth.getUser();

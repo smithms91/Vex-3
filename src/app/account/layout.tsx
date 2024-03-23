@@ -1,4 +1,4 @@
-import ThemeProvider from '@/components/theme-provider'
+import ThemeProvider from '@/components/context/theme-provider'
 import { createClient } from '@/lib/supabase/server';
 import { cn } from '@/lib/utils';
 import { getProfileColor } from '@/queries';
@@ -8,6 +8,7 @@ import { Metadata } from 'next/types';
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import React from 'react'
+import IconBorderProvider from '@/components/context/icon-border-provider';
 
 type Props = {}
 
@@ -48,7 +49,9 @@ export default async function AccountLayout({
         defaultTheme={color}
         enableSystem
         disableTransitionOnChange>
-        {children}
+        <IconBorderProvider roundedProp={user.data[0].border}>
+          {children}
+        </IconBorderProvider>
         <SpeedInsights />
       </ThemeProvider>
     </main>
