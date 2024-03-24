@@ -40,6 +40,7 @@ const EditPictureModal = ({ closeModal, selectedFile, selectedFileUrl, setSelect
     if (!profilePictureRef.current) return;
     const dataUrl = profilePictureRef.current.getImageScaledToCanvas().toDataURL();
     const file = new File([dataUrl], 'profile.png', { type: 'image/png' });
+    console.log('file', file);
     setSelectedFile(file);
     setSelectedFileUrl(profilePictureRef.current?.getImage().toDataURL());
     try {

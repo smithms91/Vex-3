@@ -26,7 +26,7 @@ const ProfileCard = ({ user, email: authEmail, options, className }: Props) => {
   const [jobTitle, setJobTitle] = useState(userData.job_title || '')
   const [pictureModalOpen, setPictureModalOpen] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [selectedFileUrl, setSelectedFileUrl] = useState<string | null>(userData.profile_picture || null);
+  const [selectedFileUrl, setSelectedFileUrl] = useState<string | null>(userData.profile_picture || '/profile.jpg');
 
   const onUploadIconClick = () => {
     setPictureModalOpen(true);

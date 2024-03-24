@@ -7,6 +7,7 @@ import { SignInSchema, OnboardingSchema, OnboardingSchemaTwo, AddSocialSchema, U
 import { revalidatePath } from "next/cache";
 import { Social } from "./types";
 import { v4 as uuidv4 } from 'uuid';
+import { decode } from 'base64-arraybuffer'
 
 export const signUp = async (values: z.infer<typeof SignInSchema>) => {
   const { email, password } = values;
@@ -448,10 +449,11 @@ export const uploadProfileImage = async (url: string) => {
   // Create a blob and convert it to a file
   const blob = new Blob([byteArray], { type: 'image/png' });
   const file = new File([blob], 'profile.png', { type: 'image/png' });
+  console.log('filePath', filePath);
   console.log('file', file);
 
   try {
-    const { data, error } = await supabase.storage.from('profile_pictures').upload(filePath, file!);
+    const { data, error } = await supabase.storage.from('profile_pictures').upload(filePath, decode(base64Data), { contentType: 'image/*' });
 
     if (error) {
       console.error('Error uploading image:', error);
