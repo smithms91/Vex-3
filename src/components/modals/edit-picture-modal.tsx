@@ -6,6 +6,7 @@ import { X } from 'lucide-react'
 import AvatarEditor from 'react-avatar-editor';
 import { Slider } from "@/components/ui/slider"
 import { uploadProfileImage } from '@/queries';
+import { toast } from 'sonner';
 
 type Props = {
   closeModal: () => void
@@ -41,8 +42,13 @@ const EditPictureModal = ({ closeModal, selectedFile, selectedFileUrl, setSelect
     const file = new File([dataUrl], 'profile.png', { type: 'image/png' });
     setSelectedFile(file);
     setSelectedFileUrl(profilePictureRef.current?.getImage().toDataURL());
-    await uploadProfileImage(dataUrl);
-    closeModal();
+    try {
+      await uploadProfileImage(dataUrl);
+      toast('Profile picture updated!', { position: 'top-center' });
+      closeModal();
+    } catch (error) {
+      console.error('error', error);
+    }
   };
 
   return (

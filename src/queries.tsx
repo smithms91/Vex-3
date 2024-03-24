@@ -599,7 +599,7 @@ export const getUserSocials = async () => {
 
     if (!response.data) return null;
 
-    return response.data[0].socials
+    return response.data[0].socials || [];
   } catch (error) {
     console.error('Error getting User ID:', error);
   }

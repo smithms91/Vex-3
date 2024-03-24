@@ -31,10 +31,10 @@ const ProfileSocials = ({ socials }: Props) => {
 
   return (
     <section className='w-full mt-4 z-50 mb-20'>
-      {items !== null && items.length > 0 &&
+      {items && items.length > 0 &&
         <Reorder.Group className="flex flex-col gap-y-4 z-50" axis="y" values={items} onReorder={handleUpdateItems}>
           <h1 className='text-white text-xl mt-2 -mb-1'>Socials</h1>
-          {items !== null && items.map((item, index) => (
+          {items && items.map((item, index) => (
             <Reorder.Item key={item.id} value={item} className='flex items-center bg-white/60 text-black w-full p-2 z-50 cursor-pointer rounded-sm' onClick={() => router.push(`/account/setup/edit/${item.id}`)} >
               <CustomSocialIcon network={item.network} />
               <div className='ml-4'>

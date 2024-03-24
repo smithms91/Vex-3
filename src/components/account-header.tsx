@@ -28,15 +28,15 @@ const AccountHeader = (props: Props) => {
 
   return (
     <div className='flex items-center justify-between w-full z-10'>
-      <div className='flex items-center justify-center shadow-xl bg-white rounded-full p-2 box-content'>
-        <UserRoundCog className="cursor-pointer" onClick={() => router.push('/account/settings')} size={20} color="black" />
+      <div onClick={() => router.push('/account/settings')} className='z-50 flex items-center justify-center shadow-xl bg-white rounded-full p-2 box-content cursor-pointer'>
+        <UserRoundCog className="cursor-pointer" size={20} color="black" />
       </div>
       <div className="relative">
         <h1 className="absolute text-3xl uppercase z-10 text-white drop-shadow-md blur-md opacity-1">Vex</h1>
         <h1 className="text-3xl uppercase z-10 text-white drop-shadow-md">Vex</h1>
       </div>
       <Drawer>
-        <div onClick={() => setModalOpen(!modalOpen)} className='flex items-center justify-center shadow-xl bg-white rounded-full p-2 box-content'>
+        <div onClick={() => setModalOpen(!modalOpen)} className='flex items-center justify-center shadow-xl bg-white rounded-full p-2 box-content cursor-pointer'>
           <DrawerTrigger>
             <QrCode size={20} color="black" />
           </DrawerTrigger>
