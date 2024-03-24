@@ -431,26 +431,26 @@ export const uploadProfileImage = async (url: string) => {
   const base64Data = url.replace(/^data:image\/\w+;base64,/, "");
   console.log('base64Data', base64Data);
 
-  // Convert base64 to raw binary data
-  const byteCharacters = atob(base64Data);
-  console.log('byteCharacters', byteCharacters);
+  // // Convert base64 to raw binary data
+  // const byteCharacters = atob(base64Data);
+  // console.log('byteCharacters', byteCharacters);
 
-  // Write the bytes of the string to a typed array
-  const byteNumbers = new Array(byteCharacters.length);
-  console.log('byteNumbers', byteNumbers);
+  // // Write the bytes of the string to a typed array
+  // const byteNumbers = new Array(byteCharacters.length);
+  // console.log('byteNumbers', byteNumbers);
 
-  for (let i = 0; i < byteCharacters.length; i++) {
-    byteNumbers[i] = byteCharacters.charCodeAt(i);
-  }
+  // for (let i = 0; i < byteCharacters.length; i++) {
+  // byteNumbers[i] = byteCharacters.charCodeAt(i);
+  // }
 
-  const byteArray = new Uint8Array(byteNumbers);
-  console.log('byteArray', byteArray);
+  // const byteArray = new Uint8Array(byteNumbers);
+  // console.log('byteArray', byteArray);
 
   // Create a blob and convert it to a file
-  const blob = new Blob([byteArray], { type: 'image/png' });
-  const file = new File([blob], 'profile.png', { type: 'image/png' });
-  console.log('filePath', filePath);
-  console.log('file', file);
+  // const blob = new Blob([byteArray], { type: 'image/png' });
+  // const file = new File([blob], 'profile.png', { type: 'image/png' });
+  // console.log('filePath', filePath);
+  // console.log('file', file);
 
   try {
     const { data, error } = await supabase.storage.from('profile_pictures').upload(filePath, decode(base64Data), { contentType: 'image/*' });
