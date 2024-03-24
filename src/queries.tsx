@@ -641,35 +641,33 @@ export const getUserSocials = async () => {
 export const updateSocial = async (social: Social) => {
   const supabase = createClient();
   const user = await supabase.auth.getUser();
+  let socials = [];
 
   if (!user) {
     throw new Error("No authenticated user");
   }
 
-  const userId = user.data.user?.id;
+  try {
+    socials = await getUserSocials();
+  } catch (error) {
+    console.error('Error updating social:', error);
+  }
+
+  const updatedSocials = socials.map((item: any) => {
+    return item.id === social.id ? social : item;
+  });
 
   try {
-    const response = await supabase
-      .from('profiles')
-      .select('socials')
-      .eq('id', userId)
-
-
-    if (!response.data || response.data.length === 0) return null;
-
-    const updatedSocials = response.data[0].socials.map((item: any) => {
-      return item.id === social.id ? social : item;
-    });
-
     await updateUserSocials(updatedSocials);
-    revalidatePath('/account');
-    return updatedSocials;
   } catch (error) {
-    console.error('Error getting User ID:', error);
+    console.error('Error updating social:', error);
   }
+
+  revalidatePath('/account');
+  return updatedSocials;
 };
 
-// Mostly used for re-ordering the socials on account page. This updates the order and stores them in the DB.
+// Used for re-ordering the socials on account page.
 export const updateUserSocials = async (socials: Social[]) => {
   const supabase = createClient();
   const user = await supabase.auth.getUser();

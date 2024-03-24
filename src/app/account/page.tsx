@@ -30,7 +30,7 @@ const AccountPage = async (props: Props) => {
   }
 
   let socials = user.data[0].socials
-
+  console.log(socials)
   return (
     <main className='min-h-screen max-w-[450px] p-6 mx-auto flex flex-col items-center bg-gradient-to-tl from-from to-to '>
       <AccountHeader />

@@ -30,7 +30,7 @@ type Props = {
 const EditSocialForm = ({ social }: Props) => {
   const [showTitle, setShowTitle] = useState(false)
   const [deleteButton, setDeleteButton] = useState(false)
-  const [socialObject, setSocialObject] = useState<Social>()
+  const [socialObject, setSocialObject] = useState<Social>(social)
 
   const router = useRouter();
 
@@ -43,6 +43,7 @@ const EditSocialForm = ({ social }: Props) => {
   })
 
   async function onSubmit(values: z.infer<typeof EditSocialSchema>) {
+    console.log('test', { ...socialObject, value: values.value, title: values.title })
     try {
       await updateSocial({ ...socialObject, value: values.value, title: values.title } as Social)
       toast('Social updated!', { position: 'top-center' })
