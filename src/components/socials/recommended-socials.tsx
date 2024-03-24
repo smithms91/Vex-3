@@ -13,7 +13,7 @@ const RecommendedSocials = (props: Props) => {
     <div className='p-4'>
       <h1>Recommended</h1>
       <ul className='space-y-2 mt-2'>
-        <div onClick={() => router.push('/account/setup/add/phone')} className='flex items-center bg-gray-200 text-black w-full p-2 z-50 rounded-sm'>
+        <div onClick={() => router.push('/account/setup/add/phone')} className='flex items-center bg-gray-200 text-black w-full p-2 z-50 rounded-sm cursor-pointer'>
           <div className='p-[.8rem] rounded-full box-content bg-green-400' >
             <Phone className='text-white' />
           </div>
@@ -25,7 +25,7 @@ const RecommendedSocials = (props: Props) => {
             <p className='ml-2'>Add</p>
           </div>
         </div>
-        <div onClick={() => router.push('/account/setup/add/email')} className='flex items-center bg-gray-200 text-black w-full p-2 z-50 rounded-sm'>
+        <div onClick={() => router.push('/account/setup/add/email')} className='flex items-center bg-gray-200 text-black w-full p-2 z-50 rounded-sm cursor-pointer'>
           <SocialIcon network='email' />
           <div className='ml-4'>
             <p className='text-lg'>Email</p>
@@ -35,7 +35,7 @@ const RecommendedSocials = (props: Props) => {
             <p className='ml-2'>Add</p>
           </div>
         </div>
-        <div onClick={() => router.push('/account/setup/add/website')} className='flex items-center bg-gray-200 text-black w-full p-2 z-50 rounded-sm'>
+        <div onClick={() => router.push('/account/setup/add/website')} className='flex items-center bg-gray-200 text-black w-full p-2 z-50 rounded-sm cursor-pointer'>
           <SocialIcon network='sharethis' />
           <div className='ml-4'>
             <p className='text-lg'>Website</p>
@@ -45,7 +45,7 @@ const RecommendedSocials = (props: Props) => {
             <p className='ml-2'>Add</p>
           </div>
         </div>
-        <div onClick={() => router.push('/account/setup/add/instagram')} className='flex items-center bg-gray-200 text-black w-full p-2 z-50 rounded-sm'>
+        <div onClick={() => router.push('/account/setup/add/instagram')} className='flex items-center bg-gray-200 text-black w-full p-2 z-50 rounded-sm cursor-pointer'>
           <SocialIcon network='instagram' />
           <div className='ml-4'>
             <p className='text-lg'>Instagram</p>
@@ -55,7 +55,7 @@ const RecommendedSocials = (props: Props) => {
             <p className='ml-2'>Add</p>
           </div>
         </div>
-        <div onClick={() => router.push('/account/setup/add/x')} className='flex items-center bg-gray-200 text-black w-full p-2 z-50 rounded-sm'>
+        <div onClick={() => router.push('/account/setup/add/x')} className='flex items-center bg-gray-200 text-black w-full p-2 z-50 rounded-sm cursor-pointer'>
           <SocialIcon network='x' />
           <div className='ml-4'>
             <p className='text-lg'>Twitter</p>

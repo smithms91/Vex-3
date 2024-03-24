@@ -52,7 +52,7 @@ const AccountHeader = (props: Props) => {
               value={`https://vex.cards/${userID}`}
               viewBox={`0 0 256 256`}
             />
-            <Image src={profilePicture} className='rounded-lg absolute  top-[40%] left-[42%] border-4 border-black' alt='Profile Picture' width={52} height={22} />
+            <Image src={profilePicture || '/profile.jpg'} className='rounded-lg absolute  top-[40%] left-[42%] border-4 border-black' alt='Profile Picture' width={52} height={22} />
           </div>
           <div className="relative mx-auto mt-4 tracking-widest">
             <h1 className="absolute text-lg uppercase z-10 text-black drop-shadow-md blur-md opacity-25">Vex</h1>
