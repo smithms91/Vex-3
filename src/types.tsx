@@ -72,3 +72,7 @@ export const UpdateEmailSchema = z.object({
   email: z.string().min(3, { message: "Email has to be at least 3 characters long." }),
   password: z.string().min(7, { message: "Password has to be at least 7 characters long." }),
 })
+
+export const DeleteAccountSchema = z.object({
+  password: z.string().min(3, { message: "Password has to be atleast 7 characters long." }),
+})

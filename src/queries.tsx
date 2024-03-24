@@ -3,7 +3,7 @@
 import { createClient } from "./lib/supabase/server";
 import { redirect } from "next/navigation";
 import { z } from "zod";
-import { SignInSchema, OnboardingSchema, OnboardingSchemaTwo, AddSocialSchema, UpdatePasswordSchema, UpdateUsernameSchema, UpdateEmailSchema } from "@/types";
+import { SignInSchema, OnboardingSchema, OnboardingSchemaTwo, AddSocialSchema, UpdatePasswordSchema, UpdateUsernameSchema, UpdateEmailSchema, DeleteAccountSchema } from "@/types";
 import { revalidatePath } from "next/cache";
 import { Social } from "./types";
 import { v4 as uuidv4 } from 'uuid';
@@ -87,6 +87,30 @@ export const disableAccount = async (value: boolean) => {
   } catch (error) {
     console.error('Error disabling account:', error);
   }
+};
+
+export const deleteAccount = async (values: z.infer<typeof DeleteAccountSchema>) => {
+  const supabase = createClient();
+  const user = await supabase.auth.getUser();
+
+  if (!user) {
+    throw new Error("No authenticated user");
+  }
+
+  const userId = user.data.user?.id;
+
+  const verifyResponse = await supabase.rpc('verify_user_password', { password: values.password });
+
+  if (verifyResponse.data) {
+    try {
+      const deletedUser = await supabase.rpc('delete_user');
+      // await signOut();
+      return true;
+    } catch (error) {
+      console.error('Error disabling account:', error);
+    }
+  }
+  return false;
 };
 
 export const getAccountDisabled = async () => {

@@ -22,14 +22,14 @@ const ColorPicker = (props: Props) => {
 
   return (
     <div className='flex w-full overflow-scroll gap-x-4'>
-      <Button onClick={() => { setTheme('red'); handleProfileUpdate('red') }} className='w-[60px] h-[60px] bg-[#8f0000] flex-shrink-0'></Button>
-      <Button onClick={() => { setTheme('orange'); handleProfileUpdate('orange') }} className='w-[60px] h-[60px] bg-[#9b6500] flex-shrink-0'></Button>
-      <Button onClick={() => { setTheme('yellow'); handleProfileUpdate('yellow') }} className='w-[60px] h-[60px] bg-[#b19f00] flex-shrink-0'></Button>
-      <Button onClick={() => { setTheme('green'); handleProfileUpdate('green') }} className='w-[60px] h-[60px] bg-[#118f00] flex-shrink-0'></Button>
-      <Button onClick={() => { setTheme('blue'); handleProfileUpdate('blue') }} className='w-[60px] h-[60px] bg-[#004E8F] flex-shrink-0'></Button>
-      <Button onClick={() => { setTheme('indigo'); handleProfileUpdate('indigo') }} className='w-[60px] h-[60px] bg-[#4a008f] flex-shrink-0'></Button>
-      <Button onClick={() => { setTheme('violet'); handleProfileUpdate('violet') }} className='w-[60px] h-[60px] bg-[#8f0088] flex-shrink-0'></Button>
-      <Button onClick={() => { setTheme('gray'); handleProfileUpdate('gray') }} className='w-[60px] h-[60px] bg-[#7c7c7c] flex-shrink-0'></Button>
+      <Button onClick={() => { setTheme('red'); handleProfileUpdate('red') }} className='w-[75px] h-[75px] bg-gradient-to-br from-[#ef7272] to-[#8f0000] flex-shrink-0'></Button>
+      <Button onClick={() => { setTheme('orange'); handleProfileUpdate('orange') }} className='w-[75px] h-[75px] bg-gradient-to-br from-[#efc372] to-[#9b6500] flex-shrink-0'></Button>
+      <Button onClick={() => { setTheme('yellow'); handleProfileUpdate('yellow') }} className='w-[75px] h-[75px] bg-gradient-to-br from-[#efe772] to-[#b19f00] flex-shrink-0'></Button>
+      <Button onClick={() => { setTheme('green'); handleProfileUpdate('green') }} className='w-[75px] h-[75px] bg-gradient-to-br from-[#81ef72] to-[#118f00] flex-shrink-0'></Button>
+      <Button onClick={() => { setTheme('blue'); handleProfileUpdate('blue') }} className='w-[75px] h-[75px] bg-gradient-to-br from-[#72c6ef] to-[#004E8F] flex-shrink-0'></Button>
+      <Button onClick={() => { setTheme('indigo'); handleProfileUpdate('indigo') }} className='w-[75px] h-[75px] bg-gradient-to-br from-[#b772ef] to-[#4a008f] flex-shrink-0'></Button>
+      <Button onClick={() => { setTheme('violet'); handleProfileUpdate('violet') }} className='w-[75px] h-[75px] bg-gradient-to-br from-[#ef72e9] to-[#8f0088] flex-shrink-0'></Button>
+      <Button onClick={() => { setTheme('gray'); handleProfileUpdate('gray') }} className='w-[75px] h-[75px] bg-gradient-to-br from-[#ebebeb] to-[#7c7c7c] flex-shrink-0'></Button>
     </div>
   )
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Reorder } from "framer-motion"
 import { ArrowUpDown } from 'lucide-react';
 import { useRouter } from 'next/navigation';
@@ -18,12 +18,21 @@ const ProfileSocials = ({ socials }: Props) => {
   const [mounted, setMounted] = useState(false)
   const router = useRouter();
 
+  const toastTimeout = useRef<NodeJS.Timeout | null>(null);
+  const toastScheduled = useRef(false);
 
   const handleUpdateItems = async (order: typeof items) => {
     setItems(order)
     try {
       await updateUserSocials(order)
-      toast('Socials updated!', { position: 'top-center' })
+      if (toastScheduled.current) {
+        clearTimeout(toastTimeout.current!);
+      }
+      toastScheduled.current = true;
+      toastTimeout.current = setTimeout(() => {
+        toast('Socials updated!', { position: 'top-center' })
+        toastScheduled.current = false;
+      }, 600); // Wait for .3 seconds before showing the toast
     } catch (error) {
       console.log('error', error)
     }

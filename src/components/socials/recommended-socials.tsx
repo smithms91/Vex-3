@@ -4,6 +4,7 @@ import { Phone, Plus } from 'lucide-react'
 import { useRouter } from 'next/navigation';
 import React from 'react'
 import { SocialIcon } from 'react-social-icons'
+import MySocialIcon from '../custom-social-icon';
 type Props = {}
 
 const RecommendedSocials = (props: Props) => {
@@ -14,9 +15,7 @@ const RecommendedSocials = (props: Props) => {
       <h1>Recommended</h1>
       <ul className='space-y-2 mt-2'>
         <div onClick={() => router.push('/account/setup/add/phone')} className='flex items-center bg-gray-200 text-black w-full p-2 z-50 rounded-sm cursor-pointer'>
-          <div className='p-[.8rem] rounded-full box-content bg-green-400' >
-            <Phone className='text-white' />
-          </div>
+          <MySocialIcon network="phone" className='text-white' />
           <div className='ml-4'>
             <p className='text-lg'>Phone</p>
           </div>
@@ -26,7 +25,7 @@ const RecommendedSocials = (props: Props) => {
           </div>
         </div>
         <div onClick={() => router.push('/account/setup/add/email')} className='flex items-center bg-gray-200 text-black w-full p-2 z-50 rounded-sm cursor-pointer'>
-          <SocialIcon network='email' />
+          <MySocialIcon network='email' />
           <div className='ml-4'>
             <p className='text-lg'>Email</p>
           </div>
@@ -36,7 +35,7 @@ const RecommendedSocials = (props: Props) => {
           </div>
         </div>
         <div onClick={() => router.push('/account/setup/add/website')} className='flex items-center bg-gray-200 text-black w-full p-2 z-50 rounded-sm cursor-pointer'>
-          <SocialIcon network='sharethis' />
+          <MySocialIcon network='website' />
           <div className='ml-4'>
             <p className='text-lg'>Website</p>
           </div>
@@ -46,7 +45,7 @@ const RecommendedSocials = (props: Props) => {
           </div>
         </div>
         <div onClick={() => router.push('/account/setup/add/instagram')} className='flex items-center bg-gray-200 text-black w-full p-2 z-50 rounded-sm cursor-pointer'>
-          <SocialIcon network='instagram' />
+          <MySocialIcon network='instagram' />
           <div className='ml-4'>
             <p className='text-lg'>Instagram</p>
           </div>
@@ -56,9 +55,69 @@ const RecommendedSocials = (props: Props) => {
           </div>
         </div>
         <div onClick={() => router.push('/account/setup/add/x')} className='flex items-center bg-gray-200 text-black w-full p-2 z-50 rounded-sm cursor-pointer'>
-          <SocialIcon network='x' />
+          <MySocialIcon network='x' />
           <div className='ml-4'>
             <p className='text-lg'>Twitter</p>
+          </div>
+          <div className='ml-auto mr-2 flex items-center'>
+            <Plus size={14} color="black" />
+            <p className='ml-2'>Add</p>
+          </div>
+        </div>
+        <div onClick={() => router.push('/account/setup/add/linkedin')} className='flex items-center bg-gray-200 text-black w-full p-2 z-50 rounded-sm cursor-pointer'>
+          <MySocialIcon network='linkedin' />
+          <div className='ml-4'>
+            <p className='text-lg'>LinkedIn</p>
+          </div>
+          <div className='ml-auto mr-2 flex items-center'>
+            <Plus size={14} color="black" />
+            <p className='ml-2'>Add</p>
+          </div>
+        </div>
+        <div onClick={() => router.push('/account/setup/add/facebook')} className='flex items-center bg-gray-200 text-black w-full p-2 z-50 rounded-sm cursor-pointer'>
+          <MySocialIcon network='facebook' />
+          <div className='ml-4'>
+            <p className='text-lg'>Facebook</p>
+          </div>
+          <div className='ml-auto mr-2 flex items-center'>
+            <Plus size={14} color="black" />
+            <p className='ml-2'>Add</p>
+          </div>
+        </div>
+        <div onClick={() => router.push('/account/setup/add/youtube')} className='flex items-center bg-gray-200 text-black w-full p-2 z-50 rounded-sm cursor-pointer'>
+          <MySocialIcon network='youtube' />
+          <div className='ml-4'>
+            <p className='text-lg'>YouTube</p>
+          </div>
+          <div className='ml-auto mr-2 flex items-center'>
+            <Plus size={14} color="black" />
+            <p className='ml-2'>Add</p>
+          </div>
+        </div>
+        <div onClick={() => router.push('/account/setup/add/snapchat')} className='flex items-center bg-gray-200 text-black w-full p-2 z-50 rounded-sm cursor-pointer'>
+          <MySocialIcon network='snapchat' />
+          <div className='ml-4'>
+            <p className='text-lg'>Snapchat</p>
+          </div>
+          <div className='ml-auto mr-2 flex items-center'>
+            <Plus size={14} color="black" />
+            <p className='ml-2'>Add</p>
+          </div>
+        </div>
+        <div onClick={() => router.push('/account/setup/add/tiktok')} className='flex items-center bg-gray-200 text-black w-full p-2 z-50 rounded-sm cursor-pointer'>
+          <MySocialIcon network='tiktok' />
+          <div className='ml-4'>
+            <p className='text-lg'>TikTok</p>
+          </div>
+          <div className='ml-auto mr-2 flex items-center'>
+            <Plus size={14} color="black" />
+            <p className='ml-2'>Add</p>
+          </div>
+        </div>
+        <div onClick={() => router.push('/account/setup/add/twitch')} className='flex items-center bg-gray-200 text-black w-full p-2 z-50 rounded-sm cursor-pointer'>
+          <MySocialIcon network='twitch' />
+          <div className='ml-4'>
+            <p className='text-lg'>Twitch</p>
           </div>
           <div className='ml-auto mr-2 flex items-center'>
             <Plus size={14} color="black" />

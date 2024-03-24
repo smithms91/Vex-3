@@ -4,7 +4,7 @@ import HeaderBackButton from '@/components/header-with-back-button';
 import { SparklesCore } from '@/components/sparkles';
 import { Button } from '@/components/ui/button'
 import { Switch } from '@/components/ui/switch';
-import { disableAccount, forgotUserPassword, getAccountDisabled, getAuthUserEmail } from '@/queries';
+import { deleteAccount, disableAccount, forgotUserPassword, getAccountDisabled, getAuthUserEmail } from '@/queries';
 import { Instagram, Lock, Mail, Pause, ShieldQuestion, Unlock, UserRound, UserRoundMinus } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
@@ -101,7 +101,7 @@ const UserSettingsPage = (props: Props) => {
           </Button>
           <Switch className="absolute right-10 top-[1.65rem]" checked={disabled} onCheckedChange={(e) => handleDisableAccount(e)} />
         </div>
-        <Button onClick={() => router.push('https://www.instagram.com/vexcards')} className='flex justify-start bg-slate-600/50 inset-4 text-white w-full py-9 z-50'>
+        <Button onClick={() => router.push('/account/settings/user-settings/delete-account')} className='flex justify-start bg-slate-600/50 inset-4 text-white w-full py-9 z-50'>
           <div className='flex items-center justify-center rounded-full box-content bg-red-600/20 p-2'>
             <UserRoundMinus size={18} color='white' />
           </div>

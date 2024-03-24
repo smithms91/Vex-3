@@ -2,9 +2,10 @@
 
 import { SocialIcon } from 'react-social-icons';
 import * as React from 'react';
-import { Chrome, Instagram, Phone } from 'lucide-react';
+import { Chrome, Facebook, Instagram, Linkedin, Mail, Phone, X, Youtube } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useIconBorder } from './context/icon-border-provider';
+import Image from 'next/image';
 
 interface MySocialIconProps {
   network: string;
@@ -34,10 +35,78 @@ const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
     );
   }
 
+  if (network === 'email') {
+    return (
+      <div className={cn(`flex items-center justify-center box-content bg-gray-600 ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.7rem] w-[28px] h-[28px]')} >
+        <Mail size={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} />
+      </div>
+    );
+  }
+
   if (network === 'instagram') {
     return (
       <div className={cn(`flex items-center justify-center box-content bg-gradient-to-br from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.7rem] w-[28px] h-[28px]')} >
         <Instagram size={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} />
+      </div>
+    );
+  }
+
+  if (network === 'linkedin') {
+    return (
+      <div className={cn(`flex items-center justify-center box-content bg-[#225982] ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.7rem] w-[28px] h-[28px]')} >
+        <Linkedin size={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} />
+      </div>
+    );
+  }
+
+  if (network === 'x') {
+    return (
+      <div className={cn(`flex items-center justify-center box-content bg-black ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.7rem] w-[28px] h-[28px]')} >
+        <Image src="/x-white.svg" width={props.edit ? 16 : 36} height={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} alt='X Logo' />
+      </div>
+    );
+  }
+
+  if (network === 'facebook') {
+    return (
+      <div className={cn(`flex items-center justify-center box-content bg-[#1877F2] ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.7rem] w-[28px] h-[28px]')} >
+        <Facebook size={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} />
+      </div>
+    );
+  }
+
+  if (network === 'youtube') {
+    return (
+      <div className={cn(`flex items-center justify-center box-content bg-red-700 ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.7rem] w-[28px] h-[28px]')} >
+        {/* <Youtube size={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} /> */}
+        <Image src="/youtube-white.svg" width={props.edit ? 16 : 36} height={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} alt='X Logo' />
+      </div>
+    );
+  }
+
+  if (network === 'snapchat') {
+    return (
+      <div className={cn(`flex items-center justify-center box-content bg-[#FFFC00] ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.7rem] w-[28px] h-[28px]')} >
+        {/* <Youtube size={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} /> */}
+        <Image src="/snapchat.svg" width={props.edit ? 16 : 36} height={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} alt='X Logo' />
+      </div>
+    );
+  }
+
+  if (network === 'tiktok') {
+    return (
+      <div className={cn(`flex items-center justify-center box-content bg-black ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.7rem] w-[28px] h-[28px]')} >
+        {/* <Youtube size={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} /> */}
+        <Image src="/tiktok.svg" width={props.edit ? 16 : 36} height={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} alt='X Logo' />
+      </div>
+    );
+  }
+
+  if (network === 'twitch') {
+    return (
+      <div className={cn(`flex items-center justify-center box-content bg-[#6441a5] ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.7rem] w-[28px] h-[28px]')} >
+        {/* <Youtube size={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} /> */}
+        <Image src="/twitch.svg" width={props.edit ? 16 : 36} height={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} alt='X Logo' />
       </div>
     );
   }
