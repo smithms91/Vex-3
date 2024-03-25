@@ -1,10 +1,11 @@
 'use client';
 
-import { Phone, Plus } from 'lucide-react'
+import { Plus } from 'lucide-react'
 import { useRouter } from 'next/navigation';
 import React from 'react'
-import { SocialIcon } from 'react-social-icons'
 import MySocialIcon from '../custom-social-icon';
+import { constants } from '@/constants';
+
 type Props = {}
 
 const RecommendedSocials = (props: Props) => {
@@ -14,17 +15,20 @@ const RecommendedSocials = (props: Props) => {
     <div className='p-4'>
       <h1>Recommended</h1>
       <ul className='space-y-2 mt-2'>
-        <div onClick={() => router.push('/account/setup/add/phone')} className='flex items-center bg-gray-200 text-black w-full p-2 z-50 rounded-sm cursor-pointer'>
-          <MySocialIcon network="phone" className='text-white' />
-          <div className='ml-4'>
-            <p className='text-lg'>Phone</p>
-          </div>
-          <div className='ml-auto mr-2 flex items-center'>
-            <Plus size={14} color="black" />
-            <p className='ml-2'>Add</p>
-          </div>
-        </div>
-        <div onClick={() => router.push('/account/setup/add/email')} className='flex items-center bg-gray-200 text-black w-full p-2 z-50 rounded-sm cursor-pointer'>
+        {constants.map((constant, i) => (
+          <li key={i} onClick={() => router.push(`/account/setup/add/${constants[i].network}`)} className='flex items-center bg-gray-200 text-black w-full p-2 z-50 rounded-sm cursor-pointer'>
+            <MySocialIcon network={constants[i].network} className='text-white' />
+            <div className='ml-4'>
+              <p className='text-lg'>{constants[i].title}</p>
+            </div>
+            <div className='ml-auto mr-2 flex items-center'>
+              <Plus size={14} color="black" />
+              <p className='ml-2'>Add</p>
+            </div>
+          </li>
+        ))}
+
+        {/* <div onClick={() => router.push('/account/setup/add/email')} className='flex items-center bg-gray-200 text-black w-full p-2 z-50 rounded-sm cursor-pointer'>
           <MySocialIcon network='email' />
           <div className='ml-4'>
             <p className='text-lg'>Email</p>
@@ -123,7 +127,7 @@ const RecommendedSocials = (props: Props) => {
             <Plus size={14} color="black" />
             <p className='ml-2'>Add</p>
           </div>
-        </div>
+        </div> */}
       </ul>
     </div>
   )

@@ -17,11 +17,14 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { deleteSocial, updateSocial } from '@/queries';
-import { Plus } from 'lucide-react';
+import { Info, Plus } from 'lucide-react';
 import { Social } from '@/types';
 import { useRouter } from 'next/navigation';
 import { toast } from "sonner"
 import CustomSocialIcon from '../custom-social-icon';
+import Link from 'next/link';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../ui/tooltip';
+import { constants } from '@/constants';
 
 type Props = {
   social: Social
@@ -31,7 +34,7 @@ const EditSocialForm = ({ social }: Props) => {
   const [showTitle, setShowTitle] = useState(false)
   const [deleteButton, setDeleteButton] = useState(false)
   const [socialObject, setSocialObject] = useState<Social>(social)
-
+  const [tooltip, setTooltip] = useState(constants.find((constant) => constant.network === social.network)?.tooltip);
   const router = useRouter();
 
   const form = useForm<z.infer<typeof EditSocialSchema>>({
@@ -72,13 +75,26 @@ const EditSocialForm = ({ social }: Props) => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 z-10 max-w-[450px] p-6">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 z-10 max-w-[450px] p-6 relative z-50">
         <FormField
           control={form.control}
           name="value"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className='text-black text-lg flex items-center'><CustomSocialIcon edit="true" size="16" network={social.network} /><p className='ml-2'>{social.network.charAt(0).toUpperCase() + social.network.slice(1)}</p></FormLabel>
+              <FormLabel className='text-black text-lg flex items-center justify-between'>
+                <div className='flex items-center'>
+                  <CustomSocialIcon edit="true" size="16" network={social.network} />
+                  <p className='ml-2 text-white'>{social.network.charAt(0).toUpperCase() + social.network.slice(1)}</p>
+                </div>
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild><Info fill="white" size={20} className='cursor-pointer' /></TooltipTrigger>
+                    <TooltipContent align='end' className='text-xs'>
+                      {tooltip}
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </FormLabel>
               <FormControl>
                 <Input className="text-black placeholder:text-black/50 bg-[#e8f0fe] border border-white/50 py-6" placeholder="VexTheBest" {...field} />
               </FormControl>
@@ -89,7 +105,7 @@ const EditSocialForm = ({ social }: Props) => {
         <div className="flex justify-between">
           {!deleteButton ? <Button onClick={() => handleDeleteButton(true)} className='w-[45%] bg-black py-6 text-md active:bg-black hover:bg-black'>Delete</Button> : <Button type="button" variant="destructive" className='w-[45%] py-6 text-md' onClick={() => deleteUserSocial()}>Confirm</Button>}
           {/* <Button variant="destructive" className='w-[45%] py-6 text-md'>Delete</Button> */}
-          <Button type="button" className='bg-black w-[45%] py-6 text-md'>Test</Button>
+          <Button className='bg-black w-[45%] py-6 text-md'><Link href={`${social.url}${social.value}`}>Test</Link></Button>
         </div>
         {!showTitle && <Button className='w-full bg-black text-white text-md' onClick={() => setShowTitle(true)}><Plus size={14} className='mt-[.15rem] mr-1' />Add Title</Button>}
         {showTitle &&
@@ -99,7 +115,7 @@ const EditSocialForm = ({ social }: Props) => {
               name="title"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className='text-black text-lg shadow-sm'>Title</FormLabel>
+                  <FormLabel className='text-white text-lg shadow-sm'>Title</FormLabel>
                   <FormControl>
                     <Input className="text-black placeholder:text-black/50 bg-[#e8f0fe] border border-white/50 py-6" placeholder='Title' {...field} />
                   </FormControl>

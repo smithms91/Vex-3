@@ -564,6 +564,7 @@ export const addUserSocial = async (values: z.infer<typeof AddSocialSchema>) => 
     title: values.title,
     value: values.value,
     network: values.network,
+    url: values.url,
     user_id: userId
   }
 

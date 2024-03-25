@@ -1,5 +1,6 @@
 import EditSocialForm from '@/components/forms/edit-social'
 import HeaderBackButton from '@/components/header-with-back-button'
+import { SparklesCore } from '@/components/sparkles'
 import { getUserSocial } from '@/queries'
 
 import React from 'react'
@@ -18,9 +19,18 @@ const EditSocialPage = async ({ params }: Props) => {
   if (!social) return null
 
   return (
-    <main className=''>
+    <main className='max-w-[450px] min-h-screen mx-auto bg-gradient-to-tl from-from to-to'>
       <HeaderBackButton title="Edit Social" link="account" />
       <EditSocialForm social={social} />
+      <SparklesCore
+        id="tsparticlesfullpage"
+        background="transparent"
+        minSize={0.6}
+        maxSize={1.4}
+        particleDensity={100}
+        className="max-w-[450px] mx-auto fixed w-full h-full bottom-0 top-0 left-0 right-0 z-0"
+        particleColor="#FFFFFF"
+      />
     </main>
   )
 }

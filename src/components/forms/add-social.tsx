@@ -21,6 +21,7 @@ import { Plus } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { toast } from "sonner"
 import CustomSocialIcon from '../custom-social-icon';
+import { constants } from '@/constants';
 
 type Props = {
   network: string
@@ -32,18 +33,23 @@ const AddSocialForm = ({ network }: Props) => {
 
   const router = useRouter();
 
+  const url = constants.find((constant) => constant.network === network)?.href
+
+  console.log('url', url)
+
   const form = useForm<z.infer<typeof AddSocialSchema>>({
     resolver: zodResolver(AddSocialSchema),
     defaultValues: {
       value: '',
       title: '',
       network: network,
+      url: url
     },
   })
 
   async function onSubmit(values: z.infer<typeof AddSocialSchema>) {
     try {
-      console.log('values', values)
+      values = { ...values, url: url! }
       await addUserSocial(values)
       toast('Social updated!', { position: 'top-center' })
     } catch (error) {

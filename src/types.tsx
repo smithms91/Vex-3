@@ -50,6 +50,7 @@ export const AddSocialSchema = z.object({
     .min(1, { message: "This field has to be filled." }),
   title: z.string().optional(),
   network: z.string(),
+  url: z.string()
 })
 
 export const ForgotPasswordSchema = z.object({
