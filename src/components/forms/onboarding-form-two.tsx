@@ -58,7 +58,7 @@ const OnboardingFormTwo = ({ user, setFirstName, setLastName, setEmail, setPhone
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className='w-full flex flex-col gap-y-4 text-card-foreground'>
+      <form onSubmit={form.handleSubmit(onSubmit)} className='w-full flex flex-col gap-y-2 text-card-foreground'>
         <FormField
           control={form.control}
           name="first_name"

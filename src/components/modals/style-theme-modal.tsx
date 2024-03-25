@@ -36,8 +36,8 @@ const StyleThemeModal = ({ }: Props) => {
     <Drawer>
       <DrawerTrigger>
         <div className='flex flex-col items-center z-10'>
-          <Palette size={22} color='black' />
-          <p className='text-xs uppercase'>Style</p>
+          <Palette size={22} color='white' />
+          <p className='text-xs uppercase text-white'>Style</p>
         </div>
       </DrawerTrigger>
       <DrawerContent className='px-10 max-w-[450px] mx-auto bg-white'>
