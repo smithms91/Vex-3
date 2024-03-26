@@ -1,10 +1,9 @@
 'use client';
 
 import { SocialIcon } from 'react-social-icons';
-import * as React from 'react';
+import React from 'react';
 import { Chrome, Facebook, Instagram, Linkedin, Mail, Phone, X, Youtube } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { useIconBorder } from './context/icon-border-provider';
 import Image from 'next/image';
 
 interface MySocialIconProps {
