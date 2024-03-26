@@ -12,13 +12,12 @@ interface MySocialIconProps {
   [key: string]: any;
 }
 
-const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
-  const { rounded, setRounded } = useIconBorder();
+const MySocialIcon: React.FC<MySocialIconProps> = ({ network, border, ...props }) => {
 
   const borderRadius =
-    rounded === 'small' ? 'rounded-sm' :
-      rounded === 'large' ? 'rounded-lg' :
-        rounded === 'full' ? 'rounded-full' : 'rounded-full';
+    border === 'small' ? 'rounded-sm' :
+      border === 'large' ? 'rounded-lg' :
+        border === 'full' ? 'rounded-full' : 'rounded-full';
 
   if (network === 'phone') {
     return (

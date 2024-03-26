@@ -60,8 +60,8 @@ const AccountHeader = (props: Props) => {
         <UserRoundCog className="cursor-pointer" size={20} color="white" />
       </div>
       <div className="relative">
-        <h1 className="absolute text-3xl uppercase z-10 text-white drop-shadow-md blur-md opacity-1">Vex</h1>
-        <h1 className="text-3xl uppercase z-10 text-white drop-shadow-md">Vex</h1>
+        <h1 className="absolute text-2xl uppercase z-10 text-white drop-shadow-md blur-md opacity-1">Vex</h1>
+        <h1 className="text-2xl uppercase z-10 text-white drop-shadow-md">Vex</h1>
       </div>
       <Drawer>
         <div onClick={() => setModalOpen(!modalOpen)} className='flex items-center justify-center shadow-xl drop-shadow-xl bg-slate-600/75 rounded-full p-2 box-content cursor-pointer'>

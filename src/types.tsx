@@ -11,6 +11,24 @@ export type Social = {
   url?: string
 }
 
+export type User = {
+  id: string
+  first_name: string
+  last_name: string
+  email: string
+  username: string
+  theme_color: string
+  job_title: string
+  phone_number: string
+  website: string
+  onboarding: boolean
+  profile_color: string
+  profile_picture: string
+  socials: Social[]
+  disabled: boolean
+  border: string;
+}
+
 export const OnboardingSchema = z.object({
   username: z
     .string()

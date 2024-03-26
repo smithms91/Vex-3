@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { PostgrestSingleResponse } from '@supabase/supabase-js'
 import { Globe, MailIcon, PhoneIcon, UploadIcon } from 'lucide-react'
@@ -8,6 +8,7 @@ import OnboardingFormTwo from '../forms/onboarding-form-two';
 import ThemePicker from '../color-picker';
 import { cn } from '@/lib/utils';
 import EditPictureModal from '../modals/edit-picture-modal';
+import { useTheme } from 'next-themes';
 
 type Props = {
   user: PostgrestSingleResponse<any[]>
@@ -18,6 +19,7 @@ type Props = {
 
 const ProfileCard = ({ user, email: authEmail, options, className }: Props) => {
   const userData = user.data![0];
+  const { setTheme } = useTheme();
   const [firstName, setFirstName] = useState(userData.first_name || '')
   const [lastName, setLastName] = useState(userData.last_name || '')
   const [email, setEmail] = useState(authEmail || '')
@@ -27,6 +29,10 @@ const ProfileCard = ({ user, email: authEmail, options, className }: Props) => {
   const [pictureModalOpen, setPictureModalOpen] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [selectedFileUrl, setSelectedFileUrl] = useState<string | null>(userData.profile_picture || '/profile.jpg');
+
+  useEffect(() => {
+    setTheme(userData.profile_color); //set your theme here after component mounts
+  }, []);
 
   const onUploadIconClick = () => {
     setPictureModalOpen(true);

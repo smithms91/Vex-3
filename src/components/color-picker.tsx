@@ -20,6 +20,8 @@ const ColorPicker = (props: Props) => {
     }
   };
 
+
+
   return (
     <div className='flex w-full overflow-scroll gap-x-4'>
       <Button onClick={() => { setTheme('red'); handleProfileUpdate('red') }} className='w-[75px] h-[75px] bg-gradient-to-br from-[#ef7272] to-[#8f0000] flex-shrink-0'></Button>

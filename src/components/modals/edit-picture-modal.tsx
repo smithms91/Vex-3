@@ -40,16 +40,17 @@ const EditPictureModal = ({ closeModal, selectedFile, selectedFileUrl, setSelect
     if (!profilePictureRef.current) return;
     const dataUrl = profilePictureRef.current.getImageScaledToCanvas().toDataURL();
     const file = new File([dataUrl], 'profile.png', { type: 'image/png' });
+    console.log('dataUrl', dataUrl);
     console.log('file', file);
-    setSelectedFile(file);
-    setSelectedFileUrl(profilePictureRef.current?.getImage().toDataURL());
-    try {
-      await uploadProfileImage(dataUrl);
-      toast('Profile picture updated!', { position: 'top-center' });
-      closeModal();
-    } catch (error) {
-      console.error('error', error);
-    }
+    // setSelectedFile(file);
+    // setSelectedFileUrl(profilePictureRef.current?.getImage().toDataURL());
+    // try {
+    //   await uploadProfileImage(dataUrl);
+    //   toast('Profile picture updated!', { position: 'top-center' });
+    //   closeModal();
+    // } catch (error) {
+    //   console.error('error', error);
+    // }
   };
 
   return (

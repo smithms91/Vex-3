@@ -3,7 +3,7 @@
 import { createClient } from "./lib/supabase/server";
 import { redirect } from "next/navigation";
 import { z } from "zod";
-import { SignInSchema, OnboardingSchema, OnboardingSchemaTwo, AddSocialSchema, UpdatePasswordSchema, UpdateUsernameSchema, UpdateEmailSchema, DeleteAccountSchema } from "@/types";
+import { SignInSchema, OnboardingSchema, OnboardingSchemaTwo, AddSocialSchema, UpdatePasswordSchema, UpdateUsernameSchema, UpdateEmailSchema, DeleteAccountSchema, User } from "@/types";
 import { revalidatePath } from "next/cache";
 import { Social } from "./types";
 import { v4 as uuidv4 } from 'uuid';
@@ -455,27 +455,6 @@ export const uploadProfileImage = async (url: string) => {
   const base64Data = url.replace(/^data:image\/\w+;base64,/, "");
   console.log('base64Data', base64Data);
 
-  // // Convert base64 to raw binary data
-  // const byteCharacters = atob(base64Data);
-  // console.log('byteCharacters', byteCharacters);
-
-  // // Write the bytes of the string to a typed array
-  // const byteNumbers = new Array(byteCharacters.length);
-  // console.log('byteNumbers', byteNumbers);
-
-  // for (let i = 0; i < byteCharacters.length; i++) {
-  // byteNumbers[i] = byteCharacters.charCodeAt(i);
-  // }
-
-  // const byteArray = new Uint8Array(byteNumbers);
-  // console.log('byteArray', byteArray);
-
-  // Create a blob and convert it to a file
-  // const blob = new Blob([byteArray], { type: 'image/png' });
-  // const file = new File([blob], 'profile.png', { type: 'image/png' });
-  // console.log('filePath', filePath);
-  // console.log('file', file);
-
   try {
     const { data, error } = await supabase.storage.from('profile_pictures').upload(filePath, decode(base64Data), { contentType: 'image/*' });
 
@@ -720,4 +699,32 @@ export const deleteSocial = async (social: Social) => {
   } catch (error) {
     console.error('Error getting User ID:', error);
   }
+};
+
+
+/////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////
+////////////////////User profile queries/////////////////
+/////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////
+
+export const getUserProfile = async (username: string) => {
+  const supabase = createClient();
+  let user;
+
+  if (username.includes('-')) {
+    user = await supabase.from('profiles').select().eq('id', username);
+  } else {
+    user = await supabase.from('profiles').select().eq('username', username);
+  }
+
+  if (!user.data) {
+    return null;
+  }
+
+
+  return user.data[0];
 };

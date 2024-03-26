@@ -11,3 +11,14 @@ export const constants = [
   { title: 'TikTok', network: 'tiktok', href: 'https://www.tiktok.com/@', tooltip: 'Just your username, no need to provide the website.' },
   { title: 'Twitch', network: 'twitch', href: 'https://www.twitch.tv/', tooltip: 'Just your username, no need to provide the website.' },
 ]
+
+export const profileColors = [
+  { color: 'red', css: 'bg-gradient-to-br from-[#ef7272] to-[#8f0000]', singleValue: '#8f0000' },
+  { color: 'orange', css: 'bg-gradient-to-br from-[#efc372] to-[#9b6500]', singleValue: '#9b6500' },
+  { color: 'yellow', css: 'bg-gradient-to-br from-[#efe772] to-[#b19f00]', singleValue: '#b19f00' },
+  { color: 'green', css: 'bg-gradient-to-br from-[#81ef72] to-[#118f00]', singleValue: '#118f00' },
+  { color: 'blue', css: 'bg-gradient-to-br from-[#72c6ef] to-[#004E8F]', singleValue: '#004E8F' },
+  { color: 'indigo', css: 'bg-gradient-to-br from-[#b772ef] to-[#4a008f]', singleValue: '#4a008f' },
+  { color: 'violet', css: 'bg-gradient-to-br from-[#ef72e9] to-[#8f0088]', singleValue: '#8f0088' },
+  { color: 'gray', css: 'bg-gradient-to-br from-[#ebebeb] to-[#7c7c7c]', singleValue: '#7c7c7c' }
+]
