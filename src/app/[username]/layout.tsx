@@ -19,7 +19,7 @@ type Props = {
 const UserProfileLayout = async ({ children, params }: Props) => {
 
   return (
-    <section className={cn('min-h-screen max-w-[450px] mx-auto flex flex-col items-center bg-gradient-to-tl from-from to-to', kanit.className)}>
+    <main className={cn('min-h-screen max-w-[450px] mx-auto flex flex-col items-center bg-gradient-to-tl from-from to-to', kanit.className)}>
       {children}
       <SparklesCore id="tsparticlesfullpage"
         background="transparent"
@@ -28,7 +28,7 @@ const UserProfileLayout = async ({ children, params }: Props) => {
         particleDensity={100}
         className="w-full h-full absolute top-0 left-0 z-0"
         particleColor="#FFFFFF" />
-    </section>
+    </main>
   )
 }
 
