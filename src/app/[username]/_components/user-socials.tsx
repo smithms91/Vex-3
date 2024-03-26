@@ -1,9 +1,8 @@
 'use client';
 
-import React, { useState } from 'react'
-import { ArrowRight, ArrowUpDown } from 'lucide-react';
-import { useRouter } from 'next/navigation';
-import { Social, User } from '@/types';
+import React from 'react'
+import { ArrowRight } from 'lucide-react';
+import { User } from '@/types';
 import Link from 'next/link';
 import UserSocialIcon from './user-social-icon';
 

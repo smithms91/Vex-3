@@ -1,23 +1,14 @@
-import ColorThemeProvider from '@/components/color-provider';
 import { SparklesCore } from '@/components/sparkles';
-import { createClient } from '@/lib/supabase/server';
 import { cn } from '@/lib/utils'
-import { getProfileColor, getUserProfile } from '@/queries';
-import { User } from '@/types';
 import { Kanit } from 'next/font/google';
-import { redirect } from 'next/navigation';
 import React from 'react'
 const kanit = Kanit({ weight: ['400', '500', '600'], subsets: ["latin"] });
 
 type Props = {
-  params: {
-    username: string
-  }
   children: React.ReactNode
 }
 
-const UserProfileLayout = async ({ children, params }: Props) => {
-
+const UserProfileLayout = async ({ children }: Props) => {
   return (
     <main className={cn('min-h-screen max-w-[450px] mx-auto flex flex-col items-center bg-gradient-to-tl from-from to-to', kanit.className)}>
       {children}
