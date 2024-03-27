@@ -31,7 +31,7 @@ const UserProfile = async ({ params }: { params: { username: string } }) => {
 
   return (
     <section className='flex flex-col min-h-screen z-50 w-full'>
-      <section className='p-4 xs:p-8 sm:p-10'>
+      <section className='p-4 sm:p-8'>
         <div className="relative flex items-center justify-center mb-3">
           <h1 className="absolute text-sm uppercase z-10 text-white drop-shadow-md blur-sm">Vex</h1>
           <h1 className="text-sm uppercase z-10 text-white drop-shadow-md">Vex</h1>

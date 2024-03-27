@@ -20,7 +20,7 @@ const config = {
       "xs": "350px",
       // => @media (min-width: 350px) { ... }
 
-      'sm': '640px',
+      'sm': '420px',
       // => @media (min-width: 640px) { ... }
 
       'md': '768px',
