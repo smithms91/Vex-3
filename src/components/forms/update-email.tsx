@@ -48,7 +48,7 @@ const UpdateEmailForm = () => {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className='text-black text-lg flex items-center'>Email</FormLabel>
+              <FormLabel className='text-white text-lg flex items-center'>Email</FormLabel>
               <FormControl>
                 <Input className="text-black placeholder:text-black/50 bg-[#e8f0fe] border border-white/50 py-6" type="email" placeholder="vex@vex.cards" {...field} />
               </FormControl>
@@ -61,7 +61,7 @@ const UpdateEmailForm = () => {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className='text-black text-lg flex items-center'>Password</FormLabel>
+              <FormLabel className='text-white text-lg flex items-center'>Password</FormLabel>
               <FormControl>
                 <Input className="text-black placeholder:text-black/50 bg-[#e8f0fe] border border-white/50 py-6" type="password" placeholder="Password" {...field} />
               </FormControl>
@@ -70,7 +70,7 @@ const UpdateEmailForm = () => {
           )}
         />
 
-        <Button type="submit" className='w-full bg-black hover:bg-card-bg-dark py-7 text-md'>Update Email</Button>
+        <Button type="submit" className='w-full bg-card-bg-dark hover:bg-card-bg-light py-7 text-md'>Update Email</Button>
       </form>
     </Form>
   )

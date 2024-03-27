@@ -28,8 +28,12 @@ body {
     --background: #e8f0fe;
     --foreground: #171f30;
 
-    --from: #1c202e;
-    --to: #303950;
+    --from: #c2cee0;
+    --to: #ffffff;
+    --dark-from: #1c202e;
+    --dark-to: #303950;
+    --black-from: #000000;
+    --black-to: #191c24;
 
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;

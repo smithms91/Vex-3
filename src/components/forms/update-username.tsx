@@ -53,7 +53,7 @@ const UpdateUsernameForm = ({ }: Props) => {
             name="username"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className='text-black text-lg flex items-center'>Username</FormLabel>
+                <FormLabel className='text-white text-lg flex items-center'>Username</FormLabel>
                 <FormControl>
                   <Input className="text-black placeholder:text-black/50 bg-[#e8f0fe] border border-white/50 py-6" placeholder="Username" {...field} />
                 </FormControl>
@@ -66,7 +66,7 @@ const UpdateUsernameForm = ({ }: Props) => {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className='text-black text-lg flex items-center'>Password</FormLabel>
+                <FormLabel className='text-white text-lg flex items-center'>Password</FormLabel>
                 <FormControl>
                   <Input className="text-black placeholder:text-black/50 bg-[#e8f0fe] border border-white/50 py-6" type="password" placeholder="Password" {...field} />
                 </FormControl>
@@ -74,7 +74,7 @@ const UpdateUsernameForm = ({ }: Props) => {
               </FormItem>
             )}
           />
-          <Button type="submit" className="w-full bg-black/80 hover:bg-card-bg-dark py-7 text-md">Update Username</Button>
+          <Button type="submit" className="w-full bg-card-bg-dark hover:bg-card-bg-light py-7 text-md">Update Username</Button>
         </form>
       </Form>
     </section>

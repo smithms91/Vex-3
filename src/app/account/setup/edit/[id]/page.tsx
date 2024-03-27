@@ -19,7 +19,7 @@ const EditSocialPage = async ({ params }: Props) => {
   if (!social) return null
 
   return (
-    <main className='max-w-[450px] min-h-screen mx-auto bg-gradient-to-tl from-from to-to'>
+    <main className='max-w-[450px] min-h-screen mx-auto'>
       <HeaderBackButton title="Edit Social" link="account" />
       <EditSocialForm social={social} />
       <SparklesCore

@@ -39,6 +39,12 @@ const config = {
       colors: {
         from: "var(--from)",
         to: "var(--to)",
+        'light-from': "var(--light-from)",
+        'light-to': "var(--light-to)",
+        'dark-from': "var(--dark-from)",
+        'dark-to': "var(--dark-to)",
+        'black-from': "var(--black-from)",
+        'black-to': "var(--black-to)",
         'card-bg-dark': "var(--card-bg-dark)",
         'card-bg-light': "var(--card-bg-light)",
         'card-foreground': "var(--card-foreground)",

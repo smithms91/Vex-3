@@ -32,7 +32,7 @@ const SetupPage = async (props: Props) => {
   const socials = user.data[0].socials
 
   return (
-    <main className='max-w-[450px] mx-auto bg-gradient-to-tl from-from to-to'>
+    <main className='max-w-[450px] mx-auto'>
       <HeaderBackButton title="Setup" link="account" />
       {/* <h1>Enable/Disable</h1> */}
       <ProfileCard email={data.user.email!} user={user} options className='px-4 relative' />

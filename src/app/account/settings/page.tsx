@@ -14,7 +14,7 @@ const AccountSettingsPage = (props: Props) => {
   const router = useRouter();
 
   return (
-    <main className='min-h-screen z-50 max-w-[450px] mx-auto flex flex-col items-center bg-gradient-to-tl from-from to-to'>
+    <main className='min-h-screen z-50 max-w-[450px] mx-auto flex flex-col items-center'>
       <HeaderBackButton title='Account Settings' link='account' />
       <section className='flex flex-col gap-y-2 w-full p-4'>
         <Button onClick={() => router.push('/account/insights')} className='flex justify-start bg-slate-600/50 inset-4 text-white w-full py-9 z-50'>

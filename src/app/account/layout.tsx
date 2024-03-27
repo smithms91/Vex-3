@@ -40,7 +40,7 @@ export default async function AccountLayout({
   }
 
   return (
-    <main className={cn('max-w-[450px] mx-auto', kanit.className)}>
+    <main className={cn('max-w-[450px] min-h-screen mx-auto bg-gradient-to-tl from-dark-from to-dark-to', kanit.className)}>
       <ThemeProvider
         attribute="data-theme"
         defaultTheme={color}

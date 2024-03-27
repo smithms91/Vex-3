@@ -1,16 +1,35 @@
 import { SparklesCore } from '@/components/sparkles';
 import { cn } from '@/lib/utils'
+import { getUserProfile } from '@/queries';
+import { User } from '@/types';
 import { Kanit } from 'next/font/google';
 import React from 'react'
 const kanit = Kanit({ weight: ['400', '500', '600'], subsets: ["latin"] });
 
 type Props = {
   children: React.ReactNode
+  params: {
+    username: string
+  }
 }
 
-const UserProfileLayout = async ({ children }: Props) => {
+const UserProfileLayout = async ({ children, params }: Props) => {
+  const user: User = await getUserProfile(params.username)
+
+  let userColor: string;
+  let darkText: boolean = false;
+
+  if (user && user.theme_color === 'black') {
+    userColor = 'bg-gradient-to-tl from-black-from to-black-to';
+  } else if (user && user.theme_color === 'dark') {
+    userColor = 'bg-gradient-to-tl from-dark-from to-dark-to';
+  } else {
+    userColor = 'bg-gradient-to-tl from-light-from to-light-to';
+    darkText = true;
+  }
+
   return (
-    <main className={cn('min-h-screen max-w-[450px] mx-auto flex flex-col items-center bg-gradient-to-tl from-from to-to', kanit.className)}>
+    <main className={cn('min-h-screen max-w-[450px] mx-auto flex flex-col items-center', userColor)}>
       {children}
       <SparklesCore id="tsparticlesfullpage"
         background="transparent"
@@ -18,7 +37,7 @@ const UserProfileLayout = async ({ children }: Props) => {
         maxSize={1.4}
         particleDensity={100}
         className="w-full h-full absolute top-0 left-0 z-0"
-        particleColor="#FFFFFF" />
+        particleColor={darkText ? '#000000' : '#FFFFFF'} />
     </main>
   )
 }

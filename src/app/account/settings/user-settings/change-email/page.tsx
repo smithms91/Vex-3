@@ -18,7 +18,7 @@ const ChangeEmailPage = async (props: Props) => {
   return (
     <section className='max-w-[450px]'>
       <HeaderBackButton title='Change Email' link='account/settings/user-settings' />
-      <div className='text-center space-y-4 p-6 mb-4'>
+      <div className='text-center text-white space-y-4 p-6 mb-4'>
         <h1 className='text-sm'>Your current email is:</h1>
         <p className='font-bold inline-block text-lg px-6 py-2 shadow-inner border border-gray-600'>{data.user.email}</p>
         <UpdateEmailForm />

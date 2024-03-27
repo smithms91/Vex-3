@@ -52,7 +52,7 @@ const UpdatePasswordForm = (props: Props) => {
           name="current_password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className='text-black text-lg flex items-center'>Current Password</FormLabel>
+              <FormLabel className='text-white text-lg flex items-center'>Current Password</FormLabel>
               <FormControl>
                 <Input className="text-black placeholder:text-black/50 bg-[#e8f0fe] border border-white/50 py-6" type="password" placeholder="Current Password" {...field} />
               </FormControl>
@@ -65,7 +65,7 @@ const UpdatePasswordForm = (props: Props) => {
           name="new_password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className='text-black text-lg flex items-center'>New Password</FormLabel>
+              <FormLabel className='text-white text-lg flex items-center'>New Password</FormLabel>
               <FormControl>
                 <Input className="text-black placeholder:text-black/50 bg-[#e8f0fe] border border-white/50 py-6" type="password" placeholder="New Password" {...field} />
               </FormControl>
@@ -78,7 +78,7 @@ const UpdatePasswordForm = (props: Props) => {
           name="confirm_password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className='text-black text-lg flex items-center'>Confirm Password</FormLabel>
+              <FormLabel className='text-white text-lg flex items-center'>Confirm Password</FormLabel>
               <FormControl>
                 <Input className="text-black placeholder:text-black/50 bg-[#e8f0fe] border border-white/50 py-6" type="password" placeholder="Confirm Password" {...field} />
               </FormControl>
@@ -86,7 +86,7 @@ const UpdatePasswordForm = (props: Props) => {
             </FormItem>
           )}
         />
-        <Button type="submit" className='w-full bg-black hover:bg-card-bg-dark py-7 text-md'>Update Password</Button>
+        <Button type="submit" className='w-full bg-card-bg-dark hover:bg-card-bg-light py-7 text-md'>Update Password</Button>
       </form>
     </Form>
   )
