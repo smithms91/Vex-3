@@ -11,12 +11,15 @@ import { DeleteAccountSchema } from '@/types';
 import { deleteAccount, updateUsername } from '@/queries';
 import { Input } from '@/components/ui/input';
 import { Button } from '../ui/button';
+import { cn } from '@/lib/utils';
+import { useThemeColor } from '../context/theme-color-provider';
 
 type Props = {
 }
 
 const UpdateUsernameForm = ({ }: Props) => {
   const router = useRouter();
+  const themeColor = useThemeColor();
 
   const form = useForm<z.infer<typeof DeleteAccountSchema>>({
     resolver: zodResolver(DeleteAccountSchema),
@@ -41,7 +44,7 @@ const UpdateUsernameForm = ({ }: Props) => {
   }
 
   return (
-    <section>
+    <section className='p-4'>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 z-10 max-w-[450px]">
           <FormField
@@ -49,7 +52,7 @@ const UpdateUsernameForm = ({ }: Props) => {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className='text-black text-lg flex items-center'>Password</FormLabel>
+                <FormLabel className={cn('text-lg flex items-center', themeColor['color'] === 'light' ? 'text-black' : 'text-white')}>Password</FormLabel>
                 <FormControl>
                   <Input className="text-black placeholder:text-black/50 bg-[#e8f0fe] border border-white/50 py-6" type="password" placeholder="*******" {...field} />
                 </FormControl>

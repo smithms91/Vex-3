@@ -11,12 +11,15 @@ import { UpdateUsernameSchema } from '@/types';
 import { updateUsername } from '@/queries';
 import { Input } from '@/components/ui/input';
 import { Button } from '../ui/button';
+import { cn } from '@/lib/utils';
+import { useThemeColor } from '../context/theme-color-provider';
 
 type Props = {
 }
 
 const UpdateUsernameForm = ({ }: Props) => {
   const router = useRouter();
+  const themeColor = useThemeColor();
 
   const form = useForm<z.infer<typeof UpdateUsernameSchema>>({
     resolver: zodResolver(UpdateUsernameSchema),
@@ -53,7 +56,7 @@ const UpdateUsernameForm = ({ }: Props) => {
             name="username"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className='text-white text-lg flex items-center'>Username</FormLabel>
+                <FormLabel className={cn('text-lg flex items-center', themeColor['color'] === 'light' ? 'text-black' : 'text-white')}>Username</FormLabel>
                 <FormControl>
                   <Input className="text-black placeholder:text-black/50 bg-[#e8f0fe] border border-white/50 py-6" placeholder="Username" {...field} />
                 </FormControl>
@@ -66,7 +69,7 @@ const UpdateUsernameForm = ({ }: Props) => {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className='text-white text-lg flex items-center'>Password</FormLabel>
+                <FormLabel className={cn('text-lg flex items-center', themeColor['color'] === 'light' ? 'text-black' : 'text-white')}>Password</FormLabel>
                 <FormControl>
                   <Input className="text-black placeholder:text-black/50 bg-[#e8f0fe] border border-white/50 py-6" type="password" placeholder="Password" {...field} />
                 </FormControl>

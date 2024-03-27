@@ -21,7 +21,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={cn('max-w-[450px] mx-auto min-h-screen bg-gradient-to-tl from-dark-from to-dark-to ', kanit.className)}>
+      <body className={cn('max-w-[450px] mx-auto min-h-screen', kanit.className)}>
         <Toaster />
         {children}
         <SpeedInsights />

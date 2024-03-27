@@ -30,7 +30,8 @@ const AccountPage = async (props: Props) => {
   }
 
   let socials = user.data[0].socials
-  console.log(socials)
+  let themeColor = user.data[0].theme_color
+
   return (
     <main className='min-h-screen max-w-[450px] p-6 mx-auto flex flex-col items-center'>
       <AccountHeader />
@@ -44,7 +45,7 @@ const AccountPage = async (props: Props) => {
         maxSize={1.4}
         particleDensity={100}
         className="max-w-[450px] mx-auto h-full absolute top-0 left-0 right-0 z-0"
-        particleColor="#FFFFFF" />
+        particleColor={themeColor === 'light' ? '#000000' : '#FFFFFF'} />
     </main>
   )
 }

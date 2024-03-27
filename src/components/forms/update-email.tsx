@@ -11,12 +11,16 @@ import { z } from 'zod';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../ui/form';
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
+import { useThemeColor } from '../context/theme-color-provider';
+import { cn } from '@/lib/utils';
 
 type Props = {
 }
 
 const UpdateEmailForm = () => {
   const router = useRouter();
+  const themeColor = useThemeColor();
+
   const form = useForm<z.infer<typeof UpdateEmailSchema>>({
     resolver: zodResolver(UpdateEmailSchema),
     defaultValues: {
@@ -48,7 +52,7 @@ const UpdateEmailForm = () => {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className='text-white text-lg flex items-center'>Email</FormLabel>
+              <FormLabel className={cn('text-lg flex items-center', themeColor['color'] === 'light' ? 'text-black' : 'text-white')}>Email</FormLabel>
               <FormControl>
                 <Input className="text-black placeholder:text-black/50 bg-[#e8f0fe] border border-white/50 py-6" type="email" placeholder="vex@vex.cards" {...field} />
               </FormControl>
@@ -61,7 +65,7 @@ const UpdateEmailForm = () => {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className='text-white text-lg flex items-center'>Password</FormLabel>
+              <FormLabel className={cn('text-lg flex items-center', themeColor['color'] === 'light' ? 'text-black' : 'text-white')}>Password</FormLabel>
               <FormControl>
                 <Input className="text-black placeholder:text-black/50 bg-[#e8f0fe] border border-white/50 py-6" type="password" placeholder="Password" {...field} />
               </FormControl>

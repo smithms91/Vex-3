@@ -440,6 +440,32 @@ export const getProfileColor = async () => {
   }
 };
 
+export const getThemeColor = async () => {
+  const supabase = createClient();
+  const user = await supabase.auth.getUser();
+
+  if (!user) {
+    throw new Error("No authenticated user");
+  }
+
+  const userId = user.data.user?.id;
+
+  try {
+    const response = await supabase
+      .from('profiles')
+      .select('theme_color')
+      .eq('id', userId);
+
+    if (!response.data || response.data.length === 0) {
+      return 'dark';
+    }
+
+    return response.data[0].theme_color;
+  } catch (error) {
+    console.error('Error getting profile color:', error);
+  }
+};
+
 export const uploadProfileImage = async (url: string) => {
   const supabase = createClient();
   const user = await supabase.auth.getUser();

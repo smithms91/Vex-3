@@ -9,14 +9,18 @@ import { getProfilePicture, getUserId } from '@/queries';
 import Image from 'next/image';
 import { Button } from './ui/button';
 import { toast } from 'sonner';
+import { useThemeColor } from './context/theme-color-provider';
+import { cn } from '@/lib/utils';
 
-type Props = {}
+type Props = {
+}
 
 const AccountHeader = (props: Props) => {
   const router = useRouter();
   const [modalOpen, setModalOpen] = useState(false);
   const [profilePicture, setProfilePicture] = useState('')
   const [userID, setUserID] = useState('')
+  const themeColor = useThemeColor();
 
   useEffect(() => {
     async function fetchPicture() {
@@ -56,17 +60,17 @@ const AccountHeader = (props: Props) => {
 
   return (
     <div className='flex items-center justify-between w-full z-10'>
-      <div onClick={() => router.push('/account/settings')} className='z-50 flex items-center justify-center shadow-xl drop-shadow-xl bg-slate-600/75 rounded-full p-2 box-content cursor-pointer'>
-        <UserRoundCog className="cursor-pointer" size={20} color="white" />
+      <div onClick={() => router.push('/account/settings')} className={cn(`z-50 flex items-center justify-center shadow-xl drop-shadow-xl bg-slate-600/75 rounded-full p-2 box-content cursor-pointer`, themeColor['color'] === 'light' ? 'bg-slate-600/15' : 'bg-slate-600/75')}>
+        <UserRoundCog className="cursor-pointer" size={20} color={themeColor['color'] === 'light' ? 'black' : 'white'} />
       </div>
-      <div className="relative">
-        <h1 className="absolute text-2xl uppercase z-10 text-white drop-shadow-md blur-md opacity-1">Vex</h1>
-        <h1 className="text-2xl uppercase z-10 text-white drop-shadow-md">Vex</h1>
+      <div className={cn(`relative`, themeColor['color'] === 'light' ? 'text-black' : 'text-white')}>
+        <h1 className="absolute text-2xl uppercase z-10 drop-shadow-md blur-md opacity-1">Vex</h1>
+        <h1 className="text-2xl uppercase z-10 drop-shadow-md">Vex</h1>
       </div>
       <Drawer>
-        <div onClick={() => setModalOpen(!modalOpen)} className='flex items-center justify-center shadow-xl drop-shadow-xl bg-slate-600/75 rounded-full p-2 box-content cursor-pointer'>
+        <div onClick={() => setModalOpen(!modalOpen)} className={cn('flex items-center justify-center shadow-xl drop-shadow-xl bg-slate-600/75 rounded-full p-2 box-content cursor-pointer', themeColor['color'] === 'light' ? 'bg-slate-600/15' : 'bg-slate-600/75')}>
           <DrawerTrigger>
-            <QrCode size={20} color="white" />
+            <QrCode size={20} color={themeColor['color'] === 'light' ? 'black' : 'white'} />
           </DrawerTrigger>
         </div>
         <DrawerContent className='px-10 max-w-[450px] mx-auto h-auto'>

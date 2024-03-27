@@ -1,9 +1,11 @@
 'use client';
 
+import { useThemeColor } from '@/components/context/theme-color-provider';
 import HeaderBackButton from '@/components/header-with-back-button';
 import { SparklesCore } from '@/components/sparkles';
 import { Button } from '@/components/ui/button'
 import { Switch } from '@/components/ui/switch';
+import { cn } from '@/lib/utils';
 import { deleteAccount, disableAccount, forgotUserPassword, getAccountDisabled, getAuthUserEmail } from '@/queries';
 import { Instagram, Lock, Mail, Pause, ShieldQuestion, Unlock, UserRound, UserRoundMinus } from 'lucide-react'
 import { useRouter } from 'next/navigation'
@@ -15,6 +17,7 @@ type Props = {}
 const UserSettingsPage = (props: Props) => {
   const router = useRouter();
   const [disabled, setDisabled] = useState(false);
+  const themeColor = useThemeColor();
 
   useEffect(() => {
     async function handleDisabledAccount() {
@@ -54,7 +57,7 @@ const UserSettingsPage = (props: Props) => {
             <Mail size={18} color='white' />
           </div>
           <div className='flex flex-col items-start ml-4'>
-            <h1 className='text-md'>Change Email</h1>
+            <h1 className={cn(`text-md`, themeColor['color'] === 'light' ? 'text-black' : 'text-white')}>Change Email</h1>
           </div>
         </Button>
         <Button onClick={() => router.push('/account/settings/user-settings/update-username')} className='flex justify-start bg-slate-600/50 inset-4 text-white w-full py-9 z-50'>
@@ -62,7 +65,7 @@ const UserSettingsPage = (props: Props) => {
             <UserRound size={18} color="white" />
           </div>
           <div className='flex flex-col items-start ml-4'>
-            <h1 className='text-md'>Update Username</h1>
+            <h1 className={cn(`text-md`, themeColor['color'] === 'light' ? 'text-black' : 'text-white')}>Update Username</h1>
           </div>
         </Button>
         <Button onClick={() => router.push('/account/settings/user-settings/update-password')} className='flex justify-start bg-slate-600/50 inset-4 text-white w-full py-9 z-50'>
@@ -70,7 +73,7 @@ const UserSettingsPage = (props: Props) => {
             <Lock size={18} color="white" />
           </div>
           <div className='flex flex-col items-start ml-4'>
-            <h1 className='text-md'>Update Password</h1>
+            <h1 className={cn(`text-md`, themeColor['color'] === 'light' ? 'text-black' : 'text-white')}>Update Password</h1>
           </div>
         </Button>
         <Button onClick={() => handleForgotPassword()} className='flex justify-start bg-slate-600/50 inset-4 text-white w-full py-9 z-50'>
@@ -78,7 +81,7 @@ const UserSettingsPage = (props: Props) => {
             <Unlock size={18} color='white' />
           </div>
           <div className='flex flex-col items-start ml-4'>
-            <h1 className='text-md'>Forgot Password</h1>
+            <h1 className={cn(`text-md`, themeColor['color'] === 'light' ? 'text-black' : 'text-white')}>Forgot Password</h1>
           </div>
         </Button>
         <Button onClick={() => router.push('https://www.instagram.com/vexcards')} className='flex justify-start bg-slate-600/50 inset-4 text-white w-full py-9 z-50'>
@@ -86,7 +89,7 @@ const UserSettingsPage = (props: Props) => {
             <ShieldQuestion size={18} color='white' />
           </div>
           <div className='flex flex-col items-start ml-4'>
-            <h1 className='text-md'>About</h1>
+            <h1 className={cn(`text-md`, themeColor['color'] === 'light' ? 'text-black' : 'text-white')}>About</h1>
           </div>
         </Button>
         <hr className='opacity-40 my-4 bg-slate-600/20' />
@@ -96,7 +99,7 @@ const UserSettingsPage = (props: Props) => {
               <Pause size={18} color='white' />
             </div>
             <div className='flex flex-col items-start ml-4'>
-              <h1 className='text-md'>Disable Account</h1>
+              <h1 className={cn(`text-md`, themeColor['color'] === 'light' ? 'text-black' : 'text-white')}>Disable Account</h1>
             </div>
           </Button>
           <Switch className="absolute right-10 top-[1.65rem]" checked={disabled} onCheckedChange={(e) => handleDisableAccount(e)} />
@@ -106,7 +109,7 @@ const UserSettingsPage = (props: Props) => {
             <UserRoundMinus size={18} color='white' />
           </div>
           <div className='flex flex-col items-start ml-4'>
-            <h1 className='text-md'>Delete Account</h1>
+            <h1 className={cn(`text-md`, themeColor['color'] === 'light' ? 'text-black' : 'text-white')}>Delete Account</h1>
           </div>
         </Button>
       </section>
@@ -116,7 +119,7 @@ const UserSettingsPage = (props: Props) => {
         maxSize={1.4}
         particleDensity={100}
         className="max-w-[450px] mx-auto h-full absolute top-0 left-0 right-0 z-0"
-        particleColor="#FFFFFF" />
+        particleColor={themeColor["color"] === 'light' ? '#000000' : "#FFFFFF"} />
     </main>
   )
 }

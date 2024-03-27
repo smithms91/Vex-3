@@ -6,7 +6,7 @@ type Props = {}
 
 const DeleteAccountPage = (props: Props) => {
   return (
-    <section>
+    <section className=''>
       <HeaderBackButton title='Delete Account' link='account/settings/user-settings' />
       <DeleteAccountForm />
     </section>

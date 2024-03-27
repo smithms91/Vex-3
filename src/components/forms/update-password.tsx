@@ -11,11 +11,15 @@ import { z } from 'zod';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../ui/form';
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
+import { useThemeColor } from '../context/theme-color-provider';
+import { cn } from '@/lib/utils';
 
 type Props = {}
 
 const UpdatePasswordForm = (props: Props) => {
   const router = useRouter();
+  const themeColor = useThemeColor();
+
   const form = useForm<z.infer<typeof UpdatePasswordSchema>>({
     resolver: zodResolver(UpdatePasswordSchema),
     defaultValues: {
@@ -52,7 +56,7 @@ const UpdatePasswordForm = (props: Props) => {
           name="current_password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className='text-white text-lg flex items-center'>Current Password</FormLabel>
+              <FormLabel className={cn('text-lg flex items-center', themeColor['color'] === 'light' ? 'text-black' : 'text-white')}>Current Password</FormLabel>
               <FormControl>
                 <Input className="text-black placeholder:text-black/50 bg-[#e8f0fe] border border-white/50 py-6" type="password" placeholder="Current Password" {...field} />
               </FormControl>
@@ -65,7 +69,7 @@ const UpdatePasswordForm = (props: Props) => {
           name="new_password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className='text-white text-lg flex items-center'>New Password</FormLabel>
+              <FormLabel className={cn('text-lg flex items-center', themeColor['color'] === 'light' ? 'text-black' : 'text-white')}>New Password</FormLabel>
               <FormControl>
                 <Input className="text-black placeholder:text-black/50 bg-[#e8f0fe] border border-white/50 py-6" type="password" placeholder="New Password" {...field} />
               </FormControl>
@@ -78,7 +82,7 @@ const UpdatePasswordForm = (props: Props) => {
           name="confirm_password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className='text-white text-lg flex items-center'>Confirm Password</FormLabel>
+              <FormLabel className={cn('text-lg flex items-center', themeColor['color'] === 'light' ? 'text-black' : 'text-white')}>Confirm Password</FormLabel>
               <FormControl>
                 <Input className="text-black placeholder:text-black/50 bg-[#e8f0fe] border border-white/50 py-6" type="password" placeholder="Confirm Password" {...field} />
               </FormControl>

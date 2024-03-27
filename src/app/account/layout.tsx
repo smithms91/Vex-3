@@ -1,7 +1,7 @@
 import ThemeProvider from '@/components/context/theme-provider'
 import { createClient } from '@/lib/supabase/server';
 import { cn } from '@/lib/utils';
-import { getProfileColor } from '@/queries';
+import { getProfileColor, getThemeColor } from '@/queries';
 import { Kanit } from 'next/font/google';
 import { redirect } from 'next/navigation';
 import { Metadata } from 'next/types';
@@ -9,6 +9,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import React from 'react'
 import IconBorderProvider from '@/components/context/icon-border-provider';
+import ThemeColorProvider from '@/components/context/theme-color-provider';
 
 type Props = {}
 
@@ -26,6 +27,7 @@ export default async function AccountLayout({
 }) {
   const supabase = createClient()
   const color = await getProfileColor();
+  const themeColor = await getThemeColor();
 
   const { data, error } = await supabase.auth.getUser()
   if (error || !data?.user) {
@@ -39,15 +41,26 @@ export default async function AccountLayout({
     redirect('/login?message=Something went wrong. Try logging in again.')
   }
 
+  let bgColor: string;
+  if (themeColor === 'light') {
+    bgColor = 'bg-gradient-to-tl from-light-from to-light-to';
+  } else if (themeColor === 'dark') {
+    bgColor = 'bg-gradient-to-tl from-dark-from to-dark-to';
+  } else {
+    bgColor = 'bg-gradient-to-tl from-black-from to-black-to';
+  }
+
   return (
-    <main className={cn('max-w-[450px] min-h-screen mx-auto bg-gradient-to-tl from-dark-from to-dark-to', kanit.className)}>
+    <main className={cn('max-w-[450px] min-h-screen mx-auto', bgColor, kanit.className)}>
       <ThemeProvider
         attribute="data-theme"
         defaultTheme={color}
         enableSystem
         disableTransitionOnChange>
         <IconBorderProvider roundedProp={user.data[0].border}>
-          {children}
+          <ThemeColorProvider colorProp={themeColor}>
+            {children}
+          </ThemeColorProvider>
         </IconBorderProvider>
       </ThemeProvider>
       <SpeedInsights />

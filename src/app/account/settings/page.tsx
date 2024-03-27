@@ -1,8 +1,10 @@
 'use client';
 
+import { useThemeColor } from '@/components/context/theme-color-provider';
 import HeaderBackButton from '@/components/header-with-back-button';
 import { SparklesCore } from '@/components/sparkles';
 import { Button } from '@/components/ui/button'
+import { cn } from '@/lib/utils';
 import { signOut } from '@/queries'
 import { Instagram, ShieldQuestion, Store, TrendingUp, UserRoundCog } from 'lucide-react'
 import { useRouter } from 'next/navigation'
@@ -12,12 +14,12 @@ type Props = {}
 
 const AccountSettingsPage = (props: Props) => {
   const router = useRouter();
-
+  const themeColor = useThemeColor();
   return (
     <main className='min-h-screen z-50 max-w-[450px] mx-auto flex flex-col items-center'>
       <HeaderBackButton title='Account Settings' link='account' />
       <section className='flex flex-col gap-y-2 w-full p-4'>
-        <Button onClick={() => router.push('/account/insights')} className='flex justify-start bg-slate-600/50 inset-4 text-white w-full py-9 z-50'>
+        <Button onClick={() => router.push('/account/insights')} className={cn('flex justify-start bg-slate-600/50 inset-4 w-full py-9 z-50', themeColor['color'] === 'light' ? 'text-black' : 'text-white')}>
           <div className='flex items-center justify-center rounded-full box-content bg-blue-600/20 p-2'>
             <TrendingUp size={18} color='white' />
           </div>
@@ -26,7 +28,7 @@ const AccountSettingsPage = (props: Props) => {
             <p className='text-xs font-thin'>View your latest insights &amp; analytics</p>
           </div>
         </Button>
-        <Button onClick={() => router.push('/account/settings/user-settings')} className='flex justify-start bg-slate-600/50 inset-4 text-white w-full py-9 z-50'>
+        <Button onClick={() => router.push('/account/settings/user-settings')} className={cn('flex justify-start bg-slate-600/50 inset-4 w-full py-9 z-50', themeColor['color'] === 'light' ? 'text-black' : 'text-white')}>
           <div className='flex items-center justify-center rounded-full box-content bg-purple-600/20 p-2'>
             <UserRoundCog size={18} color="white" />
           </div>
@@ -35,7 +37,7 @@ const AccountSettingsPage = (props: Props) => {
             <p className='text-xs font-thin'>Customize your preferences</p>
           </div>
         </Button>
-        <Button onClick={() => router.push('/account/settings/help-center')} className='flex justify-start bg-slate-600/50 inset-4 text-white w-full py-9 z-50'>
+        <Button onClick={() => router.push('/account/settings/help-center')} className={cn('flex justify-start bg-slate-600/50 inset-4 w-full py-9 z-50', themeColor['color'] === 'light' ? 'text-black' : 'text-white')}>
           <div className='flex items-center justify-center rounded-full box-content bg-gray-800/20 p-2'>
             <ShieldQuestion size={18} color="white" />
           </div>
@@ -44,7 +46,7 @@ const AccountSettingsPage = (props: Props) => {
             <p className='text-xs font-thin'>View FAQ and contact support</p>
           </div>
         </Button>
-        <Button onClick={() => router.push('/shop')} className='flex justify-start bg-slate-600/50 inset-4 text-white w-full py-9 z-50'>
+        <Button onClick={() => router.push('/shop')} className={cn('flex justify-start bg-slate-600/50 inset-4 w-full py-9 z-50', themeColor['color'] === 'light' ? 'text-black' : 'text-white')}>
           <div className='flex items-center justify-center rounded-full box-content bg-green-400/20 p-2'>
             <Store size={18} color='white' />
           </div>
@@ -53,7 +55,7 @@ const AccountSettingsPage = (props: Props) => {
             <p className='text-xs font-thin'>Save 10% on your first device</p>
           </div>
         </Button>
-        <Button onClick={() => router.push('https://www.instagram.com/vexcards')} className='flex justify-start bg-slate-600/50 inset-4 text-white w-full py-9 z-50'>
+        <Button onClick={() => router.push('https://www.instagram.com/vexcards')} className={cn('flex justify-start bg-slate-600/50 inset-4 w-full py-9 z-50', themeColor['color'] === 'light' ? 'text-black' : 'text-white')}>
           <div className='flex items-center justify-center rounded-full box-content bg-red-600/20 p-2'>
             <Instagram size={18} color='white' />
           </div>
@@ -75,7 +77,7 @@ const AccountSettingsPage = (props: Props) => {
         maxSize={1.4}
         particleDensity={100}
         className="max-w-[450px] mx-auto h-full absolute top-0 left-0 right-0 z-0"
-        particleColor="#FFFFFF" />
+        particleColor={themeColor['color'] === 'light' ? '#000000' : '#FFFFFF'} />
     </main>
   )
 }
