@@ -14,14 +14,14 @@ const Container = ({ children, className }: Props) => {
   const [bgColor, setBgColor] = useState<string>('');
 
   useEffect(() => {
-    if (themeColor['color'] === 'light') {
+    if (themeColor.color === 'light') {
       setBgColor('bg-gradient-to-tl from-light-from to-light-to');
-    } else if (themeColor['color'] === 'dark') {
+    } else if (themeColor.color === 'dark') {
       setBgColor('bg-gradient-to-tl from-dark-from to-dark-to');
     } else {
       setBgColor('bg-gradient-to-tl from-black-from to-black-to');
     }
-  }, [themeColor]);
+  }, [themeColor.color]);
 
   return (
     <main className={cn("min-h-screen max-w-[450px]", className, bgColor)}>{children}</main>

@@ -23,6 +23,7 @@ const StyleThemeModal = ({ }: Props) => {
   const { setColor } = useThemeColor();
 
   const handleUpdateBorder = async (border: 'small' | 'large' | 'full') => {
+    setRounded(border);
     try {
       await setUserBorder(border)
       toast('Border updated!', { position: 'top-center' })
@@ -32,6 +33,7 @@ const StyleThemeModal = ({ }: Props) => {
   };
 
   const handleUpdateThemeColor = async (color: 'light' | 'dark' | 'black') => {
+    setColor(color);
     try {
       await setUserThemeColor(color)
       toast('Background color updated!', { position: 'top-center' })
@@ -57,15 +59,15 @@ const StyleThemeModal = ({ }: Props) => {
         {/* <h1 className='mt-6 font-bold text-lg'>Theme</h1> */}
         <h1 className='mt-8 mb-2 text-lg font-bold'>Border</h1>
         <div className='flex w-full items-center overflow-scroll gap-x-4 z-50'>
-          <Button onClick={() => { setRounded('full'); handleUpdateBorder('full') }} className={`flex items-center justify-center w-[50px] h-[50px] bg-gradient-to-br from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] rounded-full`}><Instagram size={30} color="white" /></Button>
-          <Button onClick={() => { setRounded('large'); handleUpdateBorder('large') }} className={`flex items-center justify-center w-[50px] h-[50px] bg-gradient-to-br from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] rounded-lg`}><Instagram size={30} color="white" /></Button>
-          <Button onClick={() => { setRounded('small'); handleUpdateBorder('small') }} className={`flex items-center justify-center w-[50px] h-[50px] bg-gradient-to-br from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] rounded-sm`}><Instagram size={30} color="white" /></Button>
+          <Button onClick={() => handleUpdateBorder('full')} className={`flex items-center justify-center w-[50px] h-[50px] bg-gradient-to-br from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] rounded-full`}><Instagram size={30} color="white" /></Button>
+          <Button onClick={() => handleUpdateBorder('large')} className={`flex items-center justify-center w-[50px] h-[50px] bg-gradient-to-br from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] rounded-lg`}><Instagram size={30} color="white" /></Button>
+          <Button onClick={() => handleUpdateBorder('small')} className={`flex items-center justify-center w-[50px] h-[50px] bg-gradient-to-br from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] rounded-sm`}><Instagram size={30} color="white" /></Button>
         </div>
         <h1 className='mt-8 mb-2 text-lg font-bold'>Background Color</h1>
         <div className='flex w-full items-center overflow-scroll gap-x-4 z-50'>
-          <Button onClick={() => { setColor('light'); handleUpdateThemeColor('light') }} className={`w-[75px] h-[75px] bg-gradient-to-br from-[#c2cee0] to-[#ffffff] flex-shrink-0`}></Button>
-          <Button onClick={() => { setColor('dark'); handleUpdateThemeColor('dark') }} className='w-[75px] h-[75px] bg-gradient-to-br from-[#1c202e] to-[#303950] flex-shrink-0'></Button>
-          <Button onClick={() => { setColor('black'); handleUpdateThemeColor('black') }} className={`w-[75px] h-[75px] bg-gradient-to-br from-[#000000] to-[#191c24] flex-shrink-0`}></Button>
+          <Button onClick={() => handleUpdateThemeColor('light')} className={`w-[75px] h-[75px] bg-gradient-to-br from-[#c2cee0] to-[#ffffff] flex-shrink-0`}></Button>
+          <Button onClick={() => handleUpdateThemeColor('dark')} className='w-[75px] h-[75px] bg-gradient-to-br from-[#1c202e] to-[#303950] flex-shrink-0'></Button>
+          <Button onClick={() => handleUpdateThemeColor('black')} className={`w-[75px] h-[75px] bg-gradient-to-br from-[#000000] to-[#191c24] flex-shrink-0`}></Button>
         </div>
       </DrawerContent>
     </Drawer>

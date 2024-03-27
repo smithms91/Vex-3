@@ -34,7 +34,7 @@ const AccountPage = async (props: Props) => {
   let themeColor = user.data[0].theme_color
 
   return (
-    <main className='min-h-screen max-w-[450px] p-6 mx-auto flex flex-col items-center'>
+    <main className='min-h-screen max-w-[450px] p-2 xs:p-4 sm:p-6 mx-auto flex flex-col items-center'>
       <AccountHeader />
       <ProfileCard email={data.user.email!} user={user} />
       <EditProfileButton />

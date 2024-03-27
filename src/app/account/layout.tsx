@@ -27,10 +27,8 @@ export default async function AccountLayout({
   children: React.ReactNode
 }) {
   const supabase = createClient()
-  const color = await getProfileColor();
-  const themeColor = await getThemeColor();
-
   const { data, error } = await supabase.auth.getUser()
+
   if (error || !data?.user) {
     redirect('/')
   }
@@ -42,17 +40,13 @@ export default async function AccountLayout({
     redirect('/login?message=Something went wrong. Try logging in again.')
   }
 
-  let bgColor: string;
-  if (themeColor === 'light') {
-    bgColor = 'bg-gradient-to-tl from-light-from to-light-to';
-  } else if (themeColor === 'dark') {
-    bgColor = 'bg-gradient-to-tl from-dark-from to-dark-to';
-  } else {
-    bgColor = 'bg-gradient-to-tl from-black-from to-black-to';
-  }
+  const [color, themeColor] = await Promise.all([
+    await getProfileColor(),
+    await getThemeColor()
+  ])
 
   return (
-    <main className={cn('max-w-[450px] min-h-screen mx-auto', bgColor, kanit.className)}>
+    <main className={cn('max-w-[450px] min-h-screen mx-auto', kanit.className)}>
       <ThemeProvider
         attribute="data-theme"
         defaultTheme={color}
