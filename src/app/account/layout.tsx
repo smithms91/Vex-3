@@ -10,6 +10,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 import React from 'react'
 import IconBorderProvider from '@/components/context/icon-border-provider';
 import ThemeColorProvider from '@/components/context/theme-color-provider';
+import Container from '@/components/container';
 
 type Props = {}
 
@@ -59,7 +60,9 @@ export default async function AccountLayout({
         disableTransitionOnChange>
         <IconBorderProvider roundedProp={user.data[0].border}>
           <ThemeColorProvider colorProp={themeColor}>
-            {children}
+            <Container>
+              {children}
+            </Container>
           </ThemeColorProvider>
         </IconBorderProvider>
       </ThemeProvider>

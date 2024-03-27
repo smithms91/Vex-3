@@ -7,6 +7,7 @@ import AccountHeader from '@/components/account-header';
 import ProfileFooter from '@/components/profile/profile-footer';
 import ProfileCard from '@/components/profile/profile-card';
 import ProfileSocials from '@/components/profile/profile-socials';
+import Container from '@/components/container';
 
 type Props = {}
 
