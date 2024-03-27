@@ -5,7 +5,7 @@ import Link from "next/link";
 export default async function Home() {
 
   return (
-    <main className="min-h-screen max-w-[450px] mx-auto flex flex-col items-center justify-center bg-gradient-to-tl from-from to-to ">
+    <main className="min-h-screen max-w-[450px] mx-auto flex flex-col items-center justify-center">
       <CtaBanner title="Get your card today!" />
       <div className="h-full">
         <div className="text-center">

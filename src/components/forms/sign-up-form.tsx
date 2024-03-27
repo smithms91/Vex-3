@@ -70,7 +70,7 @@ const SignUpForm = (props: Props) => {
             </FormItem>
           )}
         />
-        <Button disabled={isSubmitting} type="submit" className='w-full bg-[#e8f0fe] text-black hover:bg-[#c8cfdb]'>Sign Up</Button>
+        <Button disabled={isSubmitting} type="submit" className='w-full bg-black text-white hover:bg-[#c8cfdb]'>Sign Up</Button>
       </form>
     </Form>
   )
