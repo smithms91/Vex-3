@@ -17,8 +17,7 @@ type Props = {
 
 const ProfileSocials = ({ socials }: Props) => {
   const [items, setItems] = useState<Social[]>(socials)
-  const [mounted, setMounted] = useState(false)
-  const themeColor = useThemeColor();
+  const { color, setColor } = useThemeColor();
 
   const router = useRouter();
 
@@ -26,7 +25,9 @@ const ProfileSocials = ({ socials }: Props) => {
   const toastScheduled = useRef(false);
 
   const handleUpdateItems = async (order: typeof items) => {
-    setItems(order)
+    if (JSON.stringify(order) !== JSON.stringify(items)) {
+      setItems(order);
+    }
     try {
       await updateUserSocials(order)
       if (toastScheduled.current) {
@@ -40,21 +41,22 @@ const ProfileSocials = ({ socials }: Props) => {
     } catch (error) {
       console.log('error', error)
     }
+    console.log('order', order)
   }
 
   return (
     <section className='w-full mt-4 z-50 mb-20'>
       {items && items.length > 0 &&
-        <Reorder.Group className="flex flex-col gap-y-2 z-50" axis="y" values={items} onReorder={handleUpdateItems}>
-          <h1 className={cn(`text-xl mt-2 -mb-1`, themeColor['color'] === 'light' ? 'text-black' : 'text-white')}>Socials</h1>
+        <Reorder.Group as="div" className="flex flex-col gap-y-2 z-50" axis="y" values={items} onReorder={handleUpdateItems}>
+          <h1 className={cn(`text-xl mt-2 -mb-1`, color === 'light' ? 'text-black' : 'text-white')}>Socials</h1>
           {items && items.map((item, index) => (
-            <Reorder.Item key={item.id} value={item} className='flex items-center bg-slate-600/50 text-white w-full p-2 z-50 cursor-pointer rounded-md' onClick={() => router.push(`/account/setup/edit/${item.id}`)} >
+            <Reorder.Item as="div" key={item.id} value={item} className={cn('flex items-center text-white w-full p-2 z-50 cursor-pointer rounded-md', color === 'light' || color === 'dark' ? 'bg-slate-600/50' : 'bg-gray-200/20')} onClick={() => router.push(`/account/setup/edit/${item.id}`)} >
               <CustomSocialIcon network={item.network} />
               <div className='ml-4'>
-                <p className={cn('text-lg', themeColor['color'] === 'light' ? 'text-black' : 'text-white')}>{item.title !== '' ? item.title : item.network.charAt(0).toUpperCase() + item.network.slice(1)}</p>
-                <p className={cn('text-sm', themeColor['color'] === 'light' ? 'text-black' : 'text-white')}>{item.value}</p>
+                <p className={cn('text-lg', color === 'light' ? 'text-black' : 'text-white')}>{item.title !== '' ? item.title : item.network.charAt(0).toUpperCase() + item.network.slice(1)}</p>
+                <p className={cn('text-sm', color === 'light' ? 'text-black' : 'text-white')}>{item.value}</p>
               </div>
-              <ArrowUpDown size={16} color={themeColor['color'] === 'light' ? 'black' : 'white'} className='ml-auto mr-4 cursor-grab active:cursor-grabbing' />
+              <ArrowUpDown size={16} color={color === 'light' ? 'black' : 'white'} className='ml-auto mr-4 cursor-grab active:cursor-grabbing' />
             </Reorder.Item>
           ))}
         </Reorder.Group>

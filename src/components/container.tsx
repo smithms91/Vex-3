@@ -11,7 +11,7 @@ type Props = {
 
 const Container = ({ children, className }: Props) => {
   let themeColor = useThemeColor();
-  const [bgColor, setBgColor] = useState<string>('');
+  const [bgColor, setBgColor] = useState<string>('bg-gradient-to-tl from-dark-from to-dark-to');
 
   useEffect(() => {
     if (themeColor.color === 'light') {
@@ -24,7 +24,7 @@ const Container = ({ children, className }: Props) => {
   }, [themeColor.color]);
 
   return (
-    <main className={cn("min-h-screen max-w-[450px]", className, bgColor)}>{children}</main>
+    <main className={cn("min-h-screen max-w-[450px]", bgColor)}>{children}</main>
   )
 }
 

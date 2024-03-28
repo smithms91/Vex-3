@@ -19,6 +19,8 @@ import { updateProfileTwo } from '@/queries';
 import { useRouter } from 'next/navigation';
 import { Tables } from '@/lib/database.types';
 import { toast } from 'sonner';
+import { useThemeColor } from '../context/theme-color-provider';
+import { cn } from '@/lib/utils';
 
 type Props = {
   user: Tables<'profiles'> | null;
@@ -33,6 +35,7 @@ type Props = {
 
 const OnboardingFormTwo = ({ user, setFirstName, setLastName, setEmail, setPhoneNumber, setJobTitle, setWebsite, options }: Props) => {
   const router = useRouter()
+  const { color, setColor } = useThemeColor();
   const form = useForm<z.infer<typeof OnboardingSchemaTwo>>({
     resolver: zodResolver(OnboardingSchemaTwo),
     defaultValues: {
@@ -64,7 +67,7 @@ const OnboardingFormTwo = ({ user, setFirstName, setLastName, setEmail, setPhone
           name="first_name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className='text-white/80 text-lg shadow-sm'>First Name</FormLabel>
+              <FormLabel className={cn('text-white/80 text-lg shadow-sm', color === 'light' ? 'text-black' : 'text-white')}>First Name</FormLabel>
               <FormControl>
                 <Input onChangeCapture={e => setFirstName(e.currentTarget.value)} className="py-6" type="string" placeholder='Mike' {...field} />
               </FormControl>
@@ -77,7 +80,7 @@ const OnboardingFormTwo = ({ user, setFirstName, setLastName, setEmail, setPhone
           name="last_name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className='text-white/80 text-lg shadow-sm'>Last Name</FormLabel>
+              <FormLabel className={cn('text-white/80 text-lg shadow-sm', color === 'light' ? 'text-black' : 'text-white')}>Last Name</FormLabel>
               <FormControl>
                 <Input onChangeCapture={e => setLastName(e.currentTarget.value)} className="py-6" type="string" placeholder='Smith' {...field} />
               </FormControl>
@@ -90,7 +93,7 @@ const OnboardingFormTwo = ({ user, setFirstName, setLastName, setEmail, setPhone
           name="job_title"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className='text-white/80 text-lg shadow-sm'>Job Title</FormLabel>
+              <FormLabel className={cn('text-white/80 text-lg shadow-sm', color === 'light' ? 'text-black' : 'text-white')}>Job Title</FormLabel>
               <FormControl>
                 <Input onChangeCapture={e => setJobTitle(e.currentTarget.value)} className="py-6" type="string" placeholder='Real Estate Agent' {...field} />
               </FormControl>
@@ -103,7 +106,7 @@ const OnboardingFormTwo = ({ user, setFirstName, setLastName, setEmail, setPhone
           name="phone_number"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className='text-white/80 text-lg shadow-sm'>Phone Number</FormLabel>
+              <FormLabel className={cn('text-white/80 text-lg shadow-sm', color === 'light' ? 'text-black' : 'text-white')}>Phone Number</FormLabel>
               <FormControl>
                 <Input onChangeCapture={e => setPhoneNumber(e.currentTarget.value)} className="py-6" type="tel" placeholder='(123) 456-7890' {...field} />
               </FormControl>
@@ -116,7 +119,7 @@ const OnboardingFormTwo = ({ user, setFirstName, setLastName, setEmail, setPhone
           name="website"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className='text-white/80 text-lg shadow-sm'>Website</FormLabel>
+              <FormLabel className={cn('text-white/80 text-lg shadow-sm', color === 'light' ? 'text-black' : 'text-white')}>Website</FormLabel>
               <FormControl>
                 <Input onChangeCapture={e => setWebsite(e.currentTarget.value)} className="py-6" type="string" placeholder='www.website.com' {...field} />
               </FormControl>

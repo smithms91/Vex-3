@@ -14,13 +14,14 @@ import { setUserBorder, setUserThemeColor } from '@/queries';
 import { toast } from 'sonner';
 import { useThemeColor } from '../context/theme-color-provider';
 import { Button } from '../ui/button';
+import { cn } from '@/lib/utils';
 
 type Props = {
 }
 
 const StyleThemeModal = ({ }: Props) => {
   const { rounded, setRounded } = useIconBorder();
-  const { setColor } = useThemeColor();
+  const { color, setColor } = useThemeColor();
 
   const handleUpdateBorder = async (border: 'small' | 'large' | 'full') => {
     setRounded(border);
@@ -46,8 +47,8 @@ const StyleThemeModal = ({ }: Props) => {
     <Drawer>
       <DrawerTrigger>
         <div className='flex flex-col items-center z-10'>
-          <Palette size={22} color='white' />
-          <p className='text-xs uppercase text-white'>Style</p>
+          <Palette size={22} color={color === 'light' ? 'black' : 'white'} />
+          <p className={cn('text-xs uppercase', color === 'light' ? 'text-black' : 'text-white')}>Style</p>
         </div>
       </DrawerTrigger>
       <DrawerContent className='px-10 max-w-[450px] space-y-2 mx-auto bg-white h-[450px]'>

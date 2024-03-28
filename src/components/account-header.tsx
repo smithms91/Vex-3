@@ -60,15 +60,15 @@ const AccountHeader = (props: Props) => {
 
   return (
     <div className='flex items-center justify-between w-full z-10'>
-      <div onClick={() => router.push('/account/settings')} className={cn(`z-50 flex items-center justify-center shadow-xl drop-shadow-xl bg-slate-600/75 rounded-full p-2 box-content cursor-pointer`, themeColor['color'] === 'light' ? 'bg-slate-600/15' : 'bg-slate-600/75')}>
+      <div onClick={() => router.push('/account/settings')} className={cn(`z-50 flex items-center justify-center shadow-md drop-shadow-sm rounded-full p-2 box-content cursor-pointer`, themeColor['color'] === 'light' ? 'bg-slate-200/15' : 'bg-gray-200/10')}>
         <UserRoundCog className="cursor-pointer" size={20} color={themeColor['color'] === 'light' ? 'black' : 'white'} />
       </div>
       <div className={cn(`relative`, themeColor['color'] === 'light' ? 'text-black' : 'text-white')}>
-        <h1 className="absolute text-2xl uppercase z-10 drop-shadow-md blur-md opacity-1">Vex</h1>
+        <h1 className="absolute text-2xl uppercase z-10 drop-shadow-md blur-md opacity-50">Vex</h1>
         <h1 className="text-2xl uppercase z-10 drop-shadow-md">Vex</h1>
       </div>
       <Drawer>
-        <div onClick={() => setModalOpen(!modalOpen)} className={cn('flex items-center justify-center shadow-xl drop-shadow-xl bg-slate-600/75 rounded-full p-2 box-content cursor-pointer', themeColor['color'] === 'light' ? 'bg-slate-600/15' : 'bg-slate-600/75')}>
+        <div onClick={() => setModalOpen(!modalOpen)} className={cn('flex items-center justify-center shadow-md drop-shadow-sm rounded-full p-2 box-content cursor-pointer', themeColor['color'] === 'light' ? 'bg-slate-200/15' : 'bg-gray-200/10')}>
           <DrawerTrigger>
             <QrCode size={20} color={themeColor['color'] === 'light' ? 'black' : 'white'} />
           </DrawerTrigger>
