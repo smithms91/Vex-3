@@ -45,6 +45,11 @@ export default async function AccountLayout({
     await getThemeColor()
   ])
 
+  let bgColor: string = '';
+  if (user.data[0].theme_color === 'light') bgColor = 'bg-gradient-to-tl from-light-from to-light-to'
+  if (user.data[0].theme_color === 'dark') bgColor = 'bg-gradient-to-tl from-dark-from to-dark-to'
+  if (user.data[0].theme_color === 'black') bgColor = 'bg-gradient-to-tl from-black-from to-black-to'
+
   return (
     <main className={cn('max-w-[450px] min-h-screen mx-auto', kanit.className)}>
       <ThemeProvider

@@ -22,6 +22,8 @@ import { useRouter } from 'next/navigation';
 import { toast } from "sonner"
 import CustomSocialIcon from '../custom-social-icon';
 import { constants } from '@/constants';
+import { useThemeColor } from '../context/theme-color-provider';
+import { cn } from '@/lib/utils';
 
 type Props = {
   network: string
@@ -30,7 +32,7 @@ type Props = {
 const AddSocialForm = ({ network }: Props) => {
   const [showTitle, setShowTitle] = useState(false)
   const [deleteButton, setDeleteButton] = useState(false)
-
+  const themeColor = useThemeColor();
   const router = useRouter();
 
   const url = constants.find((constant) => constant.network === network)?.href
@@ -67,21 +69,21 @@ const AddSocialForm = ({ network }: Props) => {
           name="value"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className='text-black text-lg flex items-center'><CustomSocialIcon edit="true" size="16" network={network} /><p className='ml-2'>{network.charAt(0).toUpperCase() + network.slice(1)}</p></FormLabel>
+              <FormLabel className={cn('text-lg flex items-center', themeColor.color === 'light' ? 'text-black' : 'text-white')}><CustomSocialIcon edit="true" size="16" network={network} /><p className='ml-2'>{network.charAt(0).toUpperCase() + network.slice(1)}</p></FormLabel>
               <FormControl>
-                <Input className="text-black placeholder:text-black/50 bg-[#e8f0fe] border border-white/50 py-6" placeholder="VexTheBest" {...field} />
+                <Input className="placeholder:text-black/50 bg-[#e8f0fe] border border-white/50 py-6" placeholder="VexTheBest" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
         <div className="flex justify-between">
-          {!deleteButton ? <Button type="button" className='w-[45%] bg-black py-6 text-md active:bg-black hover:bg-black'>Delete</Button> : <Button variant="destructive" className='w-[45%] py-6 text-md' onClick={() => console.log('test')}>Confirm</Button>}
+          {!deleteButton ? <Button type="button" className={cn('w-[45%] py-6 text-md active:bg-black hover:bg-card-bg-dark', themeColor.color === 'black' ? 'border-2 border-gray-500' : 'bg-black')}>Delete</Button> : <Button variant="destructive" className='w-[45%] py-6 text-md' onClick={() => console.log('test')}>Confirm</Button>}
           {/* <Button variant="destructive" className='w-[45%] py-6 text-md'>Delete</Button> */}
-          <Button className='bg-black w-[45%] py-6 text-md'>Test</Button>
+          <Button className={cn('bg-black w-[45%] py-6 text-md', themeColor.color === 'black' ? 'border-2 border-gray-500' : 'bg-black')}>Test</Button>
 
         </div>
-        {!showTitle && <Button className='w-full bg-black text-white text-md' onClick={() => setShowTitle(true)}><Plus size={14} className='mt-[.15rem] mr-1' />Add Title</Button>}
+        {!showTitle && <Button className={cn('w-full  text-white text-md py-6', themeColor.color === 'black' ? 'border-2 border-gray-500' : 'bg-black')} onClick={() => setShowTitle(true)}><Plus size={14} className='mt-[.15rem] mr-1' />Add Title</Button>}
         {showTitle &&
           <>
             <FormField
