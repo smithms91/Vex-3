@@ -1,6 +1,6 @@
 # [Vex Cards](https://vex.cards)
 
-Vex Cards is a digital business card app that allows users easily share their custom profile with others, by scanning their business card under a phone with an NFC connection. The card also comes with a QR Code that will also point directly to the users profile.
+Vex Cards is a digital business card app that allows users to easily share their custom profile with others, by scanning their business card under a phone with an NFC connection. The card also comes with a QR Code that will also point directly to the users profile.
 
 Creating an account is extremely simple, and free, and can be changed anytime for no cost. This eliminates the need for carrying around hundreds of business cards to pass around. From your profile page, a visiting user can click "Add Contact" to save your contact information directly into their phone.
 
