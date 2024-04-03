@@ -83,7 +83,7 @@ const AddSocialForm = ({ network }: Props) => {
           <Button className={cn('bg-black w-[45%] py-6 text-md', themeColor.color === 'black' ? 'border-2 border-gray-500' : 'bg-black')}>Test</Button>
 
         </div>
-        {!showTitle && <Button className={cn('w-full  text-white text-md py-6', themeColor.color === 'black' ? 'border-2 border-gray-500' : 'bg-black')} onClick={() => setShowTitle(true)}><Plus size={14} className='mt-[.15rem] mr-1' />Add Title</Button>}
+        {!showTitle && <Button className={cn('w-full text-white text-md py-6', themeColor.color === 'black' ? 'border-2 border-gray-500' : 'bg-black')} onClick={() => setShowTitle(true)}><Plus size={14} className='mt-[.15rem] mr-1' />Add Title</Button>}
         {showTitle &&
           <>
             <FormField

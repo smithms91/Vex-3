@@ -1,5 +1,6 @@
 import CtaBanner from "@/components/cta-banner";
 import { SparklesCore } from "@/components/sparkles";
+import Image from "next/image";
 import Link from "next/link";
 
 export default async function Home() {
@@ -11,8 +12,9 @@ export default async function Home() {
         <div className="text-center">
           <h2 className="text-sm uppercase z-10 text-white drop-shadow-md tracking-widest">Welcome to</h2>
           <div className="relative">
-            <h1 className="absolute text-6xl uppercase z-10 text-white drop-shadow-md blur-md opacity-50">Vex</h1>
-            <h1 className="text-6xl uppercase z-10 text-white drop-shadow-md">Vex</h1>
+            {/* <h1 className="absolute text-6xl uppercase z-10 text-white drop-shadow-md blur-md opacity-50">Vex</h1> */}
+            {/* <h1 className="text-6xl uppercase z-10 text-white drop-shadow-md">Vex</h1> */}
+            <Image src="/vexwhite.png" className="mx-auto my-4" width={100} height={100} alt="Vex Card" />
           </div>
         </div>
         <div className="flex flex-col gap-10 mt-20 z-10">
