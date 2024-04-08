@@ -4,12 +4,14 @@ import { Button } from '@/components/ui/button'
 import { User } from '@/types';
 import React from 'react'
 import { profileColors } from '@/constants';
+import { cn } from '@/lib/utils';
 
 type Props = {
   user: User;
 }
 
 const AddContactButton = ({ user }: Props) => {
+  console.log('use2r', user)
   // console.log('user2', user)
   const profileColor = profileColors.find(color => color.color === user.profile_color)?.singleValue
 
@@ -32,7 +34,7 @@ const AddContactButton = ({ user }: Props) => {
     link.click();
   };
   return (
-    <Button className="w-full py-7 -my-2" style={{ backgroundColor: profileColor }} onClick={() => handleButtonClick()}>Add Contact</Button>
+    <Button className="w-full py-7 z-10 -my-2 border-b-2 border-card-bg-light cursor-pointer text-md bg-card-bg-dark hover:bg-card-bg-light" style={{ backgroundColor: profileColor }} onClick={() => handleButtonClick()}>Add Contact</Button>
   )
 }
 

@@ -8,6 +8,7 @@ import { PostgrestSingleResponse } from '@supabase/supabase-js';
 import { getProfilePicture } from '@/queries';
 import { cn } from '@/lib/utils';
 import { useThemeColor } from '../context/theme-color-provider';
+import { usePreviewMode } from '../context/preview-mode-provider';
 
 type Props = {
   user: PostgrestSingleResponse<any[]>
@@ -15,6 +16,9 @@ type Props = {
 
 const ProfileFooter = ({ user }: Props) => {
   const { color, setColor } = useThemeColor();
+  const { preview, setPreview } = usePreviewMode();
+
+  if (preview) return null;
 
   return (
     <footer className={cn('fixed bottom-0 left-0 right-0 max-w-[450px] mx-auto rounded-t-[26px] h-20 p-4 flex items-center justify-around z-50 shadow-2xl', color === 'light' ? 'bg-gray-200/95' : 'bg-gray-800/95', color === 'black' && 'bg-black/95')}>

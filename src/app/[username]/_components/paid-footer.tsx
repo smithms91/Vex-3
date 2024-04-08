@@ -1,3 +1,6 @@
+'use client';
+
+import { usePreviewMode } from '@/components/context/preview-mode-provider';
 import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
@@ -7,6 +10,10 @@ type Props = {
 }
 
 const PaidFooter = ({ darkText }: Props) => {
+  const { preview, setPreview } = usePreviewMode();
+
+  if (!preview) return null;
+
   return (
     <footer className='z-50 mt-auto border-t-2 border-slate-600/25 bg-[#12223f]/20 text-white max-w-[450px] w-full p-4 text-center mx-auto'>
       <h1 className='text-2xl'>VEX</h1>

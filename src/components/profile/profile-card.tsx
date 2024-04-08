@@ -9,6 +9,7 @@ import ThemePicker from '../color-picker';
 import { cn } from '@/lib/utils';
 import EditPictureModal from '../modals/edit-picture-modal';
 import { useTheme } from 'next-themes';
+import { usePreviewMode } from '../context/preview-mode-provider';
 
 type Props = {
   user: PostgrestSingleResponse<any[]>
@@ -20,6 +21,7 @@ type Props = {
 const ProfileCard = ({ user, email: authEmail, options, className }: Props) => {
   const userData = user.data![0];
   const { setTheme } = useTheme();
+  const { preview } = usePreviewMode();
   const [firstName, setFirstName] = useState(userData.first_name || '')
   const [lastName, setLastName] = useState(userData.last_name || '')
   const [email, setEmail] = useState(authEmail || '')

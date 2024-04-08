@@ -7,7 +7,8 @@ import AccountHeader from '@/components/account-header';
 import ProfileFooter from '@/components/profile/profile-footer';
 import ProfileCard from '@/components/profile/profile-card';
 import ProfileSocials from '@/components/profile/profile-socials';
-import Container from '@/components/container';
+import PreviewModeProvider from '@/components/context/preview-mode-provider';
+import PaidFooter from '../[username]/_components/paid-footer';
 
 type Props = {}
 
@@ -35,18 +36,21 @@ const AccountPage = async (props: Props) => {
 
   return (
     <main className='min-h-screen max-w-[450px] p-2 xs:p-4 sm:p-6 mx-auto flex flex-col items-center'>
-      <AccountHeader />
-      <ProfileCard email={data.user.email!} user={user} />
-      <EditProfileButton />
-      <ProfileSocials socials={socials} />
-      <ProfileFooter user={user} />
-      <SparklesCore id="tsparticlesfullpage"
-        background="transparent"
-        minSize={0.6}
-        maxSize={1.4}
-        particleDensity={100}
-        className="max-w-[450px] mx-auto h-full absolute top-0 left-0 right-0 z-0"
-        particleColor={themeColor === 'light' ? '#000000' : '#FFFFFF'} />
+      <PreviewModeProvider>
+        <AccountHeader />
+        <ProfileCard email={data.user.email!} user={user} />
+        <EditProfileButton user={user} />
+        <ProfileSocials socials={socials} />
+        <ProfileFooter user={user} />
+        <PaidFooter darkText={themeColor == 'light'} />
+        <SparklesCore id="tsparticlesfullpage"
+          background="transparent"
+          minSize={0.6}
+          maxSize={1.4}
+          particleDensity={100}
+          className="max-w-[450px] mx-auto h-full absolute top-0 left-0 right-0 z-0"
+          particleColor={themeColor === 'light' ? '#000000' : '#FFFFFF'} />
+      </PreviewModeProvider>
     </main>
   )
 }
