@@ -21,7 +21,6 @@ type Props = {
 const ProfileSocials = ({ socials }: Props) => {
   const [items, setItems] = useState<Social[]>(socials);
   const { preview, setPreview } = usePreviewMode();
-
   const { color, setColor } = useThemeColor();
 
   const router = useRouter();
@@ -56,7 +55,7 @@ const ProfileSocials = ({ socials }: Props) => {
           <div className="flex flex-col gap-y-2 z-50" >
             <div className='flex items-center gap-y-0 relative'>
               <h1 className={cn(`text-xl`, color === 'light' ? 'text-black' : 'text-white')}>Socials</h1>
-              {!preview ? <p onClick={() => setPreview(!preview)} className='text-white text-xs bottom-0 right-0 underline opacity-80 hover:text-card-bg-light absolute cursor-pointer'>Preview Profile</p> : <p onClick={() => setPreview(!preview)} className='cursor-pointer text-white text-xs bottom-0 right-0 underline opacity-80 hover:text-card-bg-light absolute'>Edit Mode</p>}
+              {!preview ? <p onClick={() => { console.log('test'); toast('You are in preview mode! Click again to go back to edit mode.', { position: 'top-center' }); setPreview(!preview) }} className='text-white text-xs bottom-0 right-0 underline opacity-80 hover:text-card-bg-light absolute cursor-pointer'>Preview Profile</p> : <p onClick={() => { console.log('test'); toast('You are in edit mode! Click again to go back to preview mode.', { position: 'top-center' }); setPreview(!preview) }} className='cursor-pointer text-white text-xs bottom-0 right-0 underline opacity-80 hover:text-card-bg-light absolute'>Edit Mode</p>}
             </div>
             {items && items.map((social, index) => (
               <Link key={social.id} className={cn('flex items-center bg-slate-600/50 text-white w-full p-2 z-50 cursor-pointer rounded-md', color === 'light' || color === 'dark' ? 'bg-slate-600/50' : 'bg-gray-200/20')} href={`${social.url}${social.value}`} >
@@ -80,7 +79,7 @@ const ProfileSocials = ({ socials }: Props) => {
         <Reorder.Group as="div" className="flex flex-col gap-y-2 z-50" axis="y" values={items} onReorder={handleUpdateItems}>
           <div className='flex items-center gap-y-0 relative'>
             <h1 className={cn(`text-xl`, color === 'light' ? 'text-black' : 'text-white')}>Socials</h1>
-            {!preview ? <p onClick={() => setPreview(!preview)} className='text-white text-xs bottom-0 right-0 underline opacity-80 hover:text-card-bg-light absolute cursor-pointer'>Preview Profile</p> : <p onClick={() => setPreview(!preview)} className='cursor-pointer text-white text-xs bottom-0 right-0 underline opacity-80 hover:text-card-bg-light absolute'>Edit Mode</p>}
+            {!preview ? <p onClick={() => { console.log('test'); toast('You are in preview mode! Click again to go back to edit mode.', { position: 'top-center' }); setPreview(!preview) }} className='text-white text-xs bottom-0 right-0 underline opacity-80 hover:text-card-bg-light absolute cursor-pointer'>Preview Profile</p> : <p onClick={() => setPreview(!preview)} className='cursor-pointer text-white text-xs bottom-0 right-0 underline opacity-80 hover:text-card-bg-light absolute'>Edit Mode</p>}
           </div>
           {items && items.map((item, index) => (
             <Reorder.Item as="div" key={item.id} value={item} className={cn('flex items-center text-white w-full p-2 z-50 cursor-pointer rounded-md', color === 'light' || color === 'dark' ? 'bg-slate-600/50' : 'bg-gray-200/20')} onClick={() => router.push(`/account/setup/edit/${item.id}`)} >

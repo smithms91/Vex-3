@@ -9,25 +9,12 @@ export default async function SignInPage({
 }: {
   searchParams: { message: string, error: string };
 }) {
-  const supabase = createClient()
-  console.log('supabase', searchParams)
-  const { data, error } = await supabase.auth.getUser()
-
-  if (data?.user) {
-    const user = await supabase.from('profiles').select().eq('id', data.user.id)
-    if (user.data && user.data[0].username == null) {
-      redirect('/account/onboarding')
-    } else if (user.data && user.data[0].username !== null) {
-      redirect('/account')
-    }
-  }
-
   return (
     <section className="min-h-screen max-w-[450px] mx-auto flex flex-col items-center justify-center bg-gradient-to-tl from-dark-from to-dark-to">
-      <div className="relative">
+      <Link href="/" className="relative z-50">
         <h1 className="text-4xl mb-10 text-white font-bold tracking-widest">VEX</h1>
         <h1 className="absolute top-0 left-0 right-0 text-4xl mb-10 text-white font-bold tracking-widest blur-md opacity-50">VEX</h1>
-      </div>
+      </Link>
       <SignInForm />
       <p className="text-white z-10 mt-4">{searchParams.message}</p>
       <Link href='/sign-up' className="absolute bottom-10 text-white z-10">Sign Up</Link>
