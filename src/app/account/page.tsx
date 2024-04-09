@@ -9,6 +9,7 @@ import ProfileCard from '@/components/profile/profile-card';
 import ProfileSocials from '@/components/profile/profile-socials';
 import PreviewModeProvider from '@/components/context/preview-mode-provider';
 import PaidFooter from '../[username]/_components/paid-footer';
+import { User } from '@/types';
 
 type Props = {}
 
@@ -31,8 +32,10 @@ const AccountPage = async (props: Props) => {
     redirect('/account/onboarding')
   }
 
-  let socials = user.data[0].socials
-  let themeColor = user.data[0].theme_color
+  const userData: User = user.data[0]
+
+  let socials = userData.socials
+  let themeColor = userData.theme_color
 
   return (
     <main className='min-h-screen max-w-[450px] p-2 xs:p-4 sm:p-6 mx-auto flex flex-col items-center'>

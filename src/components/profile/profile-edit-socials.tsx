@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Reorder } from "framer-motion"
 import { Grip, Pencil } from 'lucide-react';
 import { useRouter } from 'next/navigation';

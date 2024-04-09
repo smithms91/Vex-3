@@ -6,8 +6,8 @@ import { SparklesCore } from '@/components/sparkles';
 import { Button } from '@/components/ui/button'
 import { Switch } from '@/components/ui/switch';
 import { cn } from '@/lib/utils';
-import { deleteAccount, disableAccount, forgotUserPassword, getAccountDisabled, getAuthUserEmail } from '@/queries';
-import { Instagram, Lock, Mail, Pause, ShieldQuestion, Unlock, UserRound, UserRoundMinus } from 'lucide-react'
+import { disableAccount, forgotUserPassword, getAccountDisabled, getAuthUserEmail } from '@/queries';
+import { Lock, Mail, Pause, ShieldQuestion, Unlock, UserRound, UserRoundMinus } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { toast } from 'sonner';

@@ -13,7 +13,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { OnboardingSchemaTwo } from '@/types';
+import { OnboardingSchemaTwo, User } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { updateProfileTwo } from '@/queries';
 import { useRouter } from 'next/navigation';
@@ -23,7 +23,7 @@ import { useThemeColor } from '../context/theme-color-provider';
 import { cn } from '@/lib/utils';
 
 type Props = {
-  user: Tables<'profiles'> | null;
+  user: User;
   setFirstName: React.Dispatch<React.SetStateAction<string>>;
   setLastName: React.Dispatch<React.SetStateAction<string>>;
   setEmail: React.Dispatch<React.SetStateAction<string>>;

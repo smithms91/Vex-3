@@ -4,7 +4,6 @@ import { Button } from '@/components/ui/button'
 import { User } from '@/types';
 import React from 'react'
 import { profileColors } from '@/constants';
-import { cn } from '@/lib/utils';
 
 type Props = {
   user: User;

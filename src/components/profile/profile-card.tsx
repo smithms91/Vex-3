@@ -9,19 +9,18 @@ import ThemePicker from '../color-picker';
 import { cn } from '@/lib/utils';
 import EditPictureModal from '../modals/edit-picture-modal';
 import { useTheme } from 'next-themes';
-import { usePreviewMode } from '../context/preview-mode-provider';
+import { User } from '@/types';
 
 type Props = {
-  user: PostgrestSingleResponse<any[]>
+  user: User
   email: string;
   options?: boolean
   className?: string
 }
 
 const ProfileCard = ({ user, email: authEmail, options, className }: Props) => {
-  const userData = user.data![0];
+  const userData = user;
   const { setTheme } = useTheme();
-  const { preview } = usePreviewMode();
   const [firstName, setFirstName] = useState(userData.first_name || '')
   const [lastName, setLastName] = useState(userData.last_name || '')
   const [email, setEmail] = useState(authEmail || '')
@@ -34,13 +33,8 @@ const ProfileCard = ({ user, email: authEmail, options, className }: Props) => {
 
   useEffect(() => {
     setTheme(userData.profile_color); //set your theme here after component mounts
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const onUploadIconClick = () => {
-    setPictureModalOpen(true);
-    // if (!fileInputRef.current) return
-    // fileInputRef.current.click()
-  };
 
   return (
     <div className={cn(`space-y-4 z-50 w-full`, className)}>

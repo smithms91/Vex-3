@@ -1,6 +1,5 @@
 import CtaBanner from "@/components/cta-banner";
 import { SparklesCore } from "@/components/sparkles";
-import { Button } from "@/components/ui/button";
 import { createClient } from "@/lib/supabase/server";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";

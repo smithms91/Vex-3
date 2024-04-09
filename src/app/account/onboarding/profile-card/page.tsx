@@ -1,6 +1,7 @@
 import ProfileCard from '@/components/profile/profile-card'
 import { SparklesCore } from '@/components/sparkles'
 import { createClient } from '@/lib/supabase/server'
+import { User } from '@/types'
 import { redirect } from 'next/navigation'
 import React from 'react'
 
@@ -28,10 +29,12 @@ const ProfileCardPage = async (props: Props) => {
     redirect('/account')
   }
 
+  const userData: User = user.data[0]
+
   return (
     <div className='min-h-screen max-w-[450px] p-6 flex flex-col items-start justify-center bg-gradient-to-tl from-from to-to'>
-      <h1 className='mb-4 text-xl text-card-foreground'>Lets build your profile card, {user.data[0].username}</h1>
-      <ProfileCard email={data.user.email!} user={user} options />
+      <h1 className='mb-4 text-xl text-card-foreground'>Lets build your profile card, {userData.username}</h1>
+      <ProfileCard email={userData.email!} user={userData} options />
       <SparklesCore id="tsparticlesfullpage"
         background="transparent"
         minSize={0.6}

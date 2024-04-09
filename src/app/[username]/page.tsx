@@ -8,12 +8,6 @@ import AddContactButton from './_components/user-add-contact'
 import PaidFooter from './_components/paid-footer'
 import { cn } from '@/lib/utils'
 
-type Props = {
-  searchParams: {
-    username: string
-  }
-}
-
 const UserProfile = async ({ params }: { params: { username: string } }) => {
   const user: User = await getUserProfile(params.username)
   const authId = await getUserId()

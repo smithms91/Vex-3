@@ -14,9 +14,6 @@ import { Button } from '../ui/button';
 import { useThemeColor } from '../context/theme-color-provider';
 import { cn } from '@/lib/utils';
 
-type Props = {
-}
-
 const UpdateEmailForm = () => {
   const router = useRouter();
   const themeColor = useThemeColor();

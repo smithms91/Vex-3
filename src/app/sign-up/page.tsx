@@ -1,8 +1,6 @@
 import SignUpForm from "@/components/forms/sign-up-form";
 import { SparklesCore } from "@/components/sparkles";
-import { createClient } from "@/lib/supabase/server";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 
 export default async function SignUpPage({
   searchParams,

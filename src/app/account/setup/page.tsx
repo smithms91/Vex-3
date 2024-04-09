@@ -4,6 +4,7 @@ import ProfileEditSocials from '@/components/profile/profile-edit-socials'
 import { SparklesCore } from '@/components/sparkles'
 import { Button } from '@/components/ui/button'
 import { createClient } from '@/lib/supabase/server'
+import { User } from '@/types'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import React from 'react'
@@ -29,16 +30,15 @@ const SetupPage = async (props: Props) => {
     redirect('/account/onboarding')
   }
 
-  const socials = user.data[0].socials
+  const userData: User = user.data[0]
 
   return (
     <main className='max-w-[450px] mx-auto'>
       <HeaderBackButton title="Setup" link="account" />
-      {/* <h1>Enable/Disable</h1> */}
-      <ProfileCard email={data.user.email!} user={user} options className='px-4 relative' />
+      <ProfileCard email={data.user.email!} user={userData} options className='px-4 relative' />
       <div className='px-4 mt-6 relative'>
         <h1 className='text-xl mb-2 text-white/80'>Socials</h1>
-        <ProfileEditSocials socials={socials} />
+        <ProfileEditSocials socials={userData.socials} />
         <Link href='/account/setup/add'><Button className='bg-card-bg-dark text-white w-full py-6 mb-10 z-50 relative no-underline'>Add Content</Button></Link>
       </div>
       <SparklesCore
