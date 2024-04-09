@@ -41,8 +41,8 @@ const AccountPage = async (props: Props) => {
     <main className='min-h-screen max-w-[450px] p-2 xs:p-4 sm:p-6 mx-auto flex flex-col items-center'>
       <PreviewModeProvider>
         <AccountHeader />
-        <ProfileCard email={data.user.email!} user={user} />
-        <EditProfileButton user={user} />
+        <ProfileCard email={data.user.email!} user={userData} />
+        <EditProfileButton user={userData} />
         <ProfileSocials socials={socials} />
         <ProfileFooter user={user} />
         <PaidFooter darkText={themeColor == 'light'} />
