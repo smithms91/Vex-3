@@ -3,11 +3,20 @@
 import { createClient } from "./lib/supabase/server";
 import { redirect } from "next/navigation";
 import { z } from "zod";
-import { SignInSchema, OnboardingSchema, OnboardingSchemaTwo, AddSocialSchema, UpdatePasswordSchema, UpdateUsernameSchema, UpdateEmailSchema, DeleteAccountSchema, User } from "@/types";
+import {
+  SignInSchema,
+  OnboardingSchema,
+  OnboardingSchemaTwo,
+  AddSocialSchema,
+  UpdatePasswordSchema,
+  UpdateUsernameSchema,
+  UpdateEmailSchema,
+  DeleteAccountSchema,
+} from "@/types";
 import { revalidatePath } from "next/cache";
 import { Social } from "./types";
-import { v4 as uuidv4 } from 'uuid';
-import { decode } from 'base64-arraybuffer'
+import { v4 as uuidv4 } from "uuid";
+import { decode } from "base64-arraybuffer";
 
 export const signUp = async (values: z.infer<typeof SignInSchema>) => {
   const { email, password } = values;
@@ -17,7 +26,7 @@ export const signUp = async (values: z.infer<typeof SignInSchema>) => {
 
   const { data, error } = await supabase.auth.signUp({
     email,
-    password
+    password,
   });
 
   if (error) {
@@ -59,7 +68,7 @@ export const signOut = async () => {
   const { error } = await supabase.auth.signOut();
 
   if (error) {
-    console.error('Error signing out:', error);
+    console.error("Error signing out:", error);
     return redirect("/sign-out?message=Could not sign out");
   }
 
@@ -78,18 +87,20 @@ export const disableAccount = async (value: boolean) => {
 
   try {
     const response = await supabase
-      .from('profiles')
+      .from("profiles")
       .update({ disabled: value })
-      .eq('id', userId)
+      .eq("id", userId)
       .select();
 
     return response;
   } catch (error) {
-    console.error('Error disabling account:', error);
+    console.error("Error disabling account:", error);
   }
 };
 
-export const deleteAccount = async (values: z.infer<typeof DeleteAccountSchema>) => {
+export const deleteAccount = async (
+  values: z.infer<typeof DeleteAccountSchema>,
+) => {
   const supabase = createClient();
   const user = await supabase.auth.getUser();
 
@@ -99,15 +110,17 @@ export const deleteAccount = async (values: z.infer<typeof DeleteAccountSchema>)
 
   const userId = user.data.user?.id;
 
-  const verifyResponse = await supabase.rpc('verify_user_password', { password: values.password });
+  const verifyResponse = await supabase.rpc("verify_user_password", {
+    password: values.password,
+  });
 
   if (verifyResponse.data) {
     try {
-      const deletedUser = await supabase.rpc('delete_user');
+      const deletedUser = await supabase.rpc("delete_user");
       // await signOut();
       return true;
     } catch (error) {
-      console.error('Error disabling account:', error);
+      console.error("Error disabling account:", error);
     }
   }
   return false;
@@ -125,17 +138,17 @@ export const getAccountDisabled = async () => {
 
   try {
     const response = await supabase
-      .from('profiles')
-      .select('disabled')
-      .eq('id', userId);
+      .from("profiles")
+      .select("disabled")
+      .eq("id", userId);
 
     if (!response.data || response.data.length === 0) {
       return false;
     }
-    console.log('response', response.data[0].disabled);
+    console.log("response", response.data[0].disabled);
     return response.data[0].disabled === true ? true : false;
   } catch (error) {
-    console.error('Error getting account disabled:', error);
+    console.error("Error getting account disabled:", error);
   }
 };
 
@@ -143,11 +156,14 @@ export const getAccountDisabled = async () => {
 export const verifyUsername = async (username: string) => {
   const supabase = createClient();
 
-  if (username === '' || username === null) return false;
+  if (username === "" || username === null) return false;
 
   if (username.length < 3 || username.length > 20) return false;
 
-  const user = await supabase.from('profiles').select().eq('username', username)
+  const user = await supabase
+    .from("profiles")
+    .select()
+    .eq("username", username);
 
   if (user.data && user.data.length > 0) {
     return false;
@@ -155,7 +171,6 @@ export const verifyUsername = async (username: string) => {
 
   return true;
 };
-
 
 // Gets the currently authenticated user's email
 export const getAuthUserEmail = async () => {
@@ -173,16 +188,20 @@ export const forgotUserPassword = async (email: string) => {
   const supabase = createClient();
   try {
     const response = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: 'http://localhost:3000/account/settings/user-settings/forgot-password'
+      redirectTo:
+        "http://localhost:3000/account/settings/user-settings/forgot-password",
     });
 
     return response;
   } catch (error) {
-    console.error('Error resetting password:', error);
+    console.error("Error resetting password:", error);
   }
 };
 
-export const updateForgotPassword = async (password: string, token?: string) => {
+export const updateForgotPassword = async (
+  password: string,
+  token?: string,
+) => {
   const supabase = createClient();
 
   try {
@@ -190,7 +209,7 @@ export const updateForgotPassword = async (password: string, token?: string) => 
 
     return response;
   } catch (error) {
-    console.error('Error updating password:', error);
+    console.error("Error updating password:", error);
   }
 };
 
@@ -206,14 +225,14 @@ export const setUserBorder = async (border: string) => {
 
   try {
     const response = await supabase
-      .from('profiles')
+      .from("profiles")
       .update({ border })
-      .eq('id', userId)
+      .eq("id", userId)
       .select();
 
     return response;
   } catch (error) {
-    console.error('Error updating border:', error);
+    console.error("Error updating border:", error);
   }
 };
 
@@ -229,19 +248,21 @@ export const setUserThemeColor = async (color: string) => {
 
   try {
     const response = await supabase
-      .from('profiles')
+      .from("profiles")
       .update({ theme_color: color })
-      .eq('id', userId)
+      .eq("id", userId)
       .select();
 
-    revalidatePath('/account');
+    revalidatePath("/account");
     return response;
   } catch (error) {
-    console.error('Error updating border:', error);
+    console.error("Error updating border:", error);
   }
 };
 
-export const updateProfile = async (values: z.infer<typeof OnboardingSchema>) => {
+export const updateProfile = async (
+  values: z.infer<typeof OnboardingSchema>,
+) => {
   const supabase = createClient();
   const user = await supabase.auth.getUser();
 
@@ -253,25 +274,27 @@ export const updateProfile = async (values: z.infer<typeof OnboardingSchema>) =>
 
   try {
     const response = await supabase
-      .from('profiles')
+      .from("profiles")
       .update({
         first_name: values.first_name,
         last_name: values.last_name,
         username: values.username,
         email: user.data.user?.email,
-        onboarding: false
+        onboarding: false,
       })
-      .eq('id', userId)
+      .eq("id", userId)
       .select();
 
-    revalidatePath('/account');
+    revalidatePath("/account");
     return response;
   } catch (error) {
-    console.error('Error updating profile:', error);
+    console.error("Error updating profile:", error);
   }
 };
 
-export const updateProfileTwo = async (values: z.infer<typeof OnboardingSchemaTwo>) => {
+export const updateProfileTwo = async (
+  values: z.infer<typeof OnboardingSchemaTwo>,
+) => {
   const supabase = createClient();
   const user = await supabase.auth.getUser();
 
@@ -283,26 +306,28 @@ export const updateProfileTwo = async (values: z.infer<typeof OnboardingSchemaTw
 
   try {
     const response = await supabase
-      .from('profiles')
+      .from("profiles")
       .update({
         first_name: values.first_name,
         last_name: values.last_name,
         job_title: values.job_title,
         phone_number: values.phone_number,
         website: values.website,
-        onboarding: true
+        onboarding: true,
       })
-      .eq('id', userId)
+      .eq("id", userId)
       .select();
 
-    revalidatePath('/account');
+    revalidatePath("/account");
     return response;
   } catch (error) {
-    console.error('Error updating profile:', error);
+    console.error("Error updating profile:", error);
   }
 };
 
-export const updateUserPassword = async (values: z.infer<typeof UpdatePasswordSchema>) => {
+export const updateUserPassword = async (
+  values: z.infer<typeof UpdatePasswordSchema>,
+) => {
   const supabase = createClient();
   const user = await supabase.auth.getUser();
 
@@ -310,27 +335,30 @@ export const updateUserPassword = async (values: z.infer<typeof UpdatePasswordSc
     throw new Error("No authenticated user");
   }
 
-  const verifyResponse = await supabase.rpc('verify_user_password', { password: values.current_password });
+  const verifyResponse = await supabase.rpc("verify_user_password", {
+    password: values.current_password,
+  });
 
   if (verifyResponse.data) {
     try {
       const response = await supabase.auth.updateUser({
-        password: values.new_password
+        password: values.new_password,
       });
 
-      console.error('GG:');
+      console.error("GG:");
       return response;
     } catch (error) {
-      console.error('Error updating password:', error);
+      console.error("Error updating password:", error);
     }
   } else {
     return false;
   }
 };
 
-
 // Helper function to update the profile table with the new email. FIX: Configure a SQL function to automatically update the email in the profiles table when the user updates their email.
-const updateProfileEmail = async (values: z.infer<typeof UpdateEmailSchema>) => {
+const updateProfileEmail = async (
+  values: z.infer<typeof UpdateEmailSchema>,
+) => {
   const supabase = createClient();
   const user = await supabase.auth.getUser();
 
@@ -342,20 +370,22 @@ const updateProfileEmail = async (values: z.infer<typeof UpdateEmailSchema>) => 
 
   try {
     const response = await supabase
-      .from('profiles')
+      .from("profiles")
       .update({
         email: values.email,
       })
-      .eq('id', userId)
+      .eq("id", userId)
       .select();
 
     return response;
   } catch (error) {
-    console.error('Error updating email:', error);
+    console.error("Error updating email:", error);
   }
-}
+};
 
-export const updateUserEmail = async (values: z.infer<typeof UpdateEmailSchema>) => {
+export const updateUserEmail = async (
+  values: z.infer<typeof UpdateEmailSchema>,
+) => {
   const supabase = createClient();
   const user = await supabase.auth.getUser();
 
@@ -363,26 +393,33 @@ export const updateUserEmail = async (values: z.infer<typeof UpdateEmailSchema>)
     throw new Error("No authenticated user");
   }
 
-  const verifyResponse = await supabase.rpc('verify_user_password', { password: values.password });
+  const verifyResponse = await supabase.rpc("verify_user_password", {
+    password: values.password,
+  });
 
   if (verifyResponse.data) {
     try {
-      const response = await supabase.auth.updateUser({
-        email: values.email
-      }, { emailRedirectTo: 'http://localhost:3000/account' });
+      const response = await supabase.auth.updateUser(
+        {
+          email: values.email,
+        },
+        { emailRedirectTo: "http://localhost:3000/account" },
+      );
 
       await updateProfileEmail(values);
-      revalidatePath('/account/settings/user-settings/update-email');
+      revalidatePath("/account/settings/user-settings/update-email");
       return response;
     } catch (error) {
-      console.error('Error updating email:', error);
+      console.error("Error updating email:", error);
     }
   } else {
     return false;
   }
 };
 
-export const updateUsername = async (values: z.infer<typeof UpdateUsernameSchema>) => {
+export const updateUsername = async (
+  values: z.infer<typeof UpdateUsernameSchema>,
+) => {
   const supabase = createClient();
   const user = await supabase.auth.getUser();
 
@@ -390,25 +427,31 @@ export const updateUsername = async (values: z.infer<typeof UpdateUsernameSchema
     throw new Error("No authenticated user");
   }
 
-  const verifyResponse = await supabase.rpc('verify_user_password', { password: values.password });
+  const verifyResponse = await supabase.rpc("verify_user_password", {
+    password: values.password,
+  });
 
   if (verifyResponse.data) {
     try {
       const response = await verifyUsername(values.username);
 
       if (!response) {
-        console.error('Username Taken');
-        return { msg: 'Username Taken' };
+        console.error("Username Taken");
+        return { msg: "Username Taken" };
       }
 
-      const data = await supabase.from('profiles').update({ username: values.username }).eq('id', user.data.user?.id).select();
-      revalidatePath('/account/settings/user-settings/update-username');
-      return { msg: 'Username Updated', data: data };
+      const data = await supabase
+        .from("profiles")
+        .update({ username: values.username })
+        .eq("id", user.data.user?.id)
+        .select();
+      revalidatePath("/account/settings/user-settings/update-username");
+      return { msg: "Username Updated", data: data };
     } catch (error) {
-      console.error('Error updating username:', error);
+      console.error("Error updating username:", error);
     }
   } else {
-    return { msg: 'Password Incorrect' };
+    return { msg: "Password Incorrect" };
   }
 };
 
@@ -424,17 +467,17 @@ export const updateProfileColor = async (color: string) => {
 
   try {
     const response = await supabase
-      .from('profiles')
+      .from("profiles")
       .update({
         profile_color: color,
       })
-      .eq('id', userId)
+      .eq("id", userId)
       .select();
 
-    revalidatePath('/account');
+    revalidatePath("/account");
     return response;
   } catch (error) {
-    console.error('Error updating profile color:', error);
+    console.error("Error updating profile color:", error);
   }
 };
 
@@ -450,17 +493,17 @@ export const getProfileColor = async () => {
 
   try {
     const response = await supabase
-      .from('profiles')
-      .select('profile_color')
-      .eq('id', userId);
+      .from("profiles")
+      .select("profile_color")
+      .eq("id", userId);
 
     if (!response.data || response.data.length === 0) {
-      return 'blue';
+      return "blue";
     }
 
     return response.data[0].profile_color;
   } catch (error) {
-    console.error('Error getting profile color:', error);
+    console.error("Error getting profile color:", error);
   }
 };
 
@@ -476,17 +519,17 @@ export const getThemeColor = async () => {
 
   try {
     const response = await supabase
-      .from('profiles')
-      .select('theme_color')
-      .eq('id', userId);
+      .from("profiles")
+      .select("theme_color")
+      .eq("id", userId);
 
     if (!response.data || response.data.length === 0) {
-      return 'dark';
+      return "dark";
     }
 
     return response.data[0].theme_color;
   } catch (error) {
-    console.error('Error getting profile color:', error);
+    console.error("Error getting profile color:", error);
   }
 };
 
@@ -497,36 +540,40 @@ export const uploadProfileImage = async (url: string) => {
   if (!user) {
     throw new Error("No authenticated user");
   }
-  console.log('url', url);
+  console.log("url", url);
   const filePath = `profile_pictures/${Date.now()}.png`;
-  console.log('url', url);
+  console.log("url", url);
 
   // Remove the prefix that declares the base64 image
   const base64Data = url.replace(/^data:image\/\w+;base64,/, "");
-  console.log('base64Data', base64Data);
+  console.log("base64Data", base64Data);
 
   try {
-    const { data, error } = await supabase.storage.from('profile_pictures').upload(filePath, decode(base64Data), { contentType: 'image/*' });
+    const { data, error } = await supabase.storage
+      .from("profile_pictures")
+      .upload(filePath, decode(base64Data), { contentType: "image/*" });
 
     if (error) {
-      console.error('Error uploading image:', error);
+      console.error("Error uploading image:", error);
     } else {
-      console.log('Image uploaded successfully');
+      console.log("Image uploaded successfully");
       try {
         const userId = user.data.user?.id;
         const response = await supabase
-          .from('profiles')
-          .update({ profile_picture: `https://bqsmvopplukdfrrkowkz.supabase.co/storage/v1/object/public/profile_pictures/${data.path}` })
-          .eq('id', userId);
+          .from("profiles")
+          .update({
+            profile_picture: `https://bqsmvopplukdfrrkowkz.supabase.co/storage/v1/object/public/profile_pictures/${data.path}`,
+          })
+          .eq("id", userId);
 
-        revalidatePath('/account/setup');
+        revalidatePath("/account/setup");
         return response;
       } catch (error) {
-        console.error('Error adding profile picture to profile:', error);
+        console.error("Error adding profile picture to profile:", error);
       }
     }
   } catch (error) {
-    console.error('Error uploading image:', error);
+    console.error("Error uploading image:", error);
   }
 };
 
@@ -542,17 +589,17 @@ export const getProfilePicture = async () => {
 
   try {
     const response = await supabase
-      .from('profiles')
-      .select('profile_picture')
-      .eq('id', userId);
+      .from("profiles")
+      .select("profile_picture")
+      .eq("id", userId);
 
     if (!response.data || response.data.length === 0) {
-      return '';
+      return "";
     }
 
-    return response.data[0].profile_picture
+    return response.data[0].profile_picture;
   } catch (error) {
-    console.error('Error getting profile picture:', error);
+    console.error("Error getting profile picture:", error);
   }
 };
 
@@ -569,6 +616,30 @@ export const getUserId = async () => {
   return userId;
 };
 
+export const updateUserDirect = async (direct: boolean) => {
+  const supabase = createClient();
+  const user = await supabase.auth.getUser();
+
+  if (!user) {
+    throw new Error("No authenticated user");
+  }
+
+  const userId = user.data.user?.id!;
+
+  try {
+    const response = await supabase
+      .from("profiles")
+      .update({ direct: direct })
+      .eq("id", userId)
+      .select();
+
+    return response.data && response.data[0].direct;
+  } catch (error) {
+    console.error("Error getting profile picture:", error);
+    return error;
+  }
+};
+
 ////////////////////////////////////////
 ////////////////////////////////////////
 ////////////////////////////////////////
@@ -577,7 +648,9 @@ export const getUserId = async () => {
 ////////////////////////////////////////
 ////////////////////////////////////////
 
-export const addUserSocial = async (values: z.infer<typeof AddSocialSchema>) => {
+export const addUserSocial = async (
+  values: z.infer<typeof AddSocialSchema>,
+) => {
   const supabase = createClient();
   const user = await supabase.auth.getUser();
 
@@ -594,22 +667,22 @@ export const addUserSocial = async (values: z.infer<typeof AddSocialSchema>) => 
     value: values.value,
     network: values.network,
     url: values.url,
-    user_id: userId
-  }
+    user_id: userId,
+  };
 
   const newSocials = [...socials, newObject];
 
   try {
     const response = await supabase
-      .from('profiles')
+      .from("profiles")
       .update({ socials: newSocials })
-      .eq('id', userId)
+      .eq("id", userId)
       .select();
 
-    revalidatePath('/account/setup');
+    revalidatePath("/account/setup");
     return response;
   } catch (error) {
-    console.error('Error adding social:', error);
+    console.error("Error adding social:", error);
   }
 };
 
@@ -626,19 +699,21 @@ export const getUserSocial = async (id: string) => {
 
   try {
     const response = await supabase
-      .from('profiles')
-      .select('socials')
-      .eq('id', userId);
+      .from("profiles")
+      .select("socials")
+      .eq("id", userId);
 
     if (!response.data) return null;
 
-    const socialObject: Social = response.data[0].socials.find((social: { id: string }) => social.id === id);
+    const socialObject: Social = response.data[0].socials.find(
+      (social: { id: string }) => social.id === id,
+    );
 
     if (!socialObject) return null;
 
     return socialObject;
   } catch (error) {
-    console.error('Error getting User ID:', error);
+    console.error("Error getting User ID:", error);
   }
 };
 
@@ -655,15 +730,15 @@ export const getUserSocials = async () => {
 
   try {
     const response = await supabase
-      .from('profiles')
-      .select('socials')
-      .eq('id', userId);
+      .from("profiles")
+      .select("socials")
+      .eq("id", userId);
 
     if (!response.data) return null;
 
     return response.data[0].socials || [];
   } catch (error) {
-    console.error('Error getting User ID:', error);
+    console.error("Error getting User ID:", error);
   }
 };
 
@@ -680,7 +755,7 @@ export const updateSocial = async (social: Social) => {
   try {
     socials = await getUserSocials();
   } catch (error) {
-    console.error('Error updating social:', error);
+    console.error("Error updating social:", error);
   }
 
   const updatedSocials = socials.map((item: any) => {
@@ -690,10 +765,10 @@ export const updateSocial = async (social: Social) => {
   try {
     await updateUserSocials(updatedSocials);
   } catch (error) {
-    console.error('Error updating social:', error);
+    console.error("Error updating social:", error);
   }
 
-  revalidatePath('/account');
+  revalidatePath("/account");
   return updatedSocials;
 };
 
@@ -710,15 +785,15 @@ export const updateUserSocials = async (socials: Social[]) => {
 
   try {
     const response = await supabase
-      .from('profiles')
+      .from("profiles")
       .update({ socials: socials })
-      .eq('id', userId)
+      .eq("id", userId)
       .select();
 
-    revalidatePath('/account');
-    return response
+    revalidatePath("/account");
+    return response;
   } catch (error) {
-    console.error('Error getting User ID:', error);
+    console.error("Error getting User ID:", error);
   }
 };
 
@@ -735,22 +810,21 @@ export const deleteSocial = async (social: Social) => {
   const userId = user.data.user?.id;
 
   const socials = await getUserSocials();
-  const newSocials = socials.filter((item: Social) => item.id !== social.id)
+  const newSocials = socials.filter((item: Social) => item.id !== social.id);
 
   try {
     const response = await supabase
-      .from('profiles')
+      .from("profiles")
       .update({ socials: newSocials })
-      .eq('id', userId)
+      .eq("id", userId)
       .select();
 
-    revalidatePath('/account');
-    return response
+    revalidatePath("/account");
+    return response;
   } catch (error) {
-    console.error('Error getting User ID:', error);
+    console.error("Error getting User ID:", error);
   }
 };
-
 
 /////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////
@@ -765,16 +839,15 @@ export const getUserProfile = async (username: string) => {
   const supabase = createClient();
   let user;
 
-  if (username.includes('-')) {
-    user = await supabase.from('profiles').select().eq('id', username);
+  if (username.includes("-")) {
+    user = await supabase.from("profiles").select().eq("id", username);
   } else {
-    user = await supabase.from('profiles').select().eq('username', username);
+    user = await supabase.from("profiles").select().eq("username", username);
   }
 
   if (!user.data) {
     return null;
   }
-
 
   return user.data[0];
 };

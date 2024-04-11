@@ -5,26 +5,33 @@ import { createContext } from "react";
 
 interface ThemeColorProviderProps {
   children: React.ReactNode;
-  colorProp?: 'light' | 'dark' | 'black';
+  colorProp?: "light" | "dark" | "black";
 }
 
 export type ThemeColorContextType = {
-  color: 'light' | 'dark' | 'black';
-  setColor: React.Dispatch<React.SetStateAction<ThemeColorContextType['color']>>;
-}
+  color: "light" | "dark" | "black";
+  setColor: React.Dispatch<
+    React.SetStateAction<ThemeColorContextType["color"]>
+  >;
+};
 
 export const ThemeColorContext = createContext<ThemeColorContextType>({
-  color: 'dark',
+  color: "dark",
   setColor: () => { },
-})
+});
 
-const ThemeColorProvider: React.FC<ThemeColorProviderProps> = ({ children, colorProp }) => {
-  const [color, setColor] = useState<ThemeColorContextType['color']>(colorProp || 'dark');
+const ThemeColorProvider: React.FC<ThemeColorProviderProps> = ({
+  children,
+  colorProp,
+}) => {
+  const [color, setColor] = useState<ThemeColorContextType["color"]>(
+    colorProp || "dark",
+  );
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
-  }, [])
+  }, []);
 
   if (!isMounted) {
     return null;
@@ -34,7 +41,7 @@ const ThemeColorProvider: React.FC<ThemeColorProviderProps> = ({ children, color
     <ThemeColorContext.Provider value={{ color, setColor }}>
       {children}
     </ThemeColorContext.Provider>
-  )
+  );
 };
 
 export const useThemeColor = () => {

@@ -1,45 +1,54 @@
-import HeaderBackButton from '@/components/header-with-back-button'
-import ProfileCard from '@/components/profile/profile-card'
-import ProfileEditSocials from '@/components/profile/profile-edit-socials'
-import { SparklesCore } from '@/components/sparkles'
-import { Button } from '@/components/ui/button'
-import { createClient } from '@/lib/supabase/server'
-import { User } from '@/types'
-import Link from 'next/link'
-import { redirect } from 'next/navigation'
-import React from 'react'
+import React from "react";
+import HeaderBackButton from "@/components/header-with-back-button";
+import ProfileCard from "@/components/profile/profile-card";
+import ProfileEditSocials from "@/components/profile/profile-edit-socials";
+import Link from "next/link";
+import { SparklesCore } from "@/components/sparkles";
+import { Button } from "@/components/ui/button";
+import { User } from "@/types";
+import { createClient } from "@/lib/supabase/server";
+import { redirect } from "next/navigation";
+import { Switch } from "@/components/ui/switch";
+import DirectSwitch from "@/components/profile/direct-switch";
 
-type Props = {}
+const SetupPage = async () => {
+  const supabase = createClient();
 
-const SetupPage = async (props: Props) => {
-  const supabase = createClient()
-
-  const { data, error } = await supabase.auth.getUser()
+  const { data, error } = await supabase.auth.getUser();
   if (error || !data?.user) {
-    redirect('/')
+    redirect("/");
   }
 
-  const user = await supabase.from('profiles').select().eq('id', data.user.id)
+  const user = await supabase.from("profiles").select().eq("id", data.user.id);
 
   if (!user.data) {
-    console.log('no user in profiles table')
-    redirect('/login?message=Something went wrong. Try logging in again.')
+    console.log("no user in profiles table");
+    redirect("/login?message=Something went wrong. Try logging in again.");
   }
 
   if (user.data[0].onboarding == false) {
-    redirect('/account/onboarding')
+    redirect("/account/onboarding");
   }
 
-  const userData: User = user.data[0]
+  const userData: User = user.data[0];
 
   return (
-    <main className='max-w-[450px] mx-auto'>
+    <main className="max-w-[450px] mx-auto">
       <HeaderBackButton title="Setup" link="account" />
-      <ProfileCard email={data.user.email!} user={userData} options className='px-4 relative' />
-      <div className='px-4 mt-6 relative'>
-        <h1 className='text-xl mb-2 text-white/80'>Socials</h1>
+      <ProfileCard
+        email={data.user.email!}
+        user={userData}
+        options
+        className="px-4 relative"
+      />
+      <DirectSwitch />
+      <div className="px-4 mt-6 relative">
         <ProfileEditSocials socials={userData.socials} />
-        <Link href='/account/setup/add'><Button className='bg-card-bg-dark text-white w-full py-6 mb-10 z-50 relative no-underline'>Add Content</Button></Link>
+        <Link href="/account/setup/add">
+          <Button className="bg-card-bg-dark text-white w-full py-6 mb-10 z-50 relative no-underline">
+            Add Content
+          </Button>
+        </Link>
       </div>
       <SparklesCore
         id="tsparticlesfullpage"
@@ -51,7 +60,7 @@ const SetupPage = async (props: Props) => {
         particleColor="#FFFFFF"
       />
     </main>
-  )
-}
+  );
+};
 
-export default SetupPage
+export default SetupPage;
