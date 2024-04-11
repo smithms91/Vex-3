@@ -8,7 +8,7 @@ import Link from "next/link";
 import React from "react";
 
 type Props = {
-  darkText: boolean;
+  darkText?: boolean;
 };
 
 const PaidFooter = ({ darkText }: Props) => {
