@@ -41,7 +41,7 @@ const AccountPage = async () => {
         <EditProfileButton user={userData} />
         <ProfileSocials socials={socials} />
         <ProfileFooter user={userData} />
-        <PaidFooter />
+        <PaidFooter darkText={themeColor == "light"} />
         <SparklesCore
           id="tsparticlesfullpage"
           background="transparent"
