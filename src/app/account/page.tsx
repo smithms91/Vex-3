@@ -40,8 +40,8 @@ const AccountPage = async () => {
         <ProfileCard email={data.user.email!} user={userData} />
         <EditProfileButton user={userData} />
         <ProfileSocials socials={socials} />
-        <ProfileFooter user={user} />
-        <PaidFooter darkText={themeColor == "light"} />
+        <ProfileFooter user={userData} />
+        <PaidFooter />
         <SparklesCore
           id="tsparticlesfullpage"
           background="transparent"

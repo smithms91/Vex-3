@@ -116,7 +116,7 @@ const ProfileSocials = ({ socials }: Props) => {
                   </div>
                   <ArrowRight
                     size={16}
-                    color="#FFFFFF"
+                    color={color == "light" ? "#000000" : "#FFFFFF"}
                     className="ml-auto mr-4 cursor-grab active:cursor-grabbing"
                   />
                 </Link>
