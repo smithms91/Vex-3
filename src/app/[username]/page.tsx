@@ -26,6 +26,8 @@ const UserProfile = async ({ params }: { params: { username: string } }) => {
     redirect(`/${user.username}`)
   }
 
+  if (user.direct) redirect(`${user.socials[0].url}${user.socials[0].value}`)
+
   if (user && user.theme_color === 'black') {
     userColor = 'bg-gradient-to-tl from-black-from to-black-to';
   } else if (user && user.theme_color === 'dark') {
