@@ -26,7 +26,7 @@ const Item = ({ item }: Props) => {
       key={item.id}
       value={item}
       className={cn(
-        "flex items-center text-white w-full p-2 z-50 cursor-pointer rounded-md touch-none",
+        "flex items-center text-white w-full p-2 z-50 cursor-pointer rounded-md",
         color === "light" || color === "dark"
           ? "bg-slate-600/50"
           : "bg-gray-200/20",
