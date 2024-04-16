@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef, useState } from "react";
-import { Reorder } from "framer-motion";
+import { Reorder, motion } from "framer-motion";
 import { ArrowRight, ArrowUpDown, Eye, Pencil } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { updateUserSocials } from "@/queries";
@@ -138,6 +138,7 @@ const ProfileSocials = ({ socials }: Props) => {
           values={items}
           layoutScroll
           onReorder={handleUpdateItems}
+          style={{ overflowY: "scroll" }}
         >
           <div className="flex items-center gap-y-0 relative">
             <h1
