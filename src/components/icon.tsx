@@ -15,7 +15,7 @@ export function ReorderIcon({ dragControls }: Props) {
     <ArrowUpDown
       size={16}
       color={color === "light" ? "black" : "white"}
-      className="mr-4 cursor-grab active:cursor-grabbing"
+      className="mr-4 cursor-grab active:cursor-grabbing touch-none"
       onPointerDown={(event) => dragControls.start(event)}
     />
 
