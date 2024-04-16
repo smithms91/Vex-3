@@ -136,6 +136,7 @@ const ProfileSocials = ({ socials }: Props) => {
           className="flex flex-col gap-y-2 z-50"
           axis="y"
           values={items}
+          layoutScroll
           onReorder={handleUpdateItems}
         >
           <div className="flex items-center gap-y-0 relative">
