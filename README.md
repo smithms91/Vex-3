@@ -10,4 +10,7 @@ This will also create a contact on your profile page where you can see all the u
 
 This project uses React and NextJS to handle routing and the front end UI, and is connected to a PostgreSQL database that is powered by Supabase. Additional libraries include: ShadCN UI for prebuilt scalable components, NextThemes for handling client side color themes, React Hook Form and Zod for forms and type validation, TailwindCSS for styling pages, and Framer Motion for re-ordering the socials list once you have added some. All authentication and storage is also handled by Supabase.
 
+# Todo
 
+- [ ] Continue to add to socials list.
+- [ ]

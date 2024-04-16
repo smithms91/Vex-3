@@ -26,7 +26,6 @@ const DirectSwitch = (props: Props) => {
         { position: "top-center" },
       );
     }
-    // console.log("test", e);
   };
 
   return color === "light" ? (

@@ -13,6 +13,7 @@ import { cn } from "@/lib/utils";
 import { usePreviewMode } from "../context/preview-mode-provider";
 import Link from "next/link";
 import UserSocialIcon from "@/app/[username]/_components/user-social-icon";
+import Item from "../item";
 
 type Props = {
   socials: Social[];
@@ -164,49 +165,9 @@ const ProfileSocials = ({ socials }: Props) => {
               Preview Profile
             </p>
           </div>
-          {items &&
-            items.map((item, index) => (
-              <Reorder.Item
-                as="div"
-                key={item.id}
-                value={item}
-                className={cn(
-                  "flex items-center text-white w-full p-2 z-50 cursor-pointer rounded-md",
-                  color === "light" || color === "dark"
-                    ? "bg-slate-600/50"
-                    : "bg-gray-200/20",
-                )}
-                onClick={() => router.push(`/account/setup/edit/${item.id}`)}
-              >
-                <CustomSocialIcon network={item.network} />
-                <div className="ml-4">
-                  <p
-                    className={cn(
-                      "text-lg",
-                      color === "light" ? "text-black" : "text-white",
-                    )}
-                  >
-                    {item.title !== ""
-                      ? item.title
-                      : item.network.charAt(0).toUpperCase() +
-                      item.network.slice(1)}
-                  </p>
-                  <p
-                    className={cn(
-                      "text-sm",
-                      color === "light" ? "text-black" : "text-white",
-                    )}
-                  >
-                    {item.value}
-                  </p>
-                </div>
-                <ArrowUpDown
-                  size={16}
-                  color={color === "light" ? "black" : "white"}
-                  className="ml-auto mr-4 cursor-grab active:cursor-grabbing"
-                />
-              </Reorder.Item>
-            ))}
+          {items.map((item, index) => (
+            <Item item={item} key={item.id} />
+          ))}
         </Reorder.Group>
       )}
     </section>
