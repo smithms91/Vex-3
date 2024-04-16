@@ -33,6 +33,7 @@ const Item = ({ item }: Props) => {
       )}
       dragListener={false}
       dragControls={dragControls}
+      style={{ boxShadow, y }}
     >
 
       <div className="flex items-center mr-auto" onClick={() => router.push(`/account/setup/edit/${item.id}`)}>

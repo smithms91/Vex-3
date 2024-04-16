@@ -1,11 +1,9 @@
 "use client";
 
-import React, { useRef, useState } from "react";
-import { Reorder, motion } from "framer-motion";
-import { ArrowRight, ArrowUpDown, Eye, Pencil } from "lucide-react";
-import { useRouter } from "next/navigation";
+import React, { useState } from "react";
+import { Reorder } from "framer-motion";
+import { ArrowRight, Eye, Pencil } from "lucide-react";
 import { updateUserSocials } from "@/queries";
-import CustomSocialIcon from "../custom-social-icon";
 import { toast } from "sonner";
 import { Social } from "@/types";
 import { useThemeColor } from "../context/theme-color-provider";
@@ -24,25 +22,12 @@ const ProfileSocials = ({ socials }: Props) => {
   const { preview, setPreview } = usePreviewMode();
   const { color, setColor } = useThemeColor();
 
-  const router = useRouter();
-
-  const toastTimeout = useRef<NodeJS.Timeout | null>(null);
-  const toastScheduled = useRef(false);
-
   const handleUpdateItems = async (order: typeof items) => {
     if (JSON.stringify(order) !== JSON.stringify(items)) {
       setItems(order);
     }
     try {
       await updateUserSocials(order);
-      if (toastScheduled.current) {
-        clearTimeout(toastTimeout.current!);
-      }
-      toastScheduled.current = true;
-      toastTimeout.current = setTimeout(() => {
-        toast("Socials updated!", { position: "top-center" });
-        toastScheduled.current = false;
-      }, 600); // Wait for .6 seconds before showing the toast
     } catch (error) {
       console.log("error", error);
     }
