@@ -1,3 +1,6 @@
+import { Paintbrush, Frame, Palette, QrCode, LineChart, FolderInput, MapPin, Download, Sparkles } from "lucide-react";
+import Image from "next/image";
+
 export const constants = [
   {
     title: "Facebook",
@@ -118,3 +121,15 @@ export const profileColors = [
     singleValue: "#7c7c7c",
   },
 ];
+
+export const features = [
+  { title: "Hide Vex Branding", subTitle: "Build your profile without Vex branding.", icon: <Paintbrush color="#576876" size={16} />, image: <Image src='/baby.jpg' alt="Hide Vex Branding" fill objectFit="cover" className='rounded-lg' /> },
+  { title: "Add Your Logo", subTitle: "Showcase your identity with a personalized logo.", icon: <Frame color="#6AC46D" size={16} />, image: <Image src='/baby.jpg' alt="Add Your Logo" fill objectFit="cover" className='rounded-lg' /> },
+  { title: "More Profile Themes", subTitle: "Stand out with exclusive colors and themes.", icon: <Palette color="#7B61FF" size={16} />, image: <Image src='/baby.jpg' alt="Hide Vex Branding" fill objectFit="cover" className='rounded-lg' /> },
+  { title: "Customize Vex Code", subTitle: "Shape your QR code to match your style.", icon: <QrCode color="#FFC107" size={16} />, image: <Image src='/baby.jpg' alt="Customize Vex Code" fill objectFit="cover" className='rounded-lg' /> },
+  { title: "Advanced Profile Insights", subTitle: "Discover more about your profile views and interactions.", icon: <LineChart color="#50CCBD" size={16} />, image: <Image src='/baby.jpg' alt="Advanced Profile Insights" fill objectFit="cover" className='rounded-lg' /> },
+  { title: "Export Contacts", subTitle: "Easily take your contacts anywhere with a CSV file.", icon: <FolderInput color="#4FA8ED" size={16} />, image: <Image src='/baby.jpg' alt="Export Contacts" fill objectFit="cover" className='rounded-lg' /> },
+  { title: "Contact Map", subTitle: "See where you met your connections and never lose track of meaningful interactions.", icon: <MapPin color="#4FA8ED" size={16} />, image: <Image src='/baby.jpg' alt="Contact Map" fill objectFit="cover" className='rounded-lg' /> },
+  { title: "Download Vex Code", subTitle: "Download or print your code to carry your digital card wherever you go.", icon: <Download color="#59C0B7" size={16} />, image: <Image src='/baby.jpg' alt="Download Vex Code" fill objectFit="cover" className='rounded-lg' /> },
+  { title: "AI Business Card Scanner", subTitle: "Scan a paper card and download it as a contact in seconds.", icon: <Sparkles color="#7B61FF" size={16} />, image: <Image src='/baby.jpg' alt="AI Business Card Scanner" fill objectFit="cover" className='rounded-lg' /> }
+]

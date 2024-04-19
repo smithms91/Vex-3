@@ -36,7 +36,7 @@ const DirectSwitch = (props: Props) => {
       </div>
     </div>
   ) : (
-    <div className="flex items-center justify-center bg-slate-200/20 p-6 m-4 my-6 rounded-md z-50">
+    <div className="flex items-center justify-center bg-slate-200/20 p-6 m-4 mt-6 rounded-md z-50">
       <div className="text-white flex justify-between w-full z-50">
         <p>Direct Link</p>
         <Switch checked={checked} onCheckedChange={handleCheckedChange} />

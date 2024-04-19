@@ -8,8 +8,9 @@ import { Button } from "@/components/ui/button";
 import { User } from "@/types";
 import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
-import { Switch } from "@/components/ui/switch";
 import DirectSwitch from "@/components/profile/direct-switch";
+import PremiumSection from "@/components/profile/premium-section";
+import { Eye } from "lucide-react";
 
 const SetupPage = async () => {
   const supabase = createClient();
@@ -30,10 +31,11 @@ const SetupPage = async () => {
     redirect("/account/onboarding");
   }
 
+
   const userData: User = user.data[0];
 
   return (
-    <main className="max-w-[450px] mx-auto">
+    <main className="max-w-[450px] mx-auto min-h-screen">
       <HeaderBackButton title="Setup" link="account" />
       <ProfileCard
         email={data.user.email!}
@@ -42,12 +44,18 @@ const SetupPage = async () => {
         className="px-4 relative"
       />
       <DirectSwitch />
-      <div className="px-4 mt-6 relative">
+      <div className="px-4 relative">
         <ProfileEditSocials socials={userData.socials} />
         <Link href="/account/setup/add">
-          <Button className="bg-card-bg-dark text-white w-full py-6 mb-10 z-50 relative no-underline">
+          <Button className="bg-card-bg-dark text-white w-full py-6 z-50 relative no-underline">
             Add Content
           </Button>
+        </Link>
+      </div>
+      <PremiumSection />
+      <div className="px-4 relative pb-6 z-50">
+        <Link href="/account">
+          <Button className="bg-card-bg-dark w-full relative py-6">Preview Profile <Eye size={18} className="ml-2" /></Button>
         </Link>
       </div>
       <SparklesCore

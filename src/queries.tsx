@@ -2,6 +2,8 @@
 
 import { createClient } from "./lib/supabase/server";
 import { redirect } from "next/navigation";
+import type { Stripe } from "stripe";
+import { headers } from "next/headers";
 import { z } from "zod";
 import {
   SignInSchema,
@@ -17,6 +19,41 @@ import { revalidatePath } from "next/cache";
 import { Social } from "./types";
 import { v4 as uuidv4 } from "uuid";
 import { decode } from "base64-arraybuffer";
+import { stripe } from "@/lib/stripe";
+
+// Table of Contents (ctrl + f to goto function)
+// signUp               -> Sign up a user
+// signIn               -> Sign in a user
+// signOut              -> Sign out a user
+// disableAccount       -> Disable a user account
+// deleteAccount        -> Delete a user account
+// getAccountDisabled   -> Get the status of a user account (disabled or not)
+// verifyUsername       -> Verify if a username is available
+// getAuthUserEmail     -> Get the email of the authenticated user
+// forgotUserPassword   -> Send a password reset email
+// updateForgotPassword -> Update the user's password
+// setUserBorder        -> Set the user's border
+// setUserThemeColor    -> Set the user's theme color
+// updateProfile        -> Update the user's profile
+// updateProfileTwo     -> Update the user's profile pt. 2
+// updateUserPassword   -> Update the user's password
+// updateProfileEmail   -> Only called when updateUserEmail is called to update user email in profile table to match auth email change.
+// updateUserEmail      -> Update the user's email (the one they use to sign in and receive emails too)
+// updateUsername       -> Update the user's username
+// updateProfileColor   -> Update the user's profile color
+// getProfileColor      -> Get the user's profile color
+// getThemeColor        -> Get the user's theme color
+// uploadProfileImage   -> Upload a profile image
+// getProfilePicture    -> Get the user's profile picture
+// getUserId            -> Get the user's ID
+// updateUserDirect     -> Update the user's direct status
+// addUserSocial        -> Add a social to the user's profile
+// getUserSocial        -> Get a single social object
+// getUserSocials       -> Get all socials
+// updateSocial         -> Update a single social object
+// updateUserSocials    -> Update all socials
+// deleteSocial         -> Delete a single social object
+// getUserProfile       -> Get a user's profile
 
 export const signUp = async (values: z.infer<typeof SignInSchema>) => {
   const { email, password } = values;
@@ -851,3 +888,7 @@ export const getUserProfile = async (username: string) => {
 
   return user.data[0];
 };
+
+//
+// Stripe
+//

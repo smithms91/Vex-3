@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { addUserSocial } from "@/queries";
-import { Info, Plus } from "lucide-react";
+import { ClipboardPaste, Info, Plus } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import CustomSocialIcon from "../custom-social-icon";
@@ -37,8 +37,7 @@ type Props = {
 
 const AddSocialForm = ({ network }: Props) => {
   const [showTitle, setShowTitle] = useState(false);
-  const [deleteButton, setDeleteButton] = useState(false);
-  const themeColor = useThemeColor();
+  const { color } = useThemeColor();
   const router = useRouter();
 
   const url = constants.find((constant) => constant.network === network)?.href;
@@ -46,8 +45,6 @@ const AddSocialForm = ({ network }: Props) => {
   const [tooltip, setTooltip] = useState(
     constants.find((constant) => constant.network === social?.network)?.tooltip,
   );
-
-  console.log("url", url);
 
   const form = useForm<z.infer<typeof AddSocialSchema>>({
     resolver: zodResolver(AddSocialSchema),
@@ -84,7 +81,7 @@ const AddSocialForm = ({ network }: Props) => {
               <FormLabel
                 className={cn(
                   "text-lg flex items-center justify-between",
-                  themeColor.color === "light" ? "text-black" : "text-white",
+                  color === "light" ? "text-black" : "text-white",
                 )}
               >
                 <div className="flex items-center">
@@ -97,7 +94,7 @@ const AddSocialForm = ({ network }: Props) => {
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <Info
-                        fill={themeColor.color === "light" ? "white" : "black"}
+                        fill={color === "light" ? "white" : "black"}
                         size={20}
                         className="cursor-pointer"
                       />
@@ -120,47 +117,20 @@ const AddSocialForm = ({ network }: Props) => {
           )}
         />
         <div className="flex justify-between">
-          {!deleteButton ? (
-            <Button
-              type="button"
-              className={cn(
-                "w-[45%] py-6 text-md active:bg-black hover:bg-card-bg-dark",
-                themeColor.color === "black"
-                  ? "border-2 border-gray-500"
-                  : "bg-black",
-              )}
-            >
-              Delete
-            </Button>
-          ) : (
-            <Button
-              variant="destructive"
-              className="w-[45%] py-6 text-md"
-              onClick={() => console.log("test")}
-            >
-              Confirm
-            </Button>
-          )}
-          {/* <Button variant="destructive" className='w-[45%] py-6 text-md'>Delete</Button> */}
           <Button
-            className={cn(
-              "bg-black w-[45%] py-6 text-md",
-              themeColor.color === "black"
-                ? "border-2 border-gray-500"
-                : "bg-black",
-            )}
-          >
+            type="button"
+            className={cn("w-[45%] py-6 text-md active:bg-black hover:bg-card-bg-dark", color === "black" ? "drop-shadow-glow bg-black" : "bg-black")}>
+            Paste
+            <ClipboardPaste size={14} className="ml-2" />
+          </Button>
+          <Button
+            className="bg-card-bg-dark w-[45%] py-6 text-md">
             Test
           </Button>
         </div>
         {!showTitle && (
           <Button
-            className={cn(
-              "w-full text-white text-md py-6",
-              themeColor.color === "black"
-                ? "border-2 border-gray-500"
-                : "bg-black",
-            )}
+            className={cn("w-full text-white text-md py-6", color === "black" ? "drop-shadow-glow bg-black" : "bg-black")}
             onClick={() => setShowTitle(true)}
           >
             <Plus size={14} className="mt-[.15rem] mr-1" />
@@ -174,7 +144,7 @@ const AddSocialForm = ({ network }: Props) => {
               name="title"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-black text-lg shadow-sm">
+                  <FormLabel className={cn("text-lg shadow-sm", color == "light" ? "text-black" : "text-white")}>
                     Title
                   </FormLabel>
                   <FormControl>
@@ -189,7 +159,7 @@ const AddSocialForm = ({ network }: Props) => {
               )}
             />
             <Button
-              className="w-full bg-black text-md"
+              className="w-full bg-black drop-shadow-glow text-md"
               onClick={() => setShowTitle(false)}
             >
               Close Title

@@ -1,11 +1,11 @@
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
 
 const config = {
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
   ],
   prefix: "",
   theme: {
@@ -17,37 +17,43 @@ const config = {
       },
     },
     screens: {
-      "xs": "350px",
+      xs: "350px",
       // => @media (min-width: 350px) { ... }
 
-      'sm': '420px',
+      sm: "420px",
       // => @media (min-width: 640px) { ... }
 
-      'md': '768px',
+      md: "768px",
       // => @media (min-width: 768px) { ... }
 
-      'lg': '1024px',
+      lg: "1024px",
       // => @media (min-width: 1024px) { ... }
 
-      'xl': '1280px',
+      xl: "1280px",
       // => @media (min-width: 1280px) { ... }
 
-      '2xl': '1536px',
+      "2xl": "1536px",
       // => @media (min-width: 1536px) { ... }
     },
     extend: {
+      dropShadow: {
+        glow: [
+          "0 0px 20px rgba(255, 255 ,255, 0.12)",
+          "0 0px 65px rgba(255, 255, 255, 0.1)",
+        ],
+      },
       colors: {
         from: "var(--from)",
         to: "var(--to)",
-        'light-from': "var(--light-from)",
-        'light-to': "var(--light-to)",
-        'dark-from': "var(--dark-from)",
-        'dark-to': "var(--dark-to)",
-        'black-from': "var(--black-from)",
-        'black-to': "var(--black-to)",
-        'card-bg-dark': "var(--card-bg-dark)",
-        'card-bg-light': "var(--card-bg-light)",
-        'card-foreground': "var(--card-foreground)",
+        "light-from": "var(--light-from)",
+        "light-to": "var(--light-to)",
+        "dark-from": "var(--dark-from)",
+        "dark-to": "var(--dark-to)",
+        "black-from": "var(--black-from)",
+        "black-to": "var(--black-to)",
+        "card-bg-dark": "var(--card-bg-dark)",
+        "card-bg-light": "var(--card-bg-light)",
+        "card-foreground": "var(--card-foreground)",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -79,7 +85,7 @@ const config = {
         },
       },
       fontSize: {
-        "md": "1rem",
+        md: "1rem",
       },
       borderRadius: {
         sm: "calc(var(--radius) - 8px)",
@@ -102,6 +108,6 @@ const config = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config
+} satisfies Config;
 
-export default config
+export default config;

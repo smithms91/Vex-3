@@ -3,7 +3,6 @@ import { Reorder, useDragControls, useMotionValue } from 'framer-motion';
 import React from 'react'
 import CustomSocialIcon from './custom-social-icon';
 import { cn } from '@/lib/utils';
-import { ArrowUpDown } from 'lucide-react';
 import { useThemeColor } from './context/theme-color-provider';
 import { useRouter } from 'next/navigation';
 import { useRaisedShadow } from '@/lib/use-raised-shadow';

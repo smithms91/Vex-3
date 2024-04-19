@@ -41,6 +41,7 @@
     "react-qr-code": "^2.0.12",
     "react-social-icons": "^6.15.0",
     "sonner": "^1.4.41",
+    "stripe": "^15.2.0",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
     "uuid": "^9.0.1",
