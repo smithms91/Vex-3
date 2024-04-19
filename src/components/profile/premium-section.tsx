@@ -14,8 +14,8 @@ const PremiumSection = (props: Props) => {
         <div className='flex items-center bg-slate-200/20 p-4 rounded-md'>
           <Star className='mr-4' />
           <div className='basis-2/3'>
-            <h1 className='text-lg'>Upgrade to Vex Premium</h1>
-            <p className='text-xs'>Hide Vex branding from your profile and upload your own logo.</p>
+            <h1 className='text-md'>Upgrade to <strong>Vex Premium</strong></h1>
+            <p className='text-xs opacity-75'>Hide Vex branding from your profile and upload your own logo.</p>
           </div>
           <ArrowRight size={18} className='ml-auto' />
         </div>

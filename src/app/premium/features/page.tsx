@@ -11,7 +11,7 @@ type Props = {}
 const PremiumFeaturesPage = (props: Props) => {
   const router = useRouter();
   return (
-    <section className='flex flex-col items-center mx-auto py-6 px-6'>
+    <section className='flex flex-col items-center mx-auto py-6 px-4 sm:px-6'>
       <h1 className='mb-4'>Unlock premium features with <strong>Vex Premium</strong></h1>
       <div className='flex flex-col gap-3 mb-6'>
         {features.map((feature, index) => (

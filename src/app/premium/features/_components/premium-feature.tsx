@@ -31,8 +31,8 @@ const PremiumFeature = ({ title, subTitle, icon, image }: Props) => {
       <div className='bg-slate-600/50 p-4 rounded-md flex items-center w-full'>
         <div className='rounded-full bg-[#202B37] p-3'>{icon}</div>
         <DrawerTrigger className='ml-4 text-left'>
-          <h2 className='text-lg'>{title}</h2>
-          <p className='text-xs'>{subTitle}</p>
+          <h2 className='text-md sm:text-lg'>{title}</h2>
+          <p className='text-xs opacity-75'>{subTitle}</p>
         </DrawerTrigger>
         <DrawerContent className='max-w-[450px] mx-auto px-4 pb-4'>
           <DrawerHeader className='flex items-center justify-between p-0 my-4'>
