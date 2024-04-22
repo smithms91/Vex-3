@@ -13,4 +13,16 @@ This project uses React and NextJS to handle routing and the front end UI, and i
 # Todo
 
 - [ ] Continue to add to socials list.
-- [ ]
+- [ ] Finish Stripe Integration. *2
+
+
+
+*2
+- Check example in route file and see if you should update file accordingly. (using payment succeeded event)
+- Create customers table (might already exist) and update table accordingly when user becomes premium member.
+- Change success and error URLs and style them accordingly.
+- Integrate premium features and hide them behind premium status in DB.
+- Fix different prices on paid section and figure out the free 7 day trial
+- Figure out how to actually add and retrieve metadata for subscription. (add user ID to subscription object)
+- Get better and actually understand how stripe works. 
+

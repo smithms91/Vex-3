@@ -2,6 +2,7 @@ import { createClient } from "@supabase/supabase-js";
 import { headers } from "next/headers";
 import Stripe from "stripe";
 
+// https://github.com/shadcn-ui/taxonomy/blob/main/app/api/webhooks/stripe/route.ts example
 
 export async function POST(req: Request) {
   const body = await req.text()
