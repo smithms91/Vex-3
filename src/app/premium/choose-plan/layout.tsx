@@ -3,7 +3,7 @@ import React from 'react'
 
 type Props = {}
 
-const ChoosePlanLayout = ({ children }: { children: React.ReactNode }) => {
+const ChoosePlanLayout = async ({ children }: { children: React.ReactNode }) => {
   return (
     <main className='bg-gradient-to-tl from-dark-from to-dark-to text-white flex flex-col max-w-[450px] min-h-screen mx-auto'>
       <header>

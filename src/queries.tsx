@@ -892,3 +892,33 @@ export const getUserProfile = async (username: string) => {
 //
 // Stripe
 //
+
+export const updatePremiumUser = async (session: Stripe.Checkout.Session) => {
+  const supabase = createClient();
+  const user = await supabase.auth.getUser();
+
+  if (!user) {
+    throw new Error("No authenticated user");
+  }
+
+  const userId = user.data.user?.id;
+  console.log("session", session);
+  console.log("session Email", session.customer_email);
+  try {
+    const response = await supabase
+      .from("profiles")
+      .update({
+        stripe_subscription_id: session.subscription,
+        stripe_customer_id: session.customer,
+        stripe_current_period_end: new Date(session.expires_at * 1000),
+        premium: true
+      })
+      .eq("email", session.customer_email)
+      .select();
+
+    console.log('res', response)
+    return response;
+  } catch (error) {
+    console.error("Error updating premium user:", error);
+  }
+};

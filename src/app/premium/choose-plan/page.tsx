@@ -1,18 +1,24 @@
 import { Button } from '@/components/ui/button'
-import React from 'react'
-import { features } from '@/constants'
+import React, { useState } from 'react'
+import PaidCarousel from './_components/paid-carousel'
+import { EmblaOptionsType } from 'embla-carousel'
+import PaidCard from './_components/paid-card'
+import Stripe from 'stripe';
+import { getAuthUserEmail, getUserId } from '@/queries';
+import PaidSection from './_components/paid-section'
 
 type Props = {}
 
-const ChoosePlanPage = (props: Props) => {
+const ChoosePlanPage = async (props: Props) => {
+  const userId = await getUserId()
+  const email = await getAuthUserEmail()
 
   return (
-    <section className='flex flex-col items-center mx-auto py-6 px-6'>
-      <h1 className='mb-4'>Unlock premium features with <strong>Vex Premium</strong></h1>
-      <div className='flex flex-col gap-3 mb-6'>
-
+    <section className='max-w-[450px] px-6 py-6'>
+      <PaidCarousel />
+      <div className='flex flex-col gap-4 mt-6'>
+        <PaidSection userId={userId} userEmail={email!} />
       </div>
-      <Button className='w-full mt-4 py-7 bg-blue-500 sticky bottom-10 text-md shadow-md'>Continue</Button>
     </section>
   )
 }
