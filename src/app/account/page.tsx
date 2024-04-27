@@ -34,14 +34,16 @@ const AccountPage = async () => {
   let themeColor = userData.theme_color;
 
   return (
-    <main className="min-h-screen max-w-[450px] p-2 xs:p-4 sm:p-6 mx-auto flex flex-col items-center">
+    <main className="z-50 min-h-screen max-w-[450px]">
       <PreviewModeProvider>
-        <AccountHeader />
-        <ProfileCard email={data.user.email!} user={userData} />
-        <EditProfileButton user={userData} />
-        <ProfileSocials socials={socials} />
-        <ProfileFooter user={userData} />
-        <PaidFooter darkText={themeColor == "light"} />
+        <section className="p-2 xs:p-4 sm:p-6 max-w-[450px] mx-auto flex flex-col items-center">
+          <AccountHeader />
+          <ProfileCard email={data.user.email!} user={userData} />
+          <EditProfileButton user={userData} />
+          <ProfileSocials socials={socials} />
+          <ProfileFooter user={userData} />
+        </section>
+        <PaidFooter darkText={themeColor == "light"} user={userData} />
         <SparklesCore
           id="tsparticlesfullpage"
           background="transparent"

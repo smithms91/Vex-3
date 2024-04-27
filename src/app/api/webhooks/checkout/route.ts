@@ -56,7 +56,7 @@ export async function POST(req: Request) {
   }
 
   if (event.type === "customer.subscription.deleted") {
-    console.log('customer subscription deleted', event)
+    console.log('customer subscription deleted', session)
     const response = await supabase
       .from("profiles")
       .update({
@@ -65,7 +65,7 @@ export async function POST(req: Request) {
         stripe_current_period_end: null,
         premium: false
       })
-      .eq("email", session.customer_email)
+      .eq("id", session.metadata?.user_id)
 
     console.log('reslol', response)
   }

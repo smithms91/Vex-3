@@ -50,8 +50,8 @@ const PaidSection = ({ userId, userEmail }: Props) => {
         ],
         customer_email: userEmail,
         mode: 'subscription',
-        success_url: `http://localhost:3000/premium/success?success=true`,
-        cancel_url: `http://localhost:3000/premium/cancel?canceled=true`,
+        success_url: `https://vex.cards/account?success=true`,
+        cancel_url: `https://vex.cards/account?cancelled=true`,
         subscription_data: {
           metadata: {
             "user_id": userId
@@ -70,8 +70,8 @@ const PaidSection = ({ userId, userEmail }: Props) => {
         ],
         mode: 'subscription',
         customer_email: userEmail,
-        success_url: `http://localhost:3000/?success=true`,
-        cancel_url: `http://localhost:3000/?canceled=true`,
+        success_url: `https://vex.cards/account?success=true`,
+        cancel_url: `https://vex.cards/account?cancelled=true`,
         subscription_data: {
           metadata: {
             "user_id": userId

@@ -48,7 +48,7 @@ const UserProfile = async ({ params }: { params: { username: string } }) => {
         <AddContactButton user={user} />
         <UserSocials user={user} darkText={darkText} />
       </section>
-      <PaidFooter darkText={darkText} />
+      <PaidFooter darkText={darkText} user={user} />
     </section>
   )
 }

@@ -28,6 +28,12 @@ export type User = {
   disabled: boolean;
   border: string;
   direct: boolean;
+  premium: boolean;
+  stripe_subscription_id: string;
+  stripe_customer_id: string;
+  stripe_current_period_end: string;
+  vex_branding: boolean;
+  branding_logo: string;
 };
 
 export const OnboardingSchema = z.object({

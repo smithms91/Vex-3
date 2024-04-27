@@ -1,7 +1,6 @@
 import CtaBanner from "@/components/cta-banner";
 import { SparklesCore } from "@/components/sparkles";
 import { createClient } from "@/lib/supabase/server";
-import { User } from "@/types";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -19,13 +18,7 @@ export default async function Home() {
     return (
       <div className="bg-gradient-to-tl from-dark-from to-dark-to text-white flex flex-col max-w-[450px] min-h-screen mx-auto">
         <div className="text-center border-b-2 border-gray-500 z-50">
-          <Image
-            src="/vexwhite.png"
-            className="mx-auto my-4"
-            width={30}
-            height={30}
-            alt="Vex Card"
-          />
+          <Image src="/vexwhite.png" className="mx-auto my-4" width={30} height={30} alt="Vex Card" />
         </div>
         <div className="text-center mt-20 m-8 flex flex-col h-full z-50">
           <h1 className="text-3xl mb-2 font-bold">Welcome Back!</h1>
@@ -36,17 +29,8 @@ export default async function Home() {
             <p className="text-left mb-2 font-semibold text-xl">
               Continue to profile
             </p>
-            <Link
-              href="/account"
-              className="bg-slate-200/20 rounded-md flex p-4 items-center"
-            >
-              <Image
-                className="rounded-full"
-                src={user.data![0].profile_picture || "/profile.jpg"}
-                alt="Profile Picture"
-                width={50}
-                height={50}
-              />
+            <Link href="/account" className="bg-slate-200/20 rounded-md flex p-4 items-center">
+              <Image className="rounded-full" src={user.data![0].profile_picture || "/profile.jpg"} alt="Profile Picture" width={50} height={50} />
               <div className="text-left ml-4">
                 <h1>
                   {user.data && user.data[0].first_name}{" "}
@@ -62,10 +46,7 @@ export default async function Home() {
               <ArrowRight className="ml-2" size={16} />
             </p>
           </Link>
-          <Link
-            href="/sign-up"
-            className="max-w-[400px] mx-auto bg-dark-to block py-4 rounded-md mt-auto absolute bottom-10 left-8 right-8"
-          >
+          <Link href="/sign-up" className="max-w-[400px] mx-auto bg-dark-to block py-4 rounded-md mt-auto absolute bottom-10 left-8 right-8">
             Sign Up
           </Link>
         </div>

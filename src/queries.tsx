@@ -863,6 +863,31 @@ export const deleteSocial = async (social: Social) => {
   }
 };
 
+export const updateUserBranding = async (value: boolean) => {
+  const supabase = createClient();
+
+  const user = await supabase.auth.getUser();
+
+  if (!user) {
+    throw new Error("No authenticated user");
+  }
+
+  const userId = user.data.user?.id;
+
+  try {
+    const response = await supabase
+      .from("profiles")
+      .update({ vex_branding: value })
+      .eq("id", userId)
+      .select();
+
+    revalidatePath("/account/setup");
+    return response;
+  } catch (error) {
+    console.error("Error getting User ID:", error);
+  }
+};
+
 /////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////
