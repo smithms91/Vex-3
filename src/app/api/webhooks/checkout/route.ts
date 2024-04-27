@@ -10,8 +10,8 @@ export async function POST(req: Request) {
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.SUPABASE_SERVICE_ROLE_KEY!,
   )
-  const stripe = new Stripe('sk_test_51P6yjqKFsfIA5c2NDwBErKUmPjGIVJ7oNGS260fcAEPgzDVDuWYSvO3CGZbWXT7HsPhReGe4aYdo0Uxtb03Gbbbz00EX9wASe1');
-  const secret = "whsec_dbb83f28f0bc58e88d8a788438b6f542293640b8f1c484027dff534881c60361";
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
+  const secret = process.env.STRIPE_SIGNING_SECRET as string || "whsec_dbb83f28f0bc58e88d8a788438b6f542293640b8f1c484027dff534881c60361";
   const signature = headers().get("Stripe-Signature") as string
   let event: Stripe.Event
 
