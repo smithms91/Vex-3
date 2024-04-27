@@ -59,7 +59,7 @@ const StyleThemeModal = ({ }: Props) => {
         <ColorPicker />
         {/* <h1 className='mt-6 font-bold text-lg'>Theme</h1> */}
         <h1 className={cn('text-xl font-bold', color == 'light' ? 'text-black' : 'text-white')}>Border</h1>
-        <div className='flex w-full  mb-4 items-center overflow-scroll gap-x-4 z-50 bg-slate-200/20 p-4'>
+        <div className='flex w-full mb-4 items-center overflow-scroll gap-x-4 z-50 bg-slate-200/20 p-4'>
           <Button onClick={() => handleUpdateBorder('full')} className={`flex items-center justify-center w-[50px] h-[50px] bg-gradient-to-br from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] rounded-full`}><Instagram size={30} color="white" /></Button>
           <Button onClick={() => handleUpdateBorder('large')} className={`flex items-center justify-center w-[50px] h-[50px] bg-gradient-to-br from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] rounded-lg`}><Instagram size={30} color="white" /></Button>
           <Button onClick={() => handleUpdateBorder('small')} className={`flex items-center justify-center w-[50px] h-[50px] bg-gradient-to-br from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] rounded-sm`}><Instagram size={30} color="white" /></Button>
