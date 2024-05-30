@@ -112,6 +112,15 @@ const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
     );
   }
 
+  if (network === 'threads') {
+    return (
+      <div className={cn(`flex items-center justify-center box-content bg-black ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.7rem] w-[28px] h-[28px]')} >
+        {/* <Youtube size={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} /> */}
+        <Image src="/threads.jpg" width={props.edit ? 16 : 36} height={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} alt='X Logo' />
+      </div>
+    );
+  }
+
   return <SocialIcon className={`${borderRadius}`} style={props.edit ? { height: 25, width: 25 } : { height: 50, width: 50 }} network={network} {...props} />;
 };
 

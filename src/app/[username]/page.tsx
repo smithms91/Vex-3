@@ -1,7 +1,6 @@
 import React from 'react'
 import UserCard from './_components/user-card'
 import { getUserId, getUserProfile } from '@/queries'
-import { User } from '@/types'
 import { redirect } from 'next/navigation'
 import UserSocials from './_components/user-socials'
 import AddContactButton from './_components/user-add-contact'
@@ -9,7 +8,7 @@ import PaidFooter from './_components/paid-footer'
 import { cn } from '@/lib/utils'
 
 const UserProfile = async ({ params }: { params: { username: string } }) => {
-  const user: User = await getUserProfile(params.username)
+  const user = await getUserProfile(params.username)
   const authId = await getUserId()
   let userColor: string;
   let darkText: boolean = false;

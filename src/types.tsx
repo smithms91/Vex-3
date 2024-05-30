@@ -11,6 +11,8 @@ export type Social = {
   url?: string;
 };
 
+
+// Database["public"]["Tables"]["profiles"]["Row"]
 export type User = {
   id: string;
   first_name: string;

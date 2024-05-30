@@ -21,7 +21,7 @@ import { ClipboardPaste, Info, Plus } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import CustomSocialIcon from "../custom-social-icon";
-import { constants } from "@/constants";
+import { allSocials } from "@/constants";
 import { useThemeColor } from "../context/theme-color-provider";
 import { cn } from "@/lib/utils";
 import {
@@ -40,10 +40,10 @@ const AddSocialForm = ({ network }: Props) => {
   const { color } = useThemeColor();
   const router = useRouter();
 
-  const url = constants.find((constant) => constant.network === network)?.href;
-  const social = constants.find((constant) => constant.network === network);
+  const url = allSocials.find((constant) => constant.network === network)?.href;
+  const social = allSocials.find((constant) => constant.network === network);
   const [tooltip, setTooltip] = useState(
-    constants.find((constant) => constant.network === social?.network)?.tooltip,
+    allSocials.find((constant) => constant.network === social?.network)?.tooltip,
   );
 
   const form = useForm<z.infer<typeof AddSocialSchema>>({

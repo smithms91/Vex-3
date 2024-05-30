@@ -17,7 +17,6 @@ import { OnboardingSchemaTwo, User } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { updateProfileTwo } from '@/queries';
 import { useRouter } from 'next/navigation';
-import { Tables } from '@/lib/database.types';
 import { toast } from 'sonner';
 import { useThemeColor } from '../context/theme-color-provider';
 import { cn } from '@/lib/utils';

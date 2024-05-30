@@ -14,12 +14,12 @@ import {
   UpdateUsernameSchema,
   UpdateEmailSchema,
   DeleteAccountSchema,
+  User,
 } from "@/types";
 import { revalidatePath } from "next/cache";
 import { Social } from "./types";
 import { v4 as uuidv4 } from "uuid";
 import { decode } from "base64-arraybuffer";
-import { stripe } from "@/lib/stripe";
 
 // Table of Contents (ctrl + f to goto function)
 // signUp               -> Sign up a user
@@ -58,8 +58,6 @@ import { stripe } from "@/lib/stripe";
 export const signUp = async (values: z.infer<typeof SignInSchema>) => {
   const { email, password } = values;
   const supabase = createClient();
-
-  const user = await supabase.auth.getUser();
 
   const { data, error } = await supabase.auth.signUp({
     email,
@@ -911,7 +909,7 @@ export const getUserProfile = async (username: string) => {
     return null;
   }
 
-  return user.data[0];
+  return user.data[0] as User;
 };
 
 //

@@ -2,7 +2,6 @@ import { SparklesCore } from '@/components/sparkles';
 import { cn } from '@/lib/utils'
 import { getUserProfile } from '@/queries';
 import { User } from '@/types';
-import { Kanit } from 'next/font/google';
 import React from 'react'
 
 type Props = {
@@ -13,7 +12,7 @@ type Props = {
 }
 
 const UserProfileLayout = async ({ children, params }: Props) => {
-  const user: User = await getUserProfile(params.username)
+  const user = await getUserProfile(params.username)
 
   let userColor: string;
   let darkText: boolean = false;

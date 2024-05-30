@@ -1,13 +1,7 @@
 import { Paintbrush, Frame, Palette, QrCode, LineChart, FolderInput, MapPin, Download, Sparkles } from "lucide-react";
 import Image from "next/image";
 
-export const constants = [
-  {
-    title: "Facebook",
-    network: "facebook",
-    href: "https://www.facebook.com/",
-    tooltip: "Just your username, no need to provide the website.",
-  },
+export const allSocials = [
   {
     title: "Phone",
     network: "phone",
@@ -18,15 +12,20 @@ export const constants = [
     title: "Email",
     network: "email",
     href: "mailto:",
-    tooltip:
-      "This is not the email you use to sign in. To change that email, go to user settings.",
+    tooltip: "This is not the email you use to sign in. To change that email, go to user settings.",
   },
   {
     title: "Website",
     network: "website",
     href: "http://",
-    tooltip:
-      'You only need to provide "www.YourWebsite.com". No need for http.',
+    tooltip: 'You only need to provide "www.YourWebsite.com". No need for http.',
+  },
+  {
+    title: "Facebook",
+    network: "facebook",
+    href: "https://www.facebook.com/",
+    tooltip: "Just your username, no need to provide the website.",
+    type: "social",
   },
   {
     title: "Instagram",
@@ -39,6 +38,7 @@ export const constants = [
     network: "x",
     href: "https://x.com/",
     tooltip: "Just your username, no need to provide the website.",
+    type: "social"
   },
   {
     title: "LinkedIn",
@@ -51,6 +51,7 @@ export const constants = [
     network: "youtube",
     href: "https://www.youtube.com/@",
     tooltip: "Just your username, no need to provide the website.",
+    type: "social"
   },
   {
     title: "Snapchat",
@@ -71,11 +72,299 @@ export const constants = [
     tooltip: "Just your username, no need to provide the website.",
   },
   {
+    title: "Threads",
+    network: "threads",
+    href: "",
+    tooltip: "Threads is a new messaging app by Instagram. Add your username here.",
+    type: "social"
+  },
+  {
     title: "Discord",
     network: "discord",
     href: "",
     tooltip:
-      "Open Discord and go to the Discord server you'd like to share. Press on the menu icon in the top left and tap 'Invite'. Then tap the gear icon and set the epire after to 'never'. Press 'Close' then 'Share Link'. Add the link here.",
+      "Open Discord and go to the Discord server you'd like to share. Press on the menu icon in the top left and tap 'Invite'. Then tap the gear icon and set the expire after to 'never'. Press 'Close' then 'Share Link'. Add the link here.",
+  },
+  {
+    title: "Spotify",
+    network: "spotify",
+    href: "",
+    tooltip: "Threads is a new messaging app by Instagram. Add your username here.",
+    type: "social"
+  },
+  {
+    title: "SoundCloud",
+    network: "soundcloud",
+    href: "",
+    tooltip: "Threads is a new messaging app by Instagram. Add your username here.",
+    type: "social"
+  },
+  {
+    title: "Apple Music",
+    network: "applemusic",
+    href: "",
+    tooltip: "Threads is a new messaging app by Instagram. Add your username here.",
+    type: "social"
+  },
+];
+
+export const recommended = [
+  {
+    title: "Phone",
+    network: "phone",
+    href: "tel:",
+    tooltip: "No need for dashes. 7 Digit phone works fine (ie. 12345678)",
+  },
+  {
+    title: "Email",
+    network: "email",
+    href: "mailto:",
+    tooltip: "This is not the email you use to sign in. To change that email, go to user settings.",
+  },
+  {
+    title: "Website",
+    network: "website",
+    href: "http://",
+    tooltip: 'You only need to provide "www.YourWebsite.com". No need for http.',
+  },
+  {
+    title: "Instagram",
+    network: "instagram",
+    href: "https://instagram.com/",
+    tooltip: "Just your username, no need to provide the website.",
+  },
+  {
+    title: "LinkedIn",
+    network: "linkedin",
+    href: "https://www.linkedin.com/in/",
+    tooltip: "Just your username, no need to provide the website.",
+  }
+];
+
+export const social = [
+  {
+    title: "Facebook",
+    network: "facebook",
+    href: "https://www.facebook.com/",
+    tooltip: "Just your username, no need to provide the website.",
+    type: "social",
+  },
+  {
+    title: "Instagram",
+    network: "instagram",
+    href: "https://instagram.com/",
+    tooltip: "Just your username, no need to provide the website.",
+  },
+  {
+    title: "X",
+    network: "x",
+    href: "https://x.com/",
+    tooltip: "Just your username, no need to provide the website.",
+    type: "social"
+  },
+  {
+    title: "LinkedIn",
+    network: "linkedin",
+    href: "https://www.linkedin.com/in/",
+    tooltip: "Just your username, no need to provide the website.",
+  },
+  {
+    title: "YouTube",
+    network: "youtube",
+    href: "https://www.youtube.com/@",
+    tooltip: "Just your username, no need to provide the website.",
+    type: "social"
+  },
+  {
+    title: "Snapchat",
+    network: "snapchat",
+    href: "https://www.snapchat.com/add/",
+    tooltip: "Just your username, no need to provide the website.",
+  },
+  {
+    title: "TikTok",
+    network: "tiktok",
+    href: "https://www.tiktok.com/@",
+    tooltip: "Just your username, no need to provide the website.",
+  },
+  {
+    title: "Twitch",
+    network: "twitch",
+    href: "https://www.twitch.tv/",
+    tooltip: "Just your username, no need to provide the website.",
+  },
+  {
+    title: "Threads",
+    network: "threads",
+    href: "",
+    tooltip: "Threads is a new messaging app by Instagram. Add your username here.",
+    type: "social"
+  },
+];
+
+export const contacts = [
+  {
+    title: "Phone",
+    network: "phone",
+    href: "tel:",
+    tooltip: "No need for dashes. 7 Digit phone works fine (ie. 12345678)",
+  },
+  {
+    title: "Email",
+    network: "email",
+    href: "mailto:",
+    tooltip: "This is not the email you use to sign in. To change that email, go to user settings.",
+  },
+  {
+    title: "Website",
+    network: "website",
+    href: "http://",
+    tooltip: 'You only need to provide "www.YourWebsite.com". No need for http.',
+  },
+  {
+    title: "Discord",
+    network: "discord",
+    href: "",
+    tooltip:
+      "Open Discord and go to the Discord server you'd like to share. Press on the menu icon in the top left and tap 'Invite'. Then tap the gear icon and set the expire after to 'never'. Press 'Close' then 'Share Link'. Add the link here.",
+  },
+  {
+    title: "Email",
+    network: "email",
+    href: "mailto:",
+    tooltip: "This is not the email you use to sign in. To change that email, go to user settings.",
+  },
+  {
+    title: "Website",
+    network: "website",
+    href: "http://",
+    tooltip: 'You only need to provide "www.YourWebsite.com". No need for http.',
+  },
+  {
+    title: "Discord",
+    network: "discord",
+    href: "",
+    tooltip:
+      "Open Discord and go to the Discord server you'd like to share. Press on the menu icon in the top left and tap 'Invite'. Then tap the gear icon and set the expire after to 'never'. Press 'Close' then 'Share Link'. Add the link here.",
+  },
+];
+
+export const productivity = [
+  {
+    title: "Threads",
+    network: "threads",
+    href: "",
+    tooltip: "Threads is a new messaging app by Instagram. Add your username here.",
+    type: "social"
+  },
+  {
+    title: "Discord",
+    network: "discord",
+    href: "",
+    tooltip:
+      "Open Discord and go to the Discord server you'd like to share. Press on the menu icon in the top left and tap 'Invite'. Then tap the gear icon and set the expire after to 'never'. Press 'Close' then 'Share Link'. Add the link here.",
+  },
+  {
+    title: "Email",
+    network: "email",
+    href: "mailto:",
+    tooltip: "This is not the email you use to sign in. To change that email, go to user settings.",
+  },
+  {
+    title: "Website",
+    network: "website",
+    href: "http://",
+    tooltip: 'You only need to provide "www.YourWebsite.com". No need for http.',
+  },
+  {
+    title: "Discord",
+    network: "discord",
+    href: "",
+    tooltip:
+      "Open Discord and go to the Discord server you'd like to share. Press on the menu icon in the top left and tap 'Invite'. Then tap the gear icon and set the expire after to 'never'. Press 'Close' then 'Share Link'. Add the link here.",
+  },
+];
+
+export const payment = [
+  {
+    title: "Threads",
+    network: "threads",
+    href: "",
+    tooltip: "Threads is a new messaging app by Instagram. Add your username here.",
+    type: "social"
+  },
+  {
+    title: "Threads",
+    network: "threads",
+    href: "",
+    tooltip: "Threads is a new messaging app by Instagram. Add your username here.",
+    type: "social"
+  },
+  {
+    title: "Threads",
+    network: "threads",
+    href: "",
+    tooltip: "Threads is a new messaging app by Instagram. Add your username here.",
+    type: "social"
+  },
+  {
+    title: "Threads",
+    network: "threads",
+    href: "",
+    tooltip: "Threads is a new messaging app by Instagram. Add your username here.",
+    type: "social"
+  },
+  {
+    title: "Threads",
+    network: "threads",
+    href: "",
+    tooltip: "Threads is a new messaging app by Instagram. Add your username here.",
+    type: "social"
+  },
+];
+
+export const music = [
+  {
+    title: "Spotify",
+    network: "spotify",
+    href: "",
+    tooltip: "Threads is a new messaging app by Instagram. Add your username here.",
+    type: "social"
+  },
+  {
+    title: "SoundCloud",
+    network: "soundcloud",
+    href: "",
+    tooltip: "Threads is a new messaging app by Instagram. Add your username here.",
+    type: "social"
+  },
+  {
+    title: "Apple Music",
+    network: "applemusic",
+    href: "",
+    tooltip: "Threads is a new messaging app by Instagram. Add your username here.",
+    type: "social"
+  },
+  {
+    title: "Spotify",
+    network: "spotify",
+    href: "",
+    tooltip: "Threads is a new messaging app by Instagram. Add your username here.",
+    type: "social"
+  },
+  {
+    title: "SoundCloud",
+    network: "soundcloud",
+    href: "",
+    tooltip: "Threads is a new messaging app by Instagram. Add your username here.",
+    type: "social"
+  },
+  {
+    title: "Apple Music",
+    network: "applemusic",
+    href: "",
+    tooltip: "Threads is a new messaging app by Instagram. Add your username here.",
+    type: "social"
   },
 ];
 

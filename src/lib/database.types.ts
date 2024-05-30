@@ -9,8 +9,93 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      contacts: {
+        Row: {
+          address: string | null
+          company: string | null
+          created_at: string
+          email: string | null
+          first_name: string | null
+          id: number
+          job_title: string | null
+          last_name: string | null
+          location: string | null
+          notes: string[] | null
+          phone_number: string | null
+          updated_at: string | null
+          user_id: string
+          website: string | null
+        }
+        Insert: {
+          address?: string | null
+          company?: string | null
+          created_at?: string
+          email?: string | null
+          first_name?: string | null
+          id?: number
+          job_title?: string | null
+          last_name?: string | null
+          location?: string | null
+          notes?: string[] | null
+          phone_number?: string | null
+          updated_at?: string | null
+          user_id: string
+          website?: string | null
+        }
+        Update: {
+          address?: string | null
+          company?: string | null
+          created_at?: string
+          email?: string | null
+          first_name?: string | null
+          id?: number
+          job_title?: string | null
+          last_name?: string | null
+          location?: string | null
+          notes?: string[] | null
+          phone_number?: string | null
+          updated_at?: string | null
+          user_id?: string
+          website?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "public_contacts_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      customers: {
+        Row: {
+          id: string
+          stripe_customer_id: string
+        }
+        Insert: {
+          id: string
+          stripe_customer_id: string
+        }
+        Update: {
+          id?: string
+          stripe_customer_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "public_customers_id_fkey"
+            columns: ["id"]
+            isOneToOne: true
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
+          border: string
+          direct: boolean
+          disabled: boolean
           email: string
           first_name: string | null
           id: string
@@ -18,14 +103,22 @@ export type Database = {
           last_name: string | null
           onboarding: boolean
           phone_number: string | null
+          premium: boolean
           profile_color: string | null
           profile_picture: string | null
-          socials: string[] | null
+          socials: Json[] | null
+          stripe_current_period_end: string | null
+          stripe_customer_id: string | null
+          stripe_subscription_id: string | null
           theme_color: string
           username: string | null
+          vex_branding: boolean
           website: string | null
         }
         Insert: {
+          border?: string
+          direct?: boolean
+          disabled?: boolean
           email: string
           first_name?: string | null
           id: string
@@ -33,14 +126,22 @@ export type Database = {
           last_name?: string | null
           onboarding?: boolean
           phone_number?: string | null
+          premium?: boolean
           profile_color?: string | null
           profile_picture?: string | null
-          socials?: string[] | null
+          socials?: Json[] | null
+          stripe_current_period_end?: string | null
+          stripe_customer_id?: string | null
+          stripe_subscription_id?: string | null
           theme_color?: string
           username?: string | null
+          vex_branding?: boolean
           website?: string | null
         }
         Update: {
+          border?: string
+          direct?: boolean
+          disabled?: boolean
           email?: string
           first_name?: string | null
           id?: string
@@ -48,11 +149,16 @@ export type Database = {
           last_name?: string | null
           onboarding?: boolean
           phone_number?: string | null
+          premium?: boolean
           profile_color?: string | null
           profile_picture?: string | null
-          socials?: string[] | null
+          socials?: Json[] | null
+          stripe_current_period_end?: string | null
+          stripe_customer_id?: string | null
+          stripe_subscription_id?: string | null
           theme_color?: string
           username?: string | null
+          vex_branding?: boolean
           website?: string | null
         }
         Relationships: [
@@ -97,7 +203,16 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      delete_user: {
+        Args: Record<PropertyKey, never>
+        Returns: undefined
+      }
+      verify_user_password: {
+        Args: {
+          password: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
       [_ in never]: never

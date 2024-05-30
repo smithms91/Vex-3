@@ -3,6 +3,7 @@ import { createClient } from '@/lib/supabase/server';
 import { cn } from '@/lib/utils';
 import { getProfileColor, getThemeColor } from '@/queries';
 import { Kanit } from 'next/font/google';
+import { Open_Sans } from 'next/font/google';
 import { redirect } from 'next/navigation';
 import { Metadata } from 'next/types';
 import { SpeedInsights } from "@vercel/speed-insights/next"
@@ -15,6 +16,7 @@ import Container from '@/components/container';
 type Props = {}
 
 const kanit = Kanit({ weight: ['400', '500', '600'], subsets: ["latin"] });
+// const openSans = Open_Sans({ weight: ['400', '500', '600'], subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Vex 3.0 | The Future of Business Cards",
