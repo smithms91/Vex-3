@@ -33,10 +33,10 @@ const SocialMedia = (props: Props) => {
           </li>
         ))}
         {!showAll && social.length > 4 && (
-          <button onClick={() => setShowAll(true)} className='text-white underline flex items-center'>Show More <ArrowDown className="ml-1" size={12} /></button>
+          <button onClick={() => setShowAll(true)} className={cn('text-white underline flex items-center', themeColor.color === 'light' ? 'text-black' : 'text-white')}>Show More <ArrowDown className="ml-1" size={12} /></button>
         )}
         {showAll && (
-          <button onClick={() => setShowAll(false)} className='text-white underline flex items-center'>Show Less <ArrowUp className="ml-1" size={12} /></button>
+          <button onClick={() => setShowAll(false)} className={cn('text-white underline flex items-center', themeColor.color === 'light' ? 'text-black' : 'text-white')}>Show Less <ArrowUp className="ml-1" size={12} /></button>
         )}
       </ul>
     </div>

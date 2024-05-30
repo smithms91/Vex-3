@@ -17,6 +17,7 @@ import {
 import { Switch } from '../ui/switch'
 import { Button } from '../ui/button'
 import BrandingSwitch from './branding-switch'
+import { cn } from '@/lib/utils'
 
 type Props = {}
 
@@ -32,11 +33,11 @@ const PremiumSection = async (props: Props) => {
 
   if (user.data && user.data[0].premium) {
     return (
-      <section className='text-white p-4 max-w-[450px] mb-4 z-50 relative'>
+      <section className={cn('text-white p-4 max-w-[450px] mb-4 z-50 relative', user.data[0].theme_color == "dark" ? "text-white" : "text-black")}>
         <Drawer>
           <DrawerTrigger>
             <h1 className='text-bold text-xl opacity-80 mb-1 text-left'>Branding</h1>
-            <div className='flex items-center bg-slate-200/20 p-4 rounded-md'>
+            <div className={cn('flex items-center  p-4 rounded-md', user.data[0].theme_color == "dark" ? "bg-slate-200/20" : "bg-slate-200/80")}>
               <Frame className='mr-4' />
               <div className='basis-2/3 text-left'>
                 <h1 className='text-md'>Edit Branding</h1>
