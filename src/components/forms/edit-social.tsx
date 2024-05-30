@@ -29,7 +29,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "../ui/tooltip";
-import { constants } from "@/constants";
+import { allSocials } from "@/constants";
 import { useThemeColor } from "../context/theme-color-provider";
 import { cn } from "@/lib/utils";
 
@@ -43,7 +43,7 @@ const EditSocialForm = ({ social }: Props) => {
   const [socialObject, setSocialObject] = useState<Social>(social);
   const { color } = useThemeColor();
   const [tooltip, setTooltip] = useState(
-    constants.find((constant) => constant.network === social.network)?.tooltip,
+    allSocials.find((constant) => constant.network === social.network)?.tooltip,
   );
   const router = useRouter();
 
