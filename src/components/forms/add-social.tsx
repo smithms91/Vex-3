@@ -42,14 +42,14 @@ const AddSocialForm = ({ network }: Props) => {
 
   const url = allSocials.find((constant) => constant.network === network)?.href;
   const social = allSocials.find((constant) => constant.network === network);
-  const [tooltip, setTooltip] = useState(
-    allSocials.find((constant) => constant.network === social?.network)?.tooltip,
-  );
+  const name = allSocials.find((constant) => constant.network === network)?.title;
+  const tooltip = allSocials.find((constant) => constant.network === social?.network)?.tooltip;
 
   const form = useForm<z.infer<typeof AddSocialSchema>>({
     resolver: zodResolver(AddSocialSchema),
     defaultValues: {
       value: "",
+      name: name,
       title: "",
       network: network,
       url: url,

@@ -4,6 +4,7 @@ import { z } from "zod";
 
 export type Social = {
   id: string;
+  name: string;
   user_id: string;
   value: string;
   title?: string;
@@ -78,6 +79,7 @@ export const EditSocialSchema = z.object({
 
 export const AddSocialSchema = z.object({
   value: z.string().min(1, { message: "This field has to be filled." }),
+  name: z.string().min(1, { message: "This field has to be filled." }),
   title: z.string().optional(),
   network: z.string(),
   url: z.string(),

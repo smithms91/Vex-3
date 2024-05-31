@@ -698,6 +698,7 @@ export const addUserSocial = async (
 
   const newObject = {
     id: uuidv4(),
+    name: values.name,
     title: values.title,
     value: values.value,
     network: values.network,

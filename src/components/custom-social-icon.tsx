@@ -80,7 +80,7 @@ const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
     return (
       <div className={cn(`flex items-center justify-center box-content bg-red-700 ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.7rem] w-[28px] h-[28px]')} >
         {/* <Youtube size={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} /> */}
-        <Image src="/youtube-white.svg" width={props.edit ? 16 : 36} height={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} alt='X Logo' />
+        <Image src="/youtube-white.svg" width={props.edit ? 16 : 36} height={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} alt='YouTube Logo' />
       </div>
     );
   }
@@ -89,7 +89,7 @@ const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
     return (
       <div className={cn(`flex items-center justify-center box-content bg-[#FFFC00] ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.7rem] w-[28px] h-[28px]')} >
         {/* <Youtube size={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} /> */}
-        <Image src="/snapchat.svg" width={props.edit ? 16 : 36} height={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} alt='X Logo' />
+        <Image src="/snapchat.svg" width={props.edit ? 16 : 36} height={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} alt='Snapchat Logo' />
       </div>
     );
   }
@@ -98,7 +98,7 @@ const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
     return (
       <div className={cn(`flex items-center justify-center box-content bg-black ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.7rem] w-[28px] h-[28px]')} >
         {/* <Youtube size={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} /> */}
-        <Image src="/tiktok.svg" width={props.edit ? 16 : 36} height={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} alt='X Logo' />
+        <Image src="/tiktok.svg" width={props.edit ? 16 : 36} height={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} alt='TikTok Logo' />
       </div>
     );
   }
@@ -106,8 +106,7 @@ const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
   if (network === 'twitch') {
     return (
       <div className={cn(`flex items-center justify-center box-content bg-[#6441a5] ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.7rem] w-[28px] h-[28px]')} >
-        {/* <Youtube size={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} /> */}
-        <Image src="/twitch.svg" width={props.edit ? 16 : 36} height={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} alt='X Logo' />
+        <Image src="/twitch.svg" width={props.edit ? 16 : 36} height={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} alt='Twitch Logo' />
       </div>
     );
   }
@@ -115,8 +114,7 @@ const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
   if (network === 'threads') {
     return (
       <div className={cn(`flex items-center justify-center box-content bg-black ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.7rem] w-[28px] h-[28px]')} >
-        {/* <Youtube size={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} /> */}
-        <Image src="/threads.jpg" width={props.edit ? 16 : 36} height={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} alt='X Logo' />
+        <Image src="/threads.jpg" width={props.edit ? 16 : 36} height={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} alt='Threads Logo' />
       </div>
     );
   }
@@ -124,7 +122,6 @@ const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
   if (network === 'address') {
     return (
       <div className={cn(`flex items-center justify-center box-content bg-black ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.7rem] w-[28px] h-[28px]')} >
-        {/* <Youtube size={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} /> */}
         <MapPin size={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} />
       </div>
     );
@@ -133,7 +130,7 @@ const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
   if (network === 'signal') {
     return (
       <div className={cn(`flex items-center justify-center box-content bg-[#3A76EF] ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.6rem] w-[32px] h-[32px]')} >
-        <Image src="/Signal-Logo.png" width={props.edit ? 16 : 36} height={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} alt='X Logo' />
+        <Image src="/Signal-Logo.png" width={props.edit ? 16 : 36} height={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} alt='Signal Logo' />
       </div>
     );
   }
@@ -141,7 +138,7 @@ const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
   if (network === 'venmo') {
     return (
       <div className={cn(`flex items-center justify-center box-content bg-[#008CFF] ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.45rem] w-[36px] h-[36px]')} >
-        <Image src="/venmo.png" width={props.edit ? 16 : 36} height={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} alt='X Logo' />
+        <Image src="/venmo.png" width={props.edit ? 16 : 36} height={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} alt='Venmo Logo' />
       </div>
     );
   }
@@ -149,7 +146,7 @@ const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
   if (network === 'cashapp') {
     return (
       <div className={cn(`flex items-center justify-center box-content bg-[#00D836] ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.35rem] w-[40px] h-[40px]')} >
-        <Image src="/cashapp.png" width={props.edit ? 16 : 36} height={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} alt='X Logo' />
+        <Image src="/cashapp.png" width={props.edit ? 16 : 36} height={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} alt='CashApp Logo' />
       </div>
     );
   }
@@ -157,7 +154,15 @@ const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
   if (network === 'paypal') {
     return (
       <div className={cn(`flex items-center justify-center box-content bg-white ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.75rem] w-[26px] h-[26px]')} >
-        <Image src="/paypal.svg" width={props.edit ? 16 : 36} height={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} alt='X Logo' />
+        <Image src="/paypal.svg" width={props.edit ? 16 : 36} height={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} alt='PayPal Logo' />
+      </div>
+    );
+  }
+
+  if (network === 'discord') {
+    return (
+      <div className={cn(`flex items-center justify-center box-content bg-[#5865F2] ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.015rem] w-[50px] h-[50px]')} >
+        <Image src="/discord-icon.jpg" width={props.edit ? 16 : 36} height={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} alt='Discord Logo' />
       </div>
     );
   }

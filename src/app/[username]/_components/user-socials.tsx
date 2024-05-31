@@ -23,7 +23,7 @@ const UserSocials = ({ user, darkText }: Props) => {
             <Link key={social.id} className={cn('flex items-center bg-slate-600/50 text-white w-full p-2 z-50 cursor-pointer rounded-md', user.theme_color === 'light' || user.theme_color === 'dark' ? 'bg-slate-600/50' : 'bg-gray-200/20')} href={`${social.url}${social.value}`} >
               <MySocialIcon network={social.network} border={user.border} />
               <div className='ml-4'>
-                <p className={cn('text-lg', darkText ? 'text-black' : 'text-white')}>{social.title !== '' ? social.title : social.network.charAt(0).toUpperCase() + social.network.slice(1)}</p>
+                <p className={cn('text-lg', darkText ? 'text-black' : 'text-white')}>{social.title !== '' ? social.title : social.name}</p>
                 <p className={cn('text-xs', darkText ? 'text-black' : 'text-white')}>{social.value}</p>
               </div>
               <ArrowRight size={16} color={darkText ? '#000000' : '#FFFFFF'} className='ml-auto mr-4 cursor-grab active:cursor-grabbing' />
