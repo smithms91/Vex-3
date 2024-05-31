@@ -43,7 +43,7 @@ const SetupPage = async () => {
         options
         className="px-4 relative"
       />
-      <DirectSwitch />
+      <DirectSwitch direct={user.data[0].direct} />
       <div className="px-4 relative">
         <ProfileEditSocials socials={userData.socials} />
         <Link href="/account/setup/add">

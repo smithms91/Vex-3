@@ -6,10 +6,12 @@ import { updateUserDirect } from "@/queries";
 import { toast } from "sonner";
 import { useThemeColor } from "../context/theme-color-provider";
 
-type Props = {};
+type Props = {
+  direct: boolean;
+};
 
-const DirectSwitch = (props: Props) => {
-  const [checked, setChecked] = useState(false);
+const DirectSwitch = ({ direct }: Props) => {
+  const [checked, setChecked] = useState(direct);
   const { color, setColor } = useThemeColor();
 
   const handleCheckedChange = async (e: boolean) => {
