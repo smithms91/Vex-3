@@ -10,8 +10,8 @@ import { useThemeColor } from "../context/theme-color-provider";
 import { cn } from "@/lib/utils";
 import { usePreviewMode } from "../context/preview-mode-provider";
 import Link from "next/link";
-import UserSocialIcon from "@/app/[username]/_components/user-social-icon";
 import Item from "../item";
+import MySocialIcon from "../custom-social-icon";
 
 type Props = {
   socials: Social[];
@@ -78,7 +78,7 @@ const ProfileSocials = ({ socials }: Props) => {
                   )}
                   href={`${social.url}${social.value}`}
                 >
-                  <UserSocialIcon network={social.network} />
+                  <MySocialIcon network={social.network} />
                   <div className="ml-4">
                     <p
                       className={cn(
