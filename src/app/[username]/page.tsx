@@ -10,7 +10,6 @@ import { cn } from '@/lib/utils'
 const UserProfile = async ({ params }: { params: { username: string } }) => {
   const user = await getUserProfile(params.username)
   const authId = await getUserId()
-  let userColor: string;
   let darkText: boolean = false;
 
   if (!user) {
@@ -21,18 +20,14 @@ const UserProfile = async ({ params }: { params: { username: string } }) => {
     redirect('/account')
   }
 
+  // Eventually have to check to see if user is created if this matches a card ID.
   if (params.username.includes('-')) {
     redirect(`/${user.username}`)
   }
 
   if (user.direct) redirect(`${user.socials[0].url}${user.socials[0].value}`)
 
-  if (user && user.theme_color === 'black') {
-    userColor = 'bg-gradient-to-tl from-black-from to-black-to';
-  } else if (user && user.theme_color === 'dark') {
-    userColor = 'bg-gradient-to-tl from-dark-from to-dark-to';
-  } else {
-    userColor = 'bg-gradient-to-tl from-light-from to-light-to';
+  if (user && user.theme_color === 'light') {
     darkText = true;
   }
 
@@ -40,8 +35,8 @@ const UserProfile = async ({ params }: { params: { username: string } }) => {
     <section className='flex flex-col min-h-screen z-50 w-full'>
       <section className='p-4 sm:p-8'>
         <div className="relative flex items-center justify-center mb-3">
-          <h1 className={cn(`absolute text-sm uppercase z-10 drop-shadow-md blur-sm`, darkText ? 'text-black' : 'text-white')}>Vex</h1>
-          <h1 className={cn(`text-sm uppercase z-10 drop-shadow-md`, darkText ? 'text-black' : 'text-white')}>Vex</h1>
+          <h1 className={cn(`absolute text-sm uppercase z-10 drop-shadow-md blur-sm`, user.theme_color === 'light' ? 'text-black' : 'text-white')}>Vex</h1>
+          <h1 className={cn(`text-sm uppercase z-10 drop-shadow-md`, user.theme_color === 'light' ? 'text-black' : 'text-white')}>Vex</h1>
         </div>
         <UserCard user={user} />
         <AddContactButton user={user} />

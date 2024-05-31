@@ -2,7 +2,7 @@
 
 import { SocialIcon } from 'react-social-icons';
 import * as React from 'react';
-import { Chrome, Facebook, Instagram, Linkedin, Mail, Phone, X, Youtube } from 'lucide-react';
+import { Chrome, Facebook, Instagram, Linkedin, LocateIcon, Mail, MapPin, Phone, Pin, PinIcon, X, Youtube } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useIconBorder } from './context/icon-border-provider';
 import Image from 'next/image';
@@ -117,6 +117,47 @@ const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
       <div className={cn(`flex items-center justify-center box-content bg-black ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.7rem] w-[28px] h-[28px]')} >
         {/* <Youtube size={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} /> */}
         <Image src="/threads.jpg" width={props.edit ? 16 : 36} height={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} alt='X Logo' />
+      </div>
+    );
+  }
+
+  if (network === 'address') {
+    return (
+      <div className={cn(`flex items-center justify-center box-content bg-black ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.7rem] w-[28px] h-[28px]')} >
+        {/* <Youtube size={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} /> */}
+        <MapPin size={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} />
+      </div>
+    );
+  }
+
+  if (network === 'signal') {
+    return (
+      <div className={cn(`flex items-center justify-center box-content bg-[#3A76EF] ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.6rem] w-[32px] h-[32px]')} >
+        <Image src="/Signal-Logo.png" width={props.edit ? 16 : 36} height={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} alt='X Logo' />
+      </div>
+    );
+  }
+
+  if (network === 'venmo') {
+    return (
+      <div className={cn(`flex items-center justify-center box-content bg-[#008CFF] ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.45rem] w-[36px] h-[36px]')} >
+        <Image src="/venmo.png" width={props.edit ? 16 : 36} height={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} alt='X Logo' />
+      </div>
+    );
+  }
+
+  if (network === 'cashapp') {
+    return (
+      <div className={cn(`flex items-center justify-center box-content bg-[#00D836] ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.35rem] w-[40px] h-[40px]')} >
+        <Image src="/cashapp.png" width={props.edit ? 16 : 36} height={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} alt='X Logo' />
+      </div>
+    );
+  }
+
+  if (network === 'paypal') {
+    return (
+      <div className={cn(`flex items-center justify-center box-content bg-white ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.75rem] w-[26px] h-[26px]')} >
+        <Image src="/paypal.svg" width={props.edit ? 16 : 36} height={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} alt='X Logo' />
       </div>
     );
   }

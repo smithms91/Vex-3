@@ -35,6 +35,9 @@ body {
     --black-from: #000000;
     --black-to: #191c24;
 
+    --paypal-dark: #003087;
+    --paypal-light: #009cde;
+
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 

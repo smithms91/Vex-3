@@ -50,6 +50,8 @@ const config = {
         "dark-from": "var(--dark-from)",
         "dark-to": "var(--dark-to)",
         "black-from": "var(--black-from)",
+        "paypal-dark": "var(--paypal-dark)",
+        "paypal-light": "var(--paypal-light)",
         "black-to": "var(--black-to)",
         "card-bg-dark": "var(--card-bg-dark)",
         "card-bg-light": "var(--card-bg-light)",

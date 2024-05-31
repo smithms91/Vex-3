@@ -4,21 +4,26 @@ import { ArrowDown, ArrowLeft, ArrowRight, ArrowUp, Plus } from 'lucide-react'
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
 import MySocialIcon from '../custom-social-icon';
-import { social } from '@/constants';
+import { allSocials } from '@/constants';
 import { useThemeColor } from '../context/theme-color-provider';
 import { cn } from '@/lib/utils';
 
-type Props = {}
+type Props = {
+  type: string;
+  title: string;
+}
 
-const SocialMedia = (props: Props) => {
+const SocialMedia = ({ type, title }: Props) => {
   const router = useRouter();
   const themeColor = useThemeColor();
   const [showAll, setShowAll] = useState(false)
-  const itemsToShow = showAll ? social : social.slice(0, 4)
+
+  const socialsOfType = allSocials.filter(social => social.type === type)
+  const itemsToShow = showAll ? socialsOfType : socialsOfType.slice(0, 4)
 
   return (
     <div className='p-4'>
-      <h1 className={cn(themeColor.color === 'light' ? 'text-black' : 'text-white')}>Social Media</h1>
+      <h1 className={cn(themeColor.color === 'light' ? 'text-black' : 'text-white')}>{title}</h1>
       <ul className='space-y-2 mt-2'>
         {itemsToShow.map((type, i) => (
           <li key={i} onClick={() => router.push(`/account/setup/add/${type.network}`)} className='flex items-center bg-gray-200 text-black w-full p-2 z-50 rounded-sm cursor-pointer'>
@@ -32,7 +37,7 @@ const SocialMedia = (props: Props) => {
             </div>
           </li>
         ))}
-        {!showAll && social.length > 4 && (
+        {!showAll && socialsOfType.length > 4 && (
           <button onClick={() => setShowAll(true)} className={cn('text-white underline flex items-center', themeColor.color === 'light' ? 'text-black' : 'text-white')}>Show More <ArrowDown className="ml-1" size={12} /></button>
         )}
         {showAll && (

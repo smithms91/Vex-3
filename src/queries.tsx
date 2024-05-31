@@ -899,16 +899,20 @@ export const getUserProfile = async (username: string) => {
   const supabase = createClient();
   let user;
 
+  // Decode the username
+  const decodedUsername = decodeURIComponent(username);
+
   if (username.includes("-")) {
-    user = await supabase.from("profiles").select().eq("id", username);
+    user = await supabase.from("profiles").select().eq("id", decodedUsername);
   } else {
-    user = await supabase.from("profiles").select().eq("username", username);
+    user = await supabase.from("profiles").select().eq("username", decodedUsername);
   }
 
   if (!user.data) {
     return null;
   }
 
+  console.log('user', user.data[0])
   return user.data[0] as User;
 };
 
