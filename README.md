@@ -14,6 +14,8 @@ This project uses React and NextJS to handle routing and the front end UI, and i
 
 - [ ] Finish Stripe Integration. *2
 - [ ] Insights link in footer should bring up a "Premium Only" modal. Make a "Premium Only" modal because other things will use it.
+- [ ] If user is premium and using premium colors, when premium is disabled change their color to a default color.
+- [ ] Fix social icons that are images with a background color. Need SVG or pure icon.
 
 
 
