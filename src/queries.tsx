@@ -3,7 +3,6 @@
 import { createClient } from "./lib/supabase/server";
 import { redirect } from "next/navigation";
 import type { Stripe } from "stripe";
-import { headers } from "next/headers";
 import { z } from "zod";
 import {
   SignInSchema,
@@ -134,7 +133,7 @@ export const disableAccount = async (value: boolean) => {
 };
 
 export const deleteAccount = async (
-  values: z.infer<typeof DeleteAccountSchema>,
+  values: z.infer<typeof DeleteAccountSchema>
 ) => {
   const supabase = createClient();
   const user = await supabase.auth.getUser();
@@ -186,7 +185,6 @@ export const getAccountDisabled = async () => {
     console.error("Error getting account disabled:", error);
   }
 };
-
 // Checks if username is available to be taken. Returns true if available, false if not.
 export const verifyUsername = async (username: string) => {
   const supabase = createClient();
@@ -235,7 +233,7 @@ export const forgotUserPassword = async (email: string) => {
 
 export const updateForgotPassword = async (
   password: string,
-  token?: string,
+  token?: string
 ) => {
   const supabase = createClient();
 
@@ -296,7 +294,7 @@ export const setUserThemeColor = async (color: string) => {
 };
 
 export const updateProfile = async (
-  values: z.infer<typeof OnboardingSchema>,
+  values: z.infer<typeof OnboardingSchema>
 ) => {
   const supabase = createClient();
   const user = await supabase.auth.getUser();
@@ -328,7 +326,7 @@ export const updateProfile = async (
 };
 
 export const updateProfileTwo = async (
-  values: z.infer<typeof OnboardingSchemaTwo>,
+  values: z.infer<typeof OnboardingSchemaTwo>
 ) => {
   const supabase = createClient();
   const user = await supabase.auth.getUser();
@@ -361,7 +359,7 @@ export const updateProfileTwo = async (
 };
 
 export const updateUserPassword = async (
-  values: z.infer<typeof UpdatePasswordSchema>,
+  values: z.infer<typeof UpdatePasswordSchema>
 ) => {
   const supabase = createClient();
   const user = await supabase.auth.getUser();
@@ -392,7 +390,7 @@ export const updateUserPassword = async (
 
 // Helper function to update the profile table with the new email. FIX: Configure a SQL function to automatically update the email in the profiles table when the user updates their email.
 const updateProfileEmail = async (
-  values: z.infer<typeof UpdateEmailSchema>,
+  values: z.infer<typeof UpdateEmailSchema>
 ) => {
   const supabase = createClient();
   const user = await supabase.auth.getUser();
@@ -419,7 +417,7 @@ const updateProfileEmail = async (
 };
 
 export const updateUserEmail = async (
-  values: z.infer<typeof UpdateEmailSchema>,
+  values: z.infer<typeof UpdateEmailSchema>
 ) => {
   const supabase = createClient();
   const user = await supabase.auth.getUser();
@@ -438,7 +436,7 @@ export const updateUserEmail = async (
         {
           email: values.email,
         },
-        { emailRedirectTo: "http://localhost:3000/account" },
+        { emailRedirectTo: "http://localhost:3000/account" }
       );
 
       await updateProfileEmail(values);
@@ -453,7 +451,7 @@ export const updateUserEmail = async (
 };
 
 export const updateUsername = async (
-  values: z.infer<typeof UpdateUsernameSchema>,
+  values: z.infer<typeof UpdateUsernameSchema>
 ) => {
   const supabase = createClient();
   const user = await supabase.auth.getUser();
@@ -684,7 +682,7 @@ export const updateUserDirect = async (direct: boolean) => {
 ////////////////////////////////////////
 
 export const addUserSocial = async (
-  values: z.infer<typeof AddSocialSchema>,
+  values: z.infer<typeof AddSocialSchema>
 ) => {
   const supabase = createClient();
   const user = await supabase.auth.getUser();
@@ -742,7 +740,7 @@ export const getUserSocial = async (id: string) => {
     if (!response.data) return null;
 
     const socialObject: Social = response.data[0].socials.find(
-      (social: { id: string }) => social.id === id,
+      (social: { id: string }) => social.id === id
     );
 
     if (!socialObject) return null;
@@ -906,14 +904,17 @@ export const getUserProfile = async (username: string) => {
   if (username.includes("-")) {
     user = await supabase.from("profiles").select().eq("id", decodedUsername);
   } else {
-    user = await supabase.from("profiles").select().eq("username", decodedUsername);
+    user = await supabase
+      .from("profiles")
+      .select()
+      .eq("username", decodedUsername);
   }
 
   if (!user.data) {
     return null;
   }
 
-  console.log('user', user.data[0])
+  console.log("user", user.data[0]);
   return user.data[0] as User;
 };
 
@@ -939,12 +940,12 @@ export const updatePremiumUser = async (session: Stripe.Checkout.Session) => {
         stripe_subscription_id: session.subscription,
         stripe_customer_id: session.customer,
         stripe_current_period_end: new Date(session.expires_at * 1000),
-        premium: true
+        premium: true,
       })
       .eq("email", session.customer_email)
       .select();
 
-    console.log('res', response)
+    console.log("res", response);
     return response;
   } catch (error) {
     console.error("Error updating premium user:", error);

@@ -5,11 +5,11 @@ import { createContext } from "react";
 
 interface IconBorderProviderProps {
   children: React.ReactNode;
-  roundedProp?: 'small' | 'large' | 'full';
+  roundedProp?: 'small' | 'large' | 'full' | 'color_small' | 'color_large' | 'color_full';
 }
 
 type IconBorderContextType = {
-  rounded: 'small' | 'large' | 'full';
+  rounded: 'small' | 'large' | 'full' | 'color_small' | 'color_large' | 'color_full';
   setRounded: React.Dispatch<React.SetStateAction<IconBorderContextType['rounded']>>;
 }
 

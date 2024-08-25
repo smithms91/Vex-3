@@ -45,7 +45,7 @@ const ProfileFooter = ({ user }: Props) => {
         width={22}
         height={22}
       />
-      <StyleThemeModal />
+      <StyleThemeModal user={user} />
     </footer>
   );
 };

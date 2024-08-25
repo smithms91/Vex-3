@@ -12,8 +12,8 @@ This project uses React and NextJS to handle routing and the front end UI, and i
 
 # Todo
 
-- [ ] Continue to add to socials list.
 - [ ] Finish Stripe Integration. *2
+- [ ] Insights link in footer should bring up a "Premium Only" modal. Make a "Premium Only" modal because other things will use it.
 
 
 

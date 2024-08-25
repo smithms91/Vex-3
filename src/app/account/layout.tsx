@@ -58,7 +58,7 @@ export default async function AccountLayout({
         attribute="data-theme"
         defaultTheme={color}
         enableSystem
-        disableTransitionOnChange>
+        >
         <IconBorderProvider roundedProp={user.data[0].border}>
           <ThemeColorProvider colorProp={themeColor}>
             <Container>

@@ -279,6 +279,41 @@ export const profileColors = [
     css: "bg-gradient-to-br from-[#ebebeb] to-[#7c7c7c]",
     singleValue: "#7c7c7c",
   },
+  {
+    color: "roseGold",
+    css: "bg-gradient-to-br from-[#D4A4AA] to-[#8C5359]",
+    complimentary: "#79B7A0",
+    singleValue: "#B76E79",
+    premium: true
+  },
+  {
+    color: "teal",
+    css: "bg-gradient-to-br from-[#33B2B2] to-[#005757]",
+    complimentary: "#FF8000",
+    singleValue: "#008080",
+    premium: true
+  },
+  {
+    color: "midnightPurple",
+    css: "bg-gradient-to-br from-[#604C9E] to-[#1B0033]",
+    complimentary: "#08542E",
+    singleValue: "#2E0854",
+    premium: true
+  },
+  {
+    color: "champagne",
+    css: "bg-gradient-to-br from-[#FFFFFF] to-[#D2B48C]",
+    complimentary: "#CECEF7",
+    singleValue: "#F7E7CE",
+    premium: true
+  },
+  {
+    color: "emerald",
+    css: "bg-gradient-to-br from-[#80D99E] to-[#3A9B6E]",
+    complimentary: "#C75050",
+    singleValue: "#50C878",
+    premium: true
+  }
 ];
 
 export const features = [

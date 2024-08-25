@@ -157,4 +157,69 @@ body {
     --background: 0 65% 3.76%;
     --foreground: 0 10% 97.35%;
   }
+
+  [data-theme='roseGold'] {
+    /* CSS: .bg-gradient { background: var(--gradient) } */
+
+    --card-bg-dark: #8C5359;
+    --card-bg-light: #D4A4AA;
+    --complimentary: #79B7A0;
+    --single: #B76E79;
+    --card-foreground: rgb(238, 238, 238);
+
+    --background: 0 65% 3.76%;
+    --foreground: 0 10% 97.35%;
+  }
+
+  [data-theme='teal'] {
+    /* CSS: .bg-gradient { background: var(--gradient) } */
+
+    --card-bg-dark: #005757;
+    --card-bg-light: #33B2B2;
+    --complimentary: #FF8000;
+    --single: #008080;
+    --card-foreground: rgb(238, 238, 238);
+
+    --background: 0 65% 3.76%;
+    --foreground: 0 10% 97.35%;
+  }
+
+  [data-theme='midnightPurple'] {
+    /* CSS: .bg-gradient { background: var(--gradient) } */
+
+    --card-bg-dark: #1B0033;
+    --card-bg-light: #604C9E;
+    --complimentary: #08542E;
+    --single: #2E0854;
+    --card-foreground: rgb(238, 238, 238);
+
+    --background: 0 65% 3.76%;
+    --foreground: 0 10% 97.35%;
+  }
+
+  [data-theme='champagne'] {
+    /* CSS: .bg-gradient { background: var(--gradient) } */
+
+    --card-bg-dark: #D2B48C;
+    --card-bg-light: #FFFFFF;
+    --complimentary: #CECEF7;
+    --single: #F7E7CE;
+    --card-foreground: rgb(238, 238, 238);
+
+    --background: 0 65% 3.76%;
+    --foreground: 0 10% 97.35%;
+  }
+
+  [data-theme='emerald'] {
+    /* CSS: .bg-gradient { background: var(--gradient) } */
+
+    --card-bg-dark: #3A9B6E;
+    --card-bg-light: #80D99E;
+    --complimentary: #C75050;
+    --single: #50C878;
+    --card-foreground: rgb(238, 238, 238);
+
+    --background: 0 65% 3.76%;
+    --foreground: 0 10% 97.35%;
+  }
 }

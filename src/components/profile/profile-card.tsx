@@ -39,9 +39,9 @@ const ProfileCard = ({ user, email: authEmail, options, className }: Props) => {
   return (
     <div className={cn(`space-y-4 z-50 w-full`, className)}>
       <section className='flex bg-card-bg w-full my-6 pr-4 h-[225px] rounded-md bg-gradient-to-tl from-card-bg-dark to-card-bg-light z-50'>
-        <div onClick={() => setPictureModalOpen(true)} className='relative w-[45%]'>
+        <div className='relative w-[45%]'>
           {options && (
-            <UploadIcon size={24} color="black" className='z-40 cursor-pointer absolute -top-2 -left-2 z-100 border-2 border-card-bg-dark rounded-full p-2 box-content bg-white shadow-lg' />
+            <UploadIcon onClick={() => setPictureModalOpen(true)} size={24} color="black" className='z-40 cursor-pointer absolute -top-2 -left-2 z-100 border-2 border-card-bg-dark rounded-full p-2 box-content bg-white shadow-lg' />
           )}
           <Image defaultValue="profile.jpg" className="rounded-tl-md rounded-bl-md object-cover z-20" src={selectedFileUrl || '/profile.jpg'} fill alt="" />
         </div>
@@ -59,7 +59,7 @@ const ProfileCard = ({ user, email: authEmail, options, className }: Props) => {
       </section>
       {options &&
         <>
-          <ThemePicker />
+          <ThemePicker user={userData} />
           <OnboardingFormTwo options user={userData} setEmail={setEmail} setFirstName={setFirstName} setLastName={setLastName} setPhoneNumber={setPhoneNumber} setWebsite={setWebsite} setJobTitle={setJobTitle} />
         </>
       }
