@@ -3,7 +3,6 @@ import { createClient } from '@/lib/supabase/server';
 import { cn } from '@/lib/utils';
 import { getProfileColor, getThemeColor } from '@/queries';
 import { Kanit } from 'next/font/google';
-import { Open_Sans } from 'next/font/google';
 import { redirect } from 'next/navigation';
 import { Metadata } from 'next/types';
 import { SpeedInsights } from "@vercel/speed-insights/next"
@@ -58,7 +57,7 @@ export default async function AccountLayout({
         attribute="data-theme"
         defaultTheme={color}
         enableSystem
-        >
+      >
         <IconBorderProvider roundedProp={user.data[0].border}>
           <ThemeColorProvider colorProp={themeColor}>
             <Container>

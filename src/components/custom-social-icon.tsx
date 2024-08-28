@@ -148,8 +148,8 @@ const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
     const borderRadius = getBorderRadius(rounded);
 
     return (
-      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.7rem] w-[28px] h-[28px]', rounded.includes("color") ? 'bg-gradient-to-br from-card-bg-light to-card-bg-dark' : 'bg-black')} >
-        <Image src="/threads.jpg" width={props.edit ? 16 : 36} height={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} alt='Threads Logo' />
+      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'py-[.7rem] pr-[.8rem] pl-[.6rem] w-[28px] h-[28px]', rounded.includes("color") ? 'bg-gradient-to-br from-card-bg-light to-card-bg-dark' : 'bg-black')} >
+        <Image src="/threads.png" width={props.edit ? 16 : 48} height={props.edit ? 16 : 48} className={props.edit ? 'text-white/75' : 'text-white'} alt='Threads Logo' />
       </div>
     );
   }
@@ -169,7 +169,7 @@ const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
 
     return (
       <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.6rem] w-[32px] h-[32px]', rounded.includes("color") ? 'bg-gradient-to-br from-card-bg-light to-card-bg-dark' : 'bg-[#3A76EF]')} >
-        <Image src="/Signal-Logo.png" width={props.edit ? 16 : 36} height={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} alt='Signal Logo' />
+        <Image src="/signal.png" width={props.edit ? 16 : 26} height={props.edit ? 16 : 26} className={props.edit ? 'text-white/75' : 'text-white'} alt='Signal Logo' />
       </div>
     );
   }
@@ -178,8 +178,8 @@ const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
     const borderRadius = getBorderRadius(rounded);
 
     return (
-      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.45rem] w-[36px] h-[36px]', rounded.includes("color") ? 'bg-gradient-to-br from-card-bg-light to-card-bg-dark' : 'bg-green-600')} >
-        <Image src="/venmo.png" width={props.edit ? 16 : 36} height={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} alt='Venmo Logo' />
+      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.45rem] w-[36px] h-[36px]', rounded.includes("color") ? 'bg-gradient-to-br from-card-bg-light to-card-bg-dark' : 'bg-[#008DFF]')} >
+        <Image src="/venmo.svg" width={props.edit ? 16 : 36} height={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} alt='Venmo Logo' />
       </div>
     );
   }
@@ -189,7 +189,7 @@ const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
 
     return (
       <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.35rem] w-[40px] h-[40px]', rounded.includes("color") ? 'bg-gradient-to-br from-card-bg-light to-card-bg-dark' : 'bg-[#00D836]')} >
-        <Image src="/cashapp.png" width={props.edit ? 16 : 36} height={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} alt='CashApp Logo' />
+        <Image src="/cashappsvg.png" width={props.edit ? 16 : 40} height={props.edit ? 16 : 40} className={props.edit ? 'text-white/75' : 'text-white'} alt='CashApp Logo' />
       </div>
     );
   }
@@ -208,8 +208,108 @@ const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
     const borderRadius = getBorderRadius(rounded);
 
     return (
-      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.015rem] w-[50px] h-[50px]', rounded.includes("color") ? 'bg-gradient-to-br from-card-bg-light to-card-bg-dark' : 'bg-[#5865F2]')} >
-        <Image src="/discord-icon.jpg" width={props.edit ? 16 : 36} height={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} alt='Discord Logo' />
+      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'w-[50px] h-[50px]', rounded.includes("color") ? 'bg-gradient-to-br from-card-bg-light to-card-bg-dark' : 'bg-[#5865F2]')} >
+        <Image src="/dc.svg" color="white" width={props.edit ? 16 : 30} height={props.edit ? 16 : 30} className={props.edit ? 'text-white/75' : 'text-white'} alt='Discord Logo' />
+      </div>
+    );
+  }
+
+  if (network === 'github') {
+    const borderRadius = getBorderRadius(rounded);
+
+    return (
+      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'w-[50px] h-[50px]', rounded.includes("color") ? 'bg-gradient-to-br from-card-bg-light to-card-bg-dark' : 'bg-black')} >
+        <Image src="/github-mark-white.svg" color="white" width={props.edit ? 16 : 30} height={props.edit ? 16 : 30} className={props.edit ? 'text-white/75' : 'text-white'} alt='Discord Logo' />
+      </div>
+    );
+  }
+
+  if (network === 'spotify') {
+    const borderRadius = getBorderRadius(rounded);
+
+    return (
+      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'w-[50px] h-[50px]', rounded.includes("color") ? 'bg-gradient-to-br from-card-bg-light to-card-bg-dark' : 'bg-[#1ED760]')} >
+        <Image src="/spotify.png" color="white" width={props.edit ? 16 : 30} height={props.edit ? 16 : 30} className={props.edit ? 'text-white/75' : 'text-white'} alt='Discord Logo' />
+      </div>
+    );
+  }
+
+  if (network === 'soundcloud') {
+    const borderRadius = getBorderRadius(rounded);
+
+    return (
+      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'w-[50px] h-[50px]', rounded.includes("color") ? 'bg-gradient-to-br from-card-bg-light to-card-bg-dark' : 'bg-[#FF7100]')} >
+        <Image src="/soundcloud-1.svg" color="white" width={props.edit ? 16 : 36} height={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} alt='Discord Logo' />
+      </div>
+    );
+  }
+
+  if (network === 'whatsapp') {
+    const borderRadius = getBorderRadius(rounded);
+
+    return (
+      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'w-[50px] h-[50px]', rounded.includes("color") ? 'bg-gradient-to-br from-card-bg-light to-card-bg-dark' : 'bg-[#FF7100]')} >
+        <Image src="/whatsapp-com.svg" color="white" width={props.edit ? 16 : 32} height={props.edit ? 16 : 32} className={props.edit ? 'text-white/75' : 'text-white'} alt='Discord Logo' />
+      </div>
+    );
+  }
+
+  if (network === 'wechat') {
+    const borderRadius = getBorderRadius(rounded);
+
+    return (
+      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.12rem] w-[16px] h-[16px]' : 'w-[50px] h-[50px]', rounded.includes("color") ? 'bg-gradient-to-br from-card-bg-light to-card-bg-dark' : 'bg-[#03D066]')} >
+        <Image src="/wechat.svg" color="white" width={props.edit ? 16 : 66} height={props.edit ? 16 : 66} className={props.edit ? 'text-white/75' : 'text-white'} alt='Discord Logo' />
+      </div>
+    );
+  }
+
+  if (network === 'pinterest') {
+    const borderRadius = getBorderRadius(rounded);
+
+    return (
+      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.12rem] w-[16px] h-[16px]' : 'w-[50px] h-[50px]', rounded.includes("color") ? 'bg-gradient-to-br from-card-bg-light to-card-bg-dark' : 'bg-[#E72C32]')} >
+        <Image src="/pin.png" color="white" width={props.edit ? 16 : 20} height={props.edit ? 16 : 20} className={props.edit ? 'text-white/75' : 'text-white'} alt='Discord Logo' />
+      </div>
+    );
+  }
+
+  if (network === 'vimeo') {
+    const borderRadius = getBorderRadius(rounded);
+
+    return (
+      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.12rem] w-[16px] h-[16px]' : ' w-[50px] h-[50px]', rounded.includes("color") ? 'bg-gradient-to-br from-card-bg-light to-card-bg-dark' : 'bg-[#1AB7EA]')} >
+        <Image src="/v.svg" color="white" width={props.edit ? 16 : 26} height={props.edit ? 16 : 26} className={props.edit ? 'text-white/75' : 'mr-[.1rem] text-white'} alt='Discord Logo' />
+      </div>
+    );
+  }
+
+  if (network === 'clubhouse') {
+    const borderRadius = getBorderRadius(rounded);
+
+    return (
+      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.12rem] w-[16px] h-[16px]' : ' w-[50px] h-[50px]', rounded.includes("color") ? 'bg-gradient-to-br from-card-bg-light to-card-bg-dark' : 'bg-[#FFE450]')} >
+        <Image src="/club2.svg" color="white" width={props.edit ? 16 : 32} height={props.edit ? 16 : 32} className={props.edit ? 'text-white/75' : 'mr-[.1rem] text-white'} alt='Discord Logo' />
+      </div>
+    );
+  }
+
+  if (network === 'telegram') {
+    const borderRadius = getBorderRadius(rounded);
+
+    return (
+      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.12rem] w-[16px] h-[16px]' : 'w-[50px] h-[50px]', rounded.includes("color") ? 'bg-gradient-to-br from-card-bg-light to-card-bg-dark' : 'bg-[#32A5D8]')} >
+        <Image src="/tele.png" color="white" width={props.edit ? 16 : 28} height={props.edit ? 16 : 28} className={props.edit ? 'text-white/75' : 'mr-1 text-white'} alt='Discord Logo' />
+      </div>
+    );
+  }
+
+  if (network === 'applemusic') {
+    const borderRadius = getBorderRadius(rounded);
+
+    return (
+      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.12rem] w-[16px] h-[16px]' : 'w-[50px] h-[50px]', rounded.includes("color") ? 'bg-gradient-to-br from-card-bg-light to-card-bg-dark' : 'bg-gradient-to-b from-[#F3586F] to-[#F4273D]')} >
+        <Image src="/am.png" color="white" width={props.edit ? 12 : 22} height={props.edit ? 12 : 20} className={props.edit ? 'text-white/75' : 'mr-1 text-white'} alt='Discord Logo' />
       </div>
     );
   }

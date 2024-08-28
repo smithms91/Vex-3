@@ -61,6 +61,12 @@ body {
     --ring: 222.2 84% 4.9%;
 
     --radius: 0.5rem;
+
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
   }
 
   [data-theme='red'] {
@@ -72,7 +78,11 @@ body {
     --background: 0 0% 100%;
     --foreground: 0 0% 100%;
 
-
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
   }
 
   [data-theme='orange'] {
@@ -84,6 +94,11 @@ body {
     --background: 169 65% 3.84%;
     --foreground: 169 10% 97.4%;
 
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
   }
 
   [data-theme='yellow'] {
@@ -96,6 +111,11 @@ body {
     --background: 0 65% 3.76%;
     --foreground: 0 10% 97.35%;
 
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
   }
 
   [data-theme='green'] {
@@ -108,6 +128,11 @@ body {
     --background: 0 65% 3.76%;
     --foreground: 0 10% 97.35%;
 
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
   }
 
   [data-theme='blue'] {
@@ -120,6 +145,11 @@ body {
     --background: 0 65% 3.76%;
     --foreground: 0 10% 97.35%;
 
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
   }
 
   [data-theme='indigo'] {
@@ -132,6 +162,11 @@ body {
     --background: 0 65% 3.76%;
     --foreground: 0 10% 97.35%;
 
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
   }
 
   [data-theme='violet'] {
@@ -144,7 +179,11 @@ body {
     --background: 0 65% 3.76%;
     --foreground: 0 10% 97.35%;
 
-
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
   }
 
   [data-theme='gray'] {
@@ -156,6 +195,12 @@ body {
 
     --background: 0 65% 3.76%;
     --foreground: 0 10% 97.35%;
+
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
   }
 
   [data-theme='roseGold'] {
@@ -169,6 +214,12 @@ body {
 
     --background: 0 65% 3.76%;
     --foreground: 0 10% 97.35%;
+
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
   }
 
   [data-theme='teal'] {
@@ -182,6 +233,12 @@ body {
 
     --background: 0 65% 3.76%;
     --foreground: 0 10% 97.35%;
+
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
   }
 
   [data-theme='midnightPurple'] {
@@ -195,6 +252,12 @@ body {
 
     --background: 0 65% 3.76%;
     --foreground: 0 10% 97.35%;
+
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
   }
 
   [data-theme='champagne'] {
@@ -208,6 +271,12 @@ body {
 
     --background: 0 65% 3.76%;
     --foreground: 0 10% 97.35%;
+
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
   }
 
   [data-theme='emerald'] {
@@ -221,5 +290,11 @@ body {
 
     --background: 0 65% 3.76%;
     --foreground: 0 10% 97.35%;
+
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
   }
 }

@@ -55,8 +55,7 @@ const EditPictureModal = ({ closeModal, selectedFile, selectedFileUrl, setSelect
 
   return (
     <div
-      className="relative z-40"
-      aria-labelledby="crop-image-dialog"
+      className="relative z-50"
       role="dialog"
       aria-modal="true"
     >
@@ -95,7 +94,7 @@ const EditPictureModal = ({ closeModal, selectedFile, selectedFileUrl, setSelect
           </div>
         </div>
       </div>
-    </div >
+    </div>
   )
 }
 

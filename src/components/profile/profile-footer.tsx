@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { use, useState } from "react";
 import Image from "next/image";
 import { TrendingUp } from "lucide-react";
 import StyleThemeModal from "../modals/style-theme-modal";
@@ -8,6 +8,8 @@ import { cn } from "@/lib/utils";
 import { useThemeColor } from "../context/theme-color-provider";
 import { usePreviewMode } from "../context/preview-mode-provider";
 import { User } from "@/types";
+import PremiumModal from "@/components/modals/premium-modal";
+import { useRouter } from "next/navigation";
 
 type Props = {
   user: User;
@@ -16,8 +18,18 @@ type Props = {
 const ProfileFooter = ({ user }: Props) => {
   const { color } = useThemeColor();
   const { preview } = usePreviewMode();
+  const router = useRouter();
 
-  if (preview) return null;
+  const [isPremiumModalOpen, setIsPremiumModalOpen] = useState(false);
+
+  const handleOpenPremium = () => {
+    if (user.premium) return router.push("/account/insights");
+    setIsPremiumModalOpen(true);
+  };
+
+  const handleClosePremium = () => {
+    setIsPremiumModalOpen(false);
+  };
 
   return (
     <footer
@@ -27,7 +39,7 @@ const ProfileFooter = ({ user }: Props) => {
         color === "black" && "bg-black/95",
       )}
     >
-      <div className="flex flex-col items-center">
+      <div onClick={handleOpenPremium} className="flex flex-col items-center">
         <TrendingUp size={22} color={color === "light" ? "black" : "white"} />
         <p
           className={cn(
@@ -46,6 +58,7 @@ const ProfileFooter = ({ user }: Props) => {
         height={22}
       />
       <StyleThemeModal user={user} />
+      {isPremiumModalOpen && <PremiumModal onClose={handleClosePremium} />}
     </footer>
   );
 };

@@ -87,7 +87,7 @@ const AddSocialForm = ({ network }: Props) => {
                 <div className="flex items-center">
                   <CustomSocialIcon edit="true" size="16" network={network} />
                   <p className="ml-2">
-                    {network.charAt(0).toUpperCase() + network.slice(1)}
+                    {name}
                   </p>
                 </div>
                 <TooltipProvider>
