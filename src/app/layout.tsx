@@ -13,6 +13,12 @@ const kanit = Kanit({ weight: ['400', '500', '600'], subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Vex 3.0 | The Future of Business Cards",
   description: "The Future of Business Cards",
+  openGraph: {
+    title: "Vex 3.0 | The Future of Business Cards",
+    description: "The Future of Business Cards",
+    type: "website",
+    url: "https://vex.cards",
+  },
 };
 
 export default async function RootLayout({
