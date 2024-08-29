@@ -1,6 +1,6 @@
 "use client";
 
-import React, { use, useState } from "react";
+import React from "react";
 import Image from "next/image";
 import { TrendingUp } from "lucide-react";
 import StyleThemeModal from "../modals/style-theme-modal";
@@ -8,8 +8,9 @@ import { cn } from "@/lib/utils";
 import { useThemeColor } from "../context/theme-color-provider";
 import { usePreviewMode } from "../context/preview-mode-provider";
 import { User } from "@/types";
-import PremiumModal from "@/components/modals/premium-modal";
 import { useRouter } from "next/navigation";
+import PremiumModal from "../modals/premium-modal";
+import LinkParam from "../link-param";
 
 type Props = {
   user: User;
@@ -17,19 +18,19 @@ type Props = {
 
 const ProfileFooter = ({ user }: Props) => {
   const { color } = useThemeColor();
-  const { preview } = usePreviewMode();
-  const router = useRouter();
+  // const { preview } = usePreviewMode();
+  // const [isPremiumModalOpen, setIsPremiumModalOpen] = React.useState(false);
 
-  const [isPremiumModalOpen, setIsPremiumModalOpen] = useState(false);
+  // const router = useRouter();
 
-  const handleOpenPremium = () => {
-    if (user.premium) return router.push("/account/insights");
-    setIsPremiumModalOpen(true);
-  };
 
-  const handleClosePremium = () => {
-    setIsPremiumModalOpen(false);
-  };
+  // const handleOpenPremium = () => {
+  //   if (user.premium) {
+  //     router.push('/account/insights');
+  //   } else {
+  //     setIsPremiumModalOpen(true);
+  //   }
+  // };
 
   return (
     <footer
@@ -39,7 +40,8 @@ const ProfileFooter = ({ user }: Props) => {
         color === "black" && "bg-black/95",
       )}
     >
-      <div onClick={handleOpenPremium} className="flex flex-col items-center">
+      {/* <div onClick={handleOpenPremium} className="flex flex-col items-center"> */}
+      <LinkParam href={`${user.premium ? '/account/insights' : '?premium'}`} className="flex flex-col items-center">
         <TrendingUp size={22} color={color === "light" ? "black" : "white"} />
         <p
           className={cn(
@@ -49,7 +51,8 @@ const ProfileFooter = ({ user }: Props) => {
         >
           Insights
         </p>
-      </div>
+      </LinkParam>
+      {/* </div> */}
       <Image
         src={user.profile_picture || "/profile.jpg"}
         className="rounded-full border-2 border-card-bg-light p-1 box-content w-9"
@@ -58,7 +61,7 @@ const ProfileFooter = ({ user }: Props) => {
         height={22}
       />
       <StyleThemeModal user={user} />
-      {isPremiumModalOpen && <PremiumModal onClose={handleClosePremium} />}
+      {/* {isPremiumModalOpen && <PremiumModal onClose={() => setIsPremiumModalOpen(false)} />} */}
     </footer>
   );
 };

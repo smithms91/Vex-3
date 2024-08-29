@@ -11,6 +11,7 @@ import React from 'react'
 import IconBorderProvider from '@/components/context/icon-border-provider';
 import ThemeColorProvider from '@/components/context/theme-color-provider';
 import Container from '@/components/container';
+import Premium from '@/components/modals/premium';
 
 type Props = {}
 
@@ -62,6 +63,7 @@ export default async function AccountLayout({
           <ThemeColorProvider colorProp={themeColor}>
             <Container>
               {children}
+              <Premium />
             </Container>
           </ThemeColorProvider>
         </IconBorderProvider>

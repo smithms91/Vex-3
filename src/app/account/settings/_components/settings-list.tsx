@@ -8,6 +8,7 @@ import { signOut } from '@/queries'
 import { Instagram, ShieldQuestion, Store, TrendingUp, UserRoundCog } from 'lucide-react'
 import { User } from '@/types';
 import PremiumModal from '@/components/modals/premium-modal';
+import LinkParam from '@/components/link-param';
 
 type Props = {
   user: User
@@ -19,30 +20,30 @@ const SettingsList = ({ user, themeColor }: Props) => {
   const [isPremiumModalOpen, setIsPremiumModalOpen] = useState(false);
 
   const handleOpenPremium = () => {
-    if (user.premium) return router.push("/account/insights");
-    setIsPremiumModalOpen(true);
-  };
-
-  const handleClosePremium = () => {
-    setIsPremiumModalOpen(false);
+    if (user.premium) {
+      router.push('/account/insights');
+    } else {
+      // setIsPremiumModalOpen(true);
+      router.push('?premium', { scroll: false },);
+    }
   };
 
   return (
     <>
-
-      {isPremiumModalOpen && <div className='z-50'><PremiumModal onClose={handleClosePremium} /></div>}
+      {isPremiumModalOpen && <div className='z-50'><PremiumModal onClose={() => setIsPremiumModalOpen(false)} /></div>}
 
       <section className='flex flex-col gap-y-2 w-full p-4 z-10'>
-
-        <Button onClick={() => handleOpenPremium()} className={cn('flex justify-start bg-slate-600/50 inset-4 w-full py-9 z-50', themeColor === 'light' ? 'text-black' : 'text-white')}>
-          <div className='flex items-center justify-center rounded-full box-content bg-blue-600/20 p-2'>
-            <TrendingUp size={18} color='white' />
-          </div>
-          <div className='flex flex-col items-start ml-4'>
-            <h1 className='text-md'>Profile Insights</h1>
-            <p className='text-xs font-thin'>View your latest insights &amp; analytics</p>
-          </div>
-        </Button>
+        <LinkParam href={`${!user.premium ? '/account/insights' : '?premium'}`}>
+          <Button className={cn('flex justify-start bg-slate-600/50 inset-4 w-full py-9 z-50', themeColor === 'light' ? 'text-black' : 'text-white')}>
+            <div className='flex items-center justify-center rounded-full box-content bg-blue-600/20 p-2'>
+              <TrendingUp size={18} color='white' />
+            </div>
+            <div className='flex flex-col items-start ml-4'>
+              <h1 className='text-md'>Profile Insights</h1>
+              <p className='text-xs font-thin'>View your latest insights &amp; analytics</p>
+            </div>
+          </Button>
+        </LinkParam>
         <Button onClick={() => router.push('/account/settings/user-settings')} className={cn('flex justify-start bg-slate-600/50 inset-4 w-full py-9 z-50', themeColor === 'light' ? 'text-black' : 'text-white')}>
           <div className='flex items-center justify-center rounded-full box-content bg-purple-600/20 p-2'>
             <UserRoundCog size={18} color="white" />

@@ -13,9 +13,9 @@ This project uses React and NextJS to handle routing and the front end UI, and i
 # Todo
 
 - [ ] Finish Stripe Integration. *2
-- [ ] Insights link in footer should bring up a "Premium Only" modal. Make a "Premium Only" modal because other things will use it.
+- [ ] (WIP) Premium Only Modal. *3
 - [ ] If user is premium and using premium colors, when premium is disabled change their color to a default color.
-- [ ] Fix social icons that are images with a background color. Need SVG or pure icon.
+- [ ] (Mostly done) Fix social icons that are images with a background color. Need SVG or pure icon.
 
 
 
@@ -27,4 +27,8 @@ This project uses React and NextJS to handle routing and the front end UI, and i
 - Fix different prices on paid section and figure out the free 7 day trial
 - Figure out how to actually add and retrieve metadata for subscription. (add user ID to subscription object)
 - Get better and actually understand how stripe works. 
+
+*3
+- Decide if using the param method for premium modal (less code but runs slightly slower, but possibly more best practice?)
+- Design modal
 

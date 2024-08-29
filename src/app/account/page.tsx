@@ -10,6 +10,9 @@ import ProfileSocials from "@/components/profile/profile-socials";
 import PreviewModeProvider from "@/components/context/preview-mode-provider";
 import PaidFooter from "../[username]/_components/paid-footer";
 import { User } from "@/types";
+import ParamModal from "@/components/param-modal";
+import PremiumModal from "@/components/modals/premium-modal";
+import Premium from "@/components/modals/premium";
 
 const AccountPage = async () => {
   const supabase = createClient();
@@ -34,15 +37,15 @@ const AccountPage = async () => {
   let themeColor = userData.theme_color;
 
   return (
-    <main className="z-50 min-h-screen max-w-[450px]">
+    <section className="z-50 min-h-screen max-w-[450px]">
       <PreviewModeProvider>
-        <section className="p-2 xs:p-4 sm:p-6 max-w-[450px] mx-auto flex flex-col items-center">
+        <div className="p-2 xs:p-4 sm:p-6 max-w-[450px] mx-auto flex flex-col items-center">
           <AccountHeader />
           <ProfileCard email={data.user.email!} user={userData} />
           <EditProfileButton user={userData} />
           <ProfileSocials socials={socials} />
           <ProfileFooter user={userData} />
-        </section>
+        </div>
         <PaidFooter darkText={themeColor == "light"} user={userData} />
         <SparklesCore
           id="tsparticlesfullpage"
@@ -54,7 +57,7 @@ const AccountPage = async () => {
           particleColor={themeColor === "light" ? "#000000" : "#FFFFFF"}
         />
       </PreviewModeProvider>
-    </main>
+    </section>
   );
 };
 
