@@ -10,9 +10,6 @@ import ProfileSocials from "@/components/profile/profile-socials";
 import PreviewModeProvider from "@/components/context/preview-mode-provider";
 import PaidFooter from "../[username]/_components/paid-footer";
 import { User } from "@/types";
-import ParamModal from "@/components/param-modal";
-import PremiumModal from "@/components/modals/premium-modal";
-import Premium from "@/components/modals/premium";
 
 const AccountPage = async () => {
   const supabase = createClient();

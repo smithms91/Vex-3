@@ -33,7 +33,7 @@ const SettingsList = ({ user, themeColor }: Props) => {
       {isPremiumModalOpen && <div className='z-50'><PremiumModal onClose={() => setIsPremiumModalOpen(false)} /></div>}
 
       <section className='flex flex-col gap-y-2 w-full p-4 z-10'>
-        <LinkParam href={`${!user.premium ? '/account/insights' : '?premium'}`}>
+        <LinkParam href={`${user.premium ? '/account/insights' : '?premium'}`}>
           <Button className={cn('flex justify-start bg-slate-600/50 inset-4 w-full py-9 z-50', themeColor === 'light' ? 'text-black' : 'text-white')}>
             <div className='flex items-center justify-center rounded-full box-content bg-blue-600/20 p-2'>
               <TrendingUp size={18} color='white' />

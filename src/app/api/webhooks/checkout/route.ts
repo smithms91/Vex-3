@@ -30,7 +30,8 @@ export async function POST(req: Request) {
 
   if (event.type === "checkout.session.completed") {
     // Retrieve the subscription details from Stripe.
-    console.log('checkout session completed', event)
+    const subscription = await stripe.subscriptions.retrieve(session.subscription as string);
+    console.log('sub', subscription)
     console.log('email', session.customer_email)
     console.log('id', session.metadata?.user_id)
 
@@ -39,11 +40,11 @@ export async function POST(req: Request) {
       .update({
         stripe_subscription_id: session.subscription,
         stripe_customer_id: session.customer,
-        stripe_current_period_end: new Date(session.expires_at * 1000),
         premium: true
       })
       .eq("email", session.customer_email)
 
+    console.log('session', session)
     console.log('reslol', response)
   }
 

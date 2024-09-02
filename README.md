@@ -16,7 +16,8 @@ This project uses React and NextJS to handle routing and the front end UI, and i
 - [ ] (WIP) Premium Only Modal. *3
 - [ ] If user is premium and using premium colors, when premium is disabled change their color to a default color.
 - [ ] (Mostly done) Fix social icons that are images with a background color. Need SVG or pure icon.
-
+- [ ] Profile Footer needs higher z-index, underneath Vex footer
+- [ ] Back button from insights if coming from account page should not take you to settings page, instead accounts page. Same from settings page.
 
 
 *2
