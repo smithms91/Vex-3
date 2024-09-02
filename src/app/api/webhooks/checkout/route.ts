@@ -33,13 +33,14 @@ export async function POST(req: Request) {
     const subscription = await stripe.subscriptions.retrieve(session.subscription as string);
     console.log('sub', subscription)
     console.log('email', session.customer_email)
-    console.log('id', session.metadata?.user_id)
+    console.log('user_id', subscription.metadata.user_id)
 
     const response = await supabase
       .from("profiles")
       .update({
         stripe_subscription_id: session.subscription,
         stripe_customer_id: session.customer,
+        stripe_current_period_end: subscription.current_period_end,
         premium: true
       })
       .eq("email", session.customer_email)
