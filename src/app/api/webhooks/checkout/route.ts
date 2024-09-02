@@ -40,7 +40,7 @@ export async function POST(req: Request) {
       .update({
         stripe_subscription_id: session.subscription,
         stripe_customer_id: session.customer,
-        stripe_current_period_end: subscription.current_period_end,
+        stripe_current_period_end: new Date(subscription.current_period_end * 1000),
         premium: true
       })
       .eq("email", session.customer_email)
