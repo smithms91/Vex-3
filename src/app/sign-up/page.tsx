@@ -5,7 +5,7 @@ import Link from "next/link";
 export default async function SignUpPage({
   searchParams,
 }: {
-  searchParams: { error: string };
+  searchParams: { message: string };
 }) {
   return (
     <section className="min-h-screen max-w-[450px] mx-auto flex flex-col items-center justify-center bg-gradient-to-tl from-dark-from to-dark-to">
@@ -14,7 +14,7 @@ export default async function SignUpPage({
         <h1 className="absolute top-0 left-0 right-0 text-4xl mb-10 text-white font-bold tracking-widest blur-md opacity-50">VEX</h1>
       </Link>
       <SignUpForm />
-      <p>{searchParams.error}</p>
+      <p className="text-white text-center text-sm mt-4">{searchParams.message}</p>
       <Link href='/sign-in' className="absolute bottom-10 text-white z-10">Sign In</Link>
       <SparklesCore id="tsparticlesfullpage"
         background="transparent"

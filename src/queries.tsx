@@ -65,6 +65,7 @@ export const signUp = async (values: z.infer<typeof SignInSchema>) => {
     .eq('email', email)
     .single();
 
+  // AI gave me this, no clue what error code PGRST116 is
   if (checkError && checkError.code !== 'PGRST116') {
     console.error('Error checking existing user:', checkError);
     return redirect("/sign-up?message=An error occurred. Please try again.");
@@ -75,7 +76,7 @@ export const signUp = async (values: z.infer<typeof SignInSchema>) => {
     const { data, error } = await supabase.auth.signInWithOtp({
       email: email,
       options: {
-        emailRedirectTo: `${window.location.origin}/auth/callback`,
+        emailRedirectTo: `https://vex.cards/account`,
       },
     });
 
@@ -96,10 +97,7 @@ export const signUp = async (values: z.infer<typeof SignInSchema>) => {
     password,
   });
 
-  console.log('Signup response:', { data, error });
-
   if (error) {
-    console.error('Signup error:', error);
     if (error.message.includes('Email rate limit exceeded')) {
       return redirect("/sign-up?message=Too many attempts. Please try again later.");
     }
@@ -107,7 +105,6 @@ export const signUp = async (values: z.infer<typeof SignInSchema>) => {
   }
 
   if (!data.user) {
-    console.log('No user data returned');
     return redirect("/sign-up?message=Could not create user");
   }
 
