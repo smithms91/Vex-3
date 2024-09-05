@@ -35,14 +35,14 @@ export const allSocials = [
   {
     title: "Website",
     network: "website",
-    href: "http://",
+    href: "https://",
     tooltip: 'You only need to provide "www.YourWebsite.com". No need for http.',
     type: "recommended"
   },
   {
     title: "Website",
     network: "website",
-    href: "http://",
+    href: "https://",
     tooltip: 'You only need to provide "www.YourWebsite.com". No need for http.',
     type: "contact"
   },
@@ -119,70 +119,70 @@ export const allSocials = [
   {
     title: "Threads",
     network: "threads",
-    href: "",
+    href: "https://www.threads.net/@",
     tooltip: "Threads is a new messaging app by Instagram. Add your username here.",
     type: "social"
   },
   {
     title: "Pinterest",
     network: "pinterest",
-    href: "",
+    href: "https://www.pinterest.com/",
     tooltip: "",
     type: "social"
   },
   {
     title: "Vimeo",
     network: "vimeo",
-    href: "",
+    href: "https://www.vimeo.com/",
     tooltip: "",
     type: "social"
   },
   {
     title: "Clubhouse",
     network: "clubhouse",
-    href: "",
+    href: "https://www.clubhouse.com/@",
     tooltip: "",
     type: "social"
   },
   {
     title: "Github",
     network: "github",
-    href: "",
+    href: "https://github.com/",
     tooltip: "Threads is a new messaging app by Instagram. Add your username here.",
     type: "productivity"
   },
   {
     title: "Discord",
     network: "discord",
-    href: "",
+    href: "https://discord.gg/",
     tooltip: "Open Discord and go to the Discord server you'd like to share. Press on the menu icon in the top left and tap 'Invite'. Then tap the gear icon and set the expire after to 'never'. Press 'Close' then 'Share Link'. Add the link here.",
     type: "contact"
   },
   {
     title: "Spotify",
     network: "spotify",
-    href: "",
+    href: "https://open.spotify.com/user/",
     tooltip: "Threads is a new messaging app by Instagram. Add your username here.",
     type: "music"
   },
   {
     title: "SoundCloud",
     network: "soundcloud",
-    href: "",
+    href: "https://soundcloud.com/",
     tooltip: "Threads is a new messaging app by Instagram. Add your username here.",
     type: "music"
   },
   {
     title: "Apple Music",
     network: "applemusic",
-    href: "",
+    href: "https://music.apple.com/",
     tooltip: "Threads is a new messaging app by Instagram. Add your username here.",
     type: "music"
   },
   {
     title: "Address",
     network: "address",
-    href: "",
+    href: "https://maps.app.goo.gl/",
     tooltip: "Enter your address here. This will be displayed on your profile.",
     type: "contact"
   },
@@ -196,7 +196,7 @@ export const allSocials = [
   {
     title: "WeChat",
     network: "wechat",
-    href: "",
+    href: "https://weixin.qq.com/",
     tooltip: "Open WeChat and go to the 'Me' tab. Copy the WeChat ID you see at the top.",
     type: "contact"
   },

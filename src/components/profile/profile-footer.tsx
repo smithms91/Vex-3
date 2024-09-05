@@ -18,19 +18,9 @@ type Props = {
 
 const ProfileFooter = ({ user }: Props) => {
   const { color } = useThemeColor();
-  // const { preview } = usePreviewMode();
-  // const [isPremiumModalOpen, setIsPremiumModalOpen] = React.useState(false);
+  const { preview } = usePreviewMode();
 
-  // const router = useRouter();
-
-
-  // const handleOpenPremium = () => {
-  //   if (user.premium) {
-  //     router.push('/account/insights');
-  //   } else {
-  //     setIsPremiumModalOpen(true);
-  //   }
-  // };
+  if (preview) return null;
 
   return (
     <footer
@@ -61,7 +51,6 @@ const ProfileFooter = ({ user }: Props) => {
         height={22}
       />
       <StyleThemeModal user={user} />
-      {/* {isPremiumModalOpen && <PremiumModal onClose={() => setIsPremiumModalOpen(false)} />} */}
     </footer>
   );
 };
