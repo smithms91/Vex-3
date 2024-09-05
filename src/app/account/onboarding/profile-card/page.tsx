@@ -32,7 +32,7 @@ const ProfileCardPage = async (props: Props) => {
   const userData: User = user.data[0]
 
   return (
-    <div className='min-h-screen max-w-[450px] p-6 flex flex-col items-start justify-center bg-gradient-to-tl from-from to-to'>
+    <div className='min-h-screen max-w-[450px] p-6 flex flex-col items-start justify-center bg-gradient-to-tl from-dark-from to-dark-to'>
       <h1 className='mb-4 text-xl text-card-foreground'>Lets build your profile card, {userData.username}</h1>
       <ProfileCard email={userData.email!} user={userData} options />
       <SparklesCore id="tsparticlesfullpage"

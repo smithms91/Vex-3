@@ -25,7 +25,7 @@ const OnboardingPage = async (props: Props) => {
   }
 
   return (
-    <main className='min-h-screen text-white max-w-[450px] px-6 text-center flex flex-col items-start justify-center bg-gradient-to-tl from-from to-to'>
+    <main className='min-h-screen text-white max-w-[450px] px-6 text-center flex flex-col items-start justify-center bg-gradient-to-tl from-dark-from to-dark-to'>
       <div className='mb-10 space-y-4 mx-auto'>
         <h1 className='text-start z-10'>Hey, {user.data[0].email}</h1>
         <p className='z-10'>Tell us more about you!</p>

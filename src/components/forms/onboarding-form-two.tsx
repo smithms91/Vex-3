@@ -35,6 +35,7 @@ type Props = {
 const OnboardingFormTwo = ({ user, setFirstName, setLastName, setEmail, setPhoneNumber, setJobTitle, setWebsite, options }: Props) => {
   const router = useRouter()
   const { color, setColor } = useThemeColor();
+  console.log('color', color)
   const form = useForm<z.infer<typeof OnboardingSchemaTwo>>({
     resolver: zodResolver(OnboardingSchemaTwo),
     defaultValues: {

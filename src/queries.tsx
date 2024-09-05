@@ -58,17 +58,57 @@ export const signUp = async (values: z.infer<typeof SignInSchema>) => {
   const { email, password } = values;
   const supabase = createClient();
 
+  // First, check if the user already exists
+  const { data: existingUser, error: checkError } = await supabase
+    .from('profiles')
+    .select('id')
+    .eq('email', email)
+    .single();
+
+  if (checkError && checkError.code !== 'PGRST116') {
+    console.error('Error checking existing user:', checkError);
+    return redirect("/sign-up?message=An error occurred. Please try again.");
+  }
+
+  if (existingUser) {
+    // User exists, send magic link
+    const { data, error } = await supabase.auth.signInWithOtp({
+      email: email,
+      options: {
+        emailRedirectTo: `${window.location.origin}/auth/callback`,
+      },
+    });
+
+    if (error) {
+      console.error('Error sending magic link:', error);
+      if (error.message.includes('Email rate limit exceeded')) {
+        return redirect("/sign-up?message=Too many attempts. Please try again later.");
+      }
+      return redirect("/sign-up?message=Could not send login link. Please try again.");
+    }
+
+    return redirect("/sign-up?message=Check your email for a login link.");
+  }
+
+  // If user doesn't exist, proceed with sign up
   const { data, error } = await supabase.auth.signUp({
     email,
     password,
   });
 
+  console.log('Signup response:', { data, error });
+
   if (error) {
-    return redirect("/sign-up?message=Could not authenticate user");
+    console.error('Signup error:', error);
+    if (error.message.includes('Email rate limit exceeded')) {
+      return redirect("/sign-up?message=Too many attempts. Please try again later.");
+    }
+    return redirect("/sign-up?message=Could not create account. Please try again.");
   }
 
   if (!data.user) {
-    return redirect("/sign-up?message=Could not authenticate user");
+    console.log('No user data returned');
+    return redirect("/sign-up?message=Could not create user");
   }
 
   return redirect("/sign-in?message=Check email for confirmation.");

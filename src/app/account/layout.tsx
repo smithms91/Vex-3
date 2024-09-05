@@ -60,7 +60,7 @@ export default async function AccountLayout({
         enableSystem
       >
         <IconBorderProvider roundedProp={user.data[0].border}>
-          <ThemeColorProvider colorProp={themeColor}>
+          <ThemeColorProvider colorProp={themeColor || 'dark'}>
             <Container>
               {children}
               <Premium />

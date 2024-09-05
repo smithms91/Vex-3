@@ -19,21 +19,14 @@ const PaidSection = ({ userId, userEmail }: Props) => {
   const [active, setActive] = useState(true)
   const [card, setCard] = useState<"annual" | "monthly">('monthly')
 
-  const premiumOptions = [
-    { title: "Annual", price: "$96 year", badge: "1 Week Free Trial", lineThrough: "$120/", month: "8" },
-    { title: "Monthly", price: "Less than $0.30 per day", badge: "1 Week Free Trial", month: "10" }
-  ]
-
   const handleActiveCard = (type: string) => {
     if (type === "annual") {
       setActive(true)
       setCard("annual")
-      console.log(premiumOptions[0])
     }
     if (type === "monthly") {
       setActive(false)
       setCard("monthly")
-      console.log(premiumOptions[1])
     }
   }
 
@@ -44,7 +37,7 @@ const PaidSection = ({ userId, userEmail }: Props) => {
       const session = await stripe.checkout.sessions.create({
         line_items: [
           {
-            price: 'price_1P6ytqKFsfIA5c2Nm5XqgXVq',
+            price: 'price_1PuPQLKFsfIA5c2NKUxh593Q',
             quantity: 1,
           }
         ],
@@ -85,10 +78,10 @@ const PaidSection = ({ userId, userEmail }: Props) => {
 
   return (
     <>
-      <div onClick={() => handleActiveCard("annual")}><PaidCard title="Annual" price=" $96 year" badge='1 Week Free Trial' lineThrough='$120/' month="8" active={active} save={true} /></div>
-      <div onClick={() => handleActiveCard("monthly")}><PaidCard title="Monthly" price="Less than $0.30 per day" badge='1 Week Free Trial' month="10" active={!active} /></div>
+      <div onClick={() => handleActiveCard("annual")}><PaidCard title="Annual" price="$80 year" badge='Save 20% a year' lineThrough='$99/' month="6.67" active={active} save={true} /></div>
+      <div onClick={() => handleActiveCard("monthly")}><PaidCard title="Monthly" price="Less than $0.30 per day" badge='Cancel anytime' month="9.99" active={!active} /></div>
       <div className='mt-auto'>
-        <Button onClick={() => handleStripeCheckout()} className='w-full mt-4 py-7 bg-blue-500 sticky bottom-10 text-md shadow-md hover:bg-blue-400 active:bg-blue-600'>Start Free Trial</Button>
+        <Button onClick={() => handleStripeCheckout()} className='w-full mt-4 py-7 bg-blue-500 sticky bottom-10 text-md shadow-md hover:bg-blue-400 active:bg-blue-600'>Upgrade Now</Button>
         <p className='text-center'>Cancel anytime, Plan renews automatically</p>
       </div>
     </>
