@@ -42,7 +42,7 @@ const InsightsPage = (props: Props) => {
 
   return (
     <main className='min-h-screen z-50 max-w-[450px] mx-auto flex flex-col items-center'>
-      <HeaderBackButton title='Insights' link='account/settings' />
+      <HeaderBackButton title='Insights' link='account' />
       <Card>
         <CardHeader>
           <CardTitle>Profile Visits</CardTitle>

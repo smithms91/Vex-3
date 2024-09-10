@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import React from "react";
 import { Button } from "./ui/button";
 import { usePreviewMode } from "./context/preview-mode-provider";
-import AddContactButton from "@/app/[username]/_components/user-add-contact";
+import AddContactButton from "@/app/[cardId]/_components/user-add-contact";
 import { User } from "@/types";
 
 type Props = {

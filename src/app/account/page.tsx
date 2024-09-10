@@ -8,7 +8,7 @@ import ProfileFooter from "@/components/profile/profile-footer";
 import ProfileCard from "@/components/profile/profile-card";
 import ProfileSocials from "@/components/profile/profile-socials";
 import PreviewModeProvider from "@/components/context/preview-mode-provider";
-import PaidFooter from "../[username]/_components/paid-footer";
+import PaidFooter from "../[cardId]/_components/paid-footer";
 import { User } from "@/types";
 
 const AccountPage = async () => {

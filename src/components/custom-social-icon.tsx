@@ -14,7 +14,6 @@ interface MySocialIconProps {
 
 const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
   const { rounded, setRounded } = useIconBorder();
-
   const getBorderRadius = (rounded: string) => {
     switch (rounded) {
       case 'small':
@@ -33,7 +32,6 @@ const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
 
   if (network === 'phone') {
     const borderRadius = getBorderRadius(rounded);
-    console.log(borderRadius)
     return (
       <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.8rem] w-[25px] h-[25px]', rounded.includes("color") ? 'bg-gradient-to-br from-card-bg-light to-card-bg-dark' : 'bg-green-600')} >
         <Phone size={props.edit ? 16 : 26} className={props.edit ? 'text-black/75' : 'text-white'} />

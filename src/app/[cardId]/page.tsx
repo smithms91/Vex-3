@@ -1,14 +1,14 @@
 import React from 'react'
 import UserCard from './_components/user-card'
-import { getUserId, getUserProfile } from '@/queries'
+import { getUserId, getUserProfile, lookupCardIdReturnUser, lookupUserOrCard } from '@/queries'
 import { redirect } from 'next/navigation'
 import UserSocials from './_components/user-socials'
 import AddContactButton from './_components/user-add-contact'
 import PaidFooter from './_components/paid-footer'
 import { cn } from '@/lib/utils'
 
-const UserProfile = async ({ params }: { params: { username: string } }) => {
-  const user = await getUserProfile(params.username)
+const UserProfile = async ({ params }: { params: { cardId: string } }) => {
+  const user = await lookupUserOrCard(params.cardId)
   const authId = await getUserId()
   let darkText: boolean = false;
 
@@ -21,7 +21,7 @@ const UserProfile = async ({ params }: { params: { username: string } }) => {
   }
 
   // Eventually have to check to see if user is created if this matches a card ID.
-  if (params.username.includes('-')) {
+  if (params.cardId.includes('-')) {
     redirect(`/${user.username}`)
   }
 

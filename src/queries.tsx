@@ -53,6 +53,7 @@ import { decode } from "base64-arraybuffer";
 // updateUserSocials    -> Update all socials
 // deleteSocial         -> Delete a single social object
 // getUserProfile       -> Get a user's profile
+// lookupCardId         -> Lookup a card ID returns associated user profile if exists or null if not
 
 export const signUp = async (values: z.infer<typeof SignInSchema>) => {
   const { email, password } = values;
@@ -988,3 +989,64 @@ export const updatePremiumUser = async (session: Stripe.Checkout.Session) => {
     console.error("Error updating premium user:", error);
   }
 };
+
+export const lookupCardIdReturnUser = async (cardId: string): Promise<User | null> => {
+  const supabase = createClient();
+  // First, get the card and its associated user_id
+  const cardResponse = await supabase
+    .from("cards")
+    .select("user_id")
+    .eq("id", cardId)
+    .single();
+
+  if (!cardResponse.data) return null;
+
+  const userId = cardResponse.data.user_id;
+
+  // Now, lookup the user in the profiles table
+  const userResponse = await supabase
+    .from("profiles")
+    .select()
+    .eq("id", userId)
+    .single();
+
+  if (!userResponse.data) return null;
+
+  return userResponse.data as User;
+}
+
+export const lookupUserOrCard = async (id: string): Promise<User | null> => {
+  const supabase = createClient();
+
+  if (id.includes('-')) {
+    // This is a card_id
+    const cardResponse = await supabase
+      .from("cards")
+      .select("user_id")
+      .eq("id", id)
+      .single();
+
+    if (!cardResponse.data) return null;
+
+    const userResponse = await supabase
+      .from("profiles")
+      .select()
+      .eq("id", cardResponse.data.user_id)
+      .single();
+
+    if (!userResponse.data) return null;
+
+    return userResponse.data as User;
+  } else {
+    // This is a username
+    const userResponse = await supabase
+      .from("profiles")
+      .select()
+      .eq("username", id)
+      .single();
+
+    if (!userResponse.data) return null;
+
+    return userResponse.data as User;
+  }
+}

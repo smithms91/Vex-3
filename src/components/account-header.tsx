@@ -111,9 +111,14 @@ const AccountHeader = () => {
             </DrawerTrigger>
           </div>
         )}
-        <DrawerContent className="px-10 max-w-[450px] mx-auto h-auto">
-          <DrawerClose className="ml-auto">
-            <X className="bg-white shadow-lg p-1 box-content rounded-full" />
+        <DrawerContent className={cn(
+          "px-10 max-w-[450px] mx-auto h-auto border-0",
+          themeColor.color === "light" ? "bg-white" :
+            themeColor.color === "dark" ? "bg-gray-800 text-white" :
+              themeColor.color === "black" ? "bg-black text-white" : ""
+        )}>
+          <DrawerClose className={cn("ml-auto shadow-lg p-1 box-content rounded-full", themeColor.color === "light" ? "border border-black" : "border border-white")}>
+            <X />
           </DrawerClose>
           <h1 className="mb-2 text-center text-2xl">Copy or Share</h1>
           <div className="relative px-4 pt-4 max-w-[300px] mx-auto w-[250px] bg-gray-100 border-2 shadow-inner">
@@ -141,13 +146,23 @@ const AccountHeader = () => {
           <div className="w-full flex items-center justify-between my-8">
             <Button
               onClick={() => handleCopyClick()}
-              className="bg-black text-white py-6 px-10"
+              className={cn(
+                "text-white py-6 px-10",
+                themeColor.color === "light" ? "bg-black/10 text-black" :
+                  themeColor.color === "dark" ? "bg-black/50" :
+                    themeColor.color === "black" ? "bg-white/10 border" : ""
+              )}
             >
               Copy Code
             </Button>
             <Button
               onClick={() => handleShareClick()}
-              className="bg-black text-white py-6 px-10"
+              className={cn(
+                "text-white py-6 px-10",
+                themeColor.color === "light" ? "bg-black/10 text-black" :
+                  themeColor.color === "dark" ? "bg-black/50" :
+                    themeColor.color === "black" ? "bg-white/10 border" : ""
+              )}
             >
               Share
             </Button>

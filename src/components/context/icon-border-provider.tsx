@@ -3,9 +3,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import { createContext } from "react";
 
-interface IconBorderProviderProps {
+export interface IconBorderProviderProps {
   children: React.ReactNode;
-  roundedProp?: 'small' | 'large' | 'full' | 'color_small' | 'color_large' | 'color_full';
+  roundedProp?: 'small' | 'large' | 'full' | 'color_small' | 'color_large' | 'color_full' | undefined;
 }
 
 type IconBorderContextType = {

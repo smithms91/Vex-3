@@ -13,7 +13,6 @@ type Props = {
 }
 
 const UserSocials = ({ user, darkText }: Props) => {
-  console.log(darkText)
   return (
     <section className='w-full mt-4 z-50'>
       {user.socials && user.socials.length > 0 &&
