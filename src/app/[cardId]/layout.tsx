@@ -44,13 +44,6 @@ const UserProfileLayout = async ({ children, params }: Props) => {
           {children}
         </IconBorderProvider>
       </ThemeProvider>
-      {/* <SparklesCore id="tsparticlesfullpage"
-        background="transparent"
-        minSize={0.6}
-        maxSize={1.4}
-        particleDensity={100}
-        className="w-full h-full absolute top-0 left-0 z-0"
-        particleColor={darkText ? '#000000' : '#FFFFFF'} /> */}
     </main>
   )
 }

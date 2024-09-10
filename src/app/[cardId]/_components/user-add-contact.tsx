@@ -34,7 +34,7 @@ const AddContactButton = ({ user }: Props) => {
   };
   return (
     <Button
-      className="w-full py-7 z-10 -my-2 border-b-2 border-card-bg-light cursor-pointer text-md bg-card-bg-dark hover:bg-card-bg-light"
+      className="w-full py-7 z-50 -my-2 border-b-2 border-card-bg-light cursor-pointer text-md bg-card-bg-dark hover:bg-card-bg-light"
       style={{ backgroundColor: profileColor }}
       onClick={() => handleButtonClick()}
     >

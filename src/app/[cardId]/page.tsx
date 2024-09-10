@@ -6,6 +6,7 @@ import UserSocials from './_components/user-socials'
 import AddContactButton from './_components/user-add-contact'
 import PaidFooter from './_components/paid-footer'
 import { cn } from '@/lib/utils'
+import { SparklesCore } from '@/components/sparkles'
 
 const UserProfile = async ({ params }: { params: { cardId: string } }) => {
   const user = await lookupUserOrCard(params.cardId)
@@ -32,8 +33,8 @@ const UserProfile = async ({ params }: { params: { cardId: string } }) => {
   }
 
   return (
-    <section className='flex flex-col min-h-screen z-50 w-full'>
-      <section className='p-4 sm:p-8'>
+    <section className='flex flex-col min-h-screen w-full'>
+      <section className='p-4 sm:p-8 z-50'>
         <div className="relative flex items-center justify-center mb-3">
           <h1 className={cn(`absolute text-sm uppercase z-10 drop-shadow-md blur-sm`, user.theme_color === 'light' ? 'text-black' : 'text-white')}>Vex</h1>
           <h1 className={cn(`text-sm uppercase z-10 drop-shadow-md`, user.theme_color === 'light' ? 'text-black' : 'text-white')}>Vex</h1>
@@ -43,6 +44,13 @@ const UserProfile = async ({ params }: { params: { cardId: string } }) => {
         <UserSocials user={user} darkText={darkText} />
       </section>
       <PaidFooter darkText={darkText} user={user} />
+      <SparklesCore id="tsparticlesfullpage"
+        background="transparent"
+        minSize={0.6}
+        maxSize={1.4}
+        particleDensity={100}
+        className="w-full h-full absolute top-0 left-0 z-0"
+        particleColor={darkText ? '#000000' : '#FFFFFF'} />
     </section>
   )
 }
