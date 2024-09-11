@@ -39,9 +39,9 @@ const AccountPage = async () => {
         <div className="p-2 xs:p-4 sm:p-6 max-w-[450px] mx-auto flex flex-col items-center">
           <AccountHeader />
           <ProfileCard email={data.user.email!} />
-          <EditProfileButton user={userData} />
+          <EditProfileButton />
           <ProfileSocials socials={socials} />
-          <ProfileFooter user={userData} />
+          <ProfileFooter />
         </div>
         <PaidFooter />
         <SparklesCore

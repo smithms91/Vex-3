@@ -11,10 +11,12 @@ import { User } from "@/types";
 import { useRouter } from "next/navigation";
 import PremiumModal from "../modals/premium-modal";
 import LinkParam from "../link-param";
+import { useUser } from "../context/user-provider";
 
-type Props = { user: User; };
+type Props = {};
 
-const ProfileFooter = ({ user }: Props) => {
+const ProfileFooter = ({ }: Props) => {
+  const user = useUser();
   const { color } = useThemeColor();
   const { preview } = usePreviewMode();
 
