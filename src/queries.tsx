@@ -133,11 +133,16 @@ export const signUpWithCard = async (values: z.infer<typeof SignInSchema>, cardI
   }
 
   console.log("data.user.id", data.user.id)
-  // Update the card table with the new user ID
-  const { error: updateError } = await supabase
-    .from('cards')
-    .update({ user_id: data.user.id })
-    .eq('id', cardId);
+  // // Update the card table with the new user ID
+  // const { error: updateError } = await supabase
+  //   .from('cards')
+  //   .update({ user_id: data.user.id })
+  //   .eq('id', cardId);
+
+  const { error: updateError } = await supabase.rpc('update_card_user', {
+    p_card_id: cardId,
+    p_user_id: data.user.id
+  });
 
   if (updateError) {
     console.error("Error updating card:", updateError);
