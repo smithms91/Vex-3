@@ -39,7 +39,6 @@ const SetupPage = async () => {
       <HeaderBackButton title="Setup" link="account" />
       <ProfileCard
         email={data.user.email!}
-        user={userData}
         options
         className="px-4 relative"
       />
