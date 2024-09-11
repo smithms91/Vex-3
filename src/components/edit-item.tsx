@@ -1,7 +1,7 @@
 import { Social } from "@/types";
 import { Reorder, useDragControls, useMotionValue } from "framer-motion";
 import React from "react";
-import CustomSocialIcon from "./custom-social-icon";
+import MySocialIcon from "./custom-social-icon";
 import { cn } from "@/lib/utils";
 import { ArrowUpDown, Grip, Pencil } from "lucide-react";
 import { useThemeColor } from "./context/theme-color-provider";
@@ -31,7 +31,7 @@ const EditItem = ({ item }: Props) => {
       style={{ boxShadow, y }}
     >
       <EditReorderIcon dragControls={dragControls} />
-      <CustomSocialIcon network={item.network} />
+      <MySocialIcon network={item.network} />
       <div className="ml-4">
         <p className="text-lg">
           {item.title !== ""

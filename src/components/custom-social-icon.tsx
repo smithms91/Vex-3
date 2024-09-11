@@ -6,14 +6,21 @@ import { Chrome, Facebook, Instagram, Linkedin, LocateIcon, Mail, MapPin, Phone,
 import { cn } from '@/lib/utils';
 import { useIconBorder } from './context/icon-border-provider';
 import Image from 'next/image';
+import { profileColors } from '@/constants';
+import { User } from '@/types';
 
 interface MySocialIconProps {
+  user?: User;
   network: string;
   [key: string]: any;
 }
 
-const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
+const MySocialIcon: React.FC<MySocialIconProps> = ({ user, network, ...props }) => {
   const { rounded, setRounded } = useIconBorder();
+  const profileColor = profileColors.find(
+    (color) => color.color === user?.profile_color
+  )?.css || 'bg-gradient-to-br from-card-bg-light to-card-bg-dark';
+
   const getBorderRadius = (rounded: string) => {
     switch (rounded) {
       case 'small':
@@ -33,7 +40,7 @@ const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
   if (network === 'phone') {
     const borderRadius = getBorderRadius(rounded);
     return (
-      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.8rem] w-[25px] h-[25px]', rounded.includes("color") ? 'bg-gradient-to-br from-card-bg-light to-card-bg-dark' : 'bg-green-600')} >
+      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.8rem] w-[25px] h-[25px]', rounded.includes("color") ? profileColor : 'bg-green-600')} >
         <Phone size={props.edit ? 16 : 26} className={props.edit ? 'text-black/75' : 'text-white'} />
       </div>
     );
@@ -43,7 +50,7 @@ const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
     const borderRadius = getBorderRadius(rounded);
 
     return (
-      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.7rem] w-[28px] h-[28px]', rounded.includes("color") ? 'bg-gradient-to-br from-card-bg-light to-card-bg-dark' : 'bg-blue-400')} >
+      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.7rem] w-[28px] h-[28px]', rounded.includes("color") ? profileColor : 'bg-blue-400')} >
         <Chrome size={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} />
       </div>
     );
@@ -53,7 +60,7 @@ const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
     const borderRadius = getBorderRadius(rounded);
 
     return (
-      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.7rem] w-[28px] h-[28px]', rounded.includes("color") ? 'bg-gradient-to-br from-card-bg-light to-card-bg-dark' : 'bg-gray-600')} >
+      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.7rem] w-[28px] h-[28px]', rounded.includes("color") ? profileColor : 'bg-gray-600')} >
         <Mail size={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} />
       </div>
     );
@@ -63,7 +70,7 @@ const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
     const borderRadius = getBorderRadius(rounded);
 
     return (
-      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.7rem] w-[28px] h-[28px]', rounded.includes("color") ? 'bg-gradient-to-br from-card-bg-light to-card-bg-dark' : 'bg-gradient-to-br from-[#f9ce34] via-[#ee2a7b] to-[#6228d7]')} >
+      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.7rem] w-[28px] h-[28px]', rounded.includes("color") ? profileColor : 'bg-gradient-to-br from-[#f9ce34] via-[#ee2a7b] to-[#6228d7]')} >
         <Instagram size={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} />
       </div>
     );
@@ -73,7 +80,7 @@ const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
     const borderRadius = getBorderRadius(rounded);
 
     return (
-      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.7rem] w-[28px] h-[28px]', rounded.includes("color") ? 'bg-gradient-to-br from-card-bg-light to-card-bg-dark' : 'bg-[#225982]')} >
+      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.7rem] w-[28px] h-[28px]', rounded.includes("color") ? profileColor : 'bg-[#225982]')} >
         <Linkedin size={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} />
       </div>
     );
@@ -83,7 +90,7 @@ const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
     const borderRadius = getBorderRadius(rounded);
 
     return (
-      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.7rem] w-[28px] h-[28px]', rounded.includes("color") ? 'bg-gradient-to-br from-card-bg-light to-card-bg-dark' : 'bg-black')} >
+      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.7rem] w-[28px] h-[28px]', rounded.includes("color") ? profileColor : 'bg-black')} >
         <Image src="/x-white.svg" width={props.edit ? 16 : 36} height={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} alt='X Logo' />
       </div>
     );
@@ -93,7 +100,7 @@ const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
     const borderRadius = getBorderRadius(rounded);
 
     return (
-      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.7rem] w-[28px] h-[28px]', rounded.includes("color") ? 'bg-gradient-to-br from-card-bg-light to-card-bg-dark' : 'bg-[#1877F2]')} >
+      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.7rem] w-[28px] h-[28px]', rounded.includes("color") ? profileColor : 'bg-[#1877F2]')} >
         <Facebook size={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} />
       </div>
     );
@@ -103,7 +110,7 @@ const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
     const borderRadius = getBorderRadius(rounded);
 
     return (
-      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.7rem] w-[28px] h-[28px]', rounded.includes("color") ? 'bg-gradient-to-br from-card-bg-light to-card-bg-dark' : 'bg-red-700')} >
+      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.7rem] w-[28px] h-[28px]', rounded.includes("color") ? profileColor : 'bg-red-700')} >
         {/* <Youtube size={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} /> */}
         <Image src="/youtube-white.svg" width={props.edit ? 16 : 36} height={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} alt='YouTube Logo' />
       </div>
@@ -114,7 +121,7 @@ const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
     const borderRadius = getBorderRadius(rounded);
 
     return (
-      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.7rem] w-[28px] h-[28px]', rounded.includes("color") ? 'bg-gradient-to-br from-card-bg-light to-card-bg-dark' : 'bg-[#FFFC00]')} >
+      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.7rem] w-[28px] h-[28px]', rounded.includes("color") ? profileColor : 'bg-[#FFFC00]')} >
         {/* <Youtube size={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} /> */}
         <Image src="/snapchat.svg" width={props.edit ? 16 : 36} height={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} alt='Snapchat Logo' />
       </div>
@@ -125,7 +132,7 @@ const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
     const borderRadius = getBorderRadius(rounded);
 
     return (
-      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.7rem] w-[28px] h-[28px]', rounded.includes("color") ? 'bg-gradient-to-br from-card-bg-light to-card-bg-dark' : 'bg-black')} >
+      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.7rem] w-[28px] h-[28px]', rounded.includes("color") ? profileColor : 'bg-black')} >
         {/* <Youtube size={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} /> */}
         <Image src="/tiktok.svg" width={props.edit ? 16 : 36} height={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} alt='TikTok Logo' />
       </div>
@@ -136,7 +143,7 @@ const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
     const borderRadius = getBorderRadius(rounded);
 
     return (
-      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.7rem] w-[28px] h-[28px]', rounded.includes("color") ? 'bg-gradient-to-br from-card-bg-light to-card-bg-dark' : 'bg-[#6441a5]')} >
+      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.7rem] w-[28px] h-[28px]', rounded.includes("color") ? profileColor : 'bg-[#6441a5]')} >
         <Image src="/twitch.svg" width={props.edit ? 16 : 36} height={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} alt='Twitch Logo' />
       </div>
     );
@@ -146,7 +153,7 @@ const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
     const borderRadius = getBorderRadius(rounded);
 
     return (
-      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'py-[.7rem] pr-[.8rem] pl-[.6rem] w-[28px] h-[28px]', rounded.includes("color") ? 'bg-gradient-to-br from-card-bg-light to-card-bg-dark' : 'bg-black')} >
+      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'py-[.7rem] pr-[.8rem] pl-[.6rem] w-[28px] h-[28px]', rounded.includes("color") ? profileColor : 'bg-black')} >
         <Image src="/threads.png" width={props.edit ? 16 : 48} height={props.edit ? 16 : 48} className={props.edit ? 'text-white/75' : 'text-white'} alt='Threads Logo' />
       </div>
     );
@@ -156,7 +163,7 @@ const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
     const borderRadius = getBorderRadius(rounded);
 
     return (
-      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.7rem] w-[28px] h-[28px]', rounded.includes("color") ? 'bg-gradient-to-br from-card-bg-light to-card-bg-dark' : 'bg-black')} >
+      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.7rem] w-[28px] h-[28px]', rounded.includes("color") ? profileColor : 'bg-black')} >
         <MapPin size={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} />
       </div>
     );
@@ -166,7 +173,7 @@ const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
     const borderRadius = getBorderRadius(rounded);
 
     return (
-      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.6rem] w-[32px] h-[32px]', rounded.includes("color") ? 'bg-gradient-to-br from-card-bg-light to-card-bg-dark' : 'bg-[#3A76EF]')} >
+      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.6rem] w-[32px] h-[32px]', rounded.includes("color") ? profileColor : 'bg-[#3A76EF]')} >
         <Image src="/signal.png" width={props.edit ? 16 : 26} height={props.edit ? 16 : 26} className={props.edit ? 'text-white/75' : 'text-white'} alt='Signal Logo' />
       </div>
     );
@@ -176,7 +183,7 @@ const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
     const borderRadius = getBorderRadius(rounded);
 
     return (
-      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.45rem] w-[36px] h-[36px]', rounded.includes("color") ? 'bg-gradient-to-br from-card-bg-light to-card-bg-dark' : 'bg-[#008DFF]')} >
+      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.45rem] w-[36px] h-[36px]', rounded.includes("color") ? profileColor : 'bg-[#008DFF]')} >
         <Image src="/venmo.svg" width={props.edit ? 16 : 36} height={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} alt='Venmo Logo' />
       </div>
     );
@@ -186,7 +193,7 @@ const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
     const borderRadius = getBorderRadius(rounded);
 
     return (
-      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.35rem] w-[40px] h-[40px]', rounded.includes("color") ? 'bg-gradient-to-br from-card-bg-light to-card-bg-dark' : 'bg-[#00D836]')} >
+      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.35rem] w-[40px] h-[40px]', rounded.includes("color") ? profileColor : 'bg-[#00D836]')} >
         <Image src="/cashappsvg.png" width={props.edit ? 16 : 40} height={props.edit ? 16 : 40} className={props.edit ? 'text-white/75' : 'text-white'} alt='CashApp Logo' />
       </div>
     );
@@ -196,7 +203,7 @@ const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
     const borderRadius = getBorderRadius(rounded);
 
     return (
-      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.75rem] w-[26px] h-[26px]', rounded.includes("color") ? 'bg-gradient-to-br from-card-bg-light to-card-bg-dark' : 'bg-[#008CFF]')} >
+      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'p-[.75rem] w-[26px] h-[26px]', rounded.includes("color") ? profileColor : 'bg-[#008CFF]')} >
         <Image src="/paypal.svg" width={props.edit ? 16 : 36} height={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} alt='PayPal Logo' />
       </div>
     );
@@ -206,7 +213,7 @@ const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
     const borderRadius = getBorderRadius(rounded);
 
     return (
-      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'w-[50px] h-[50px]', rounded.includes("color") ? 'bg-gradient-to-br from-card-bg-light to-card-bg-dark' : 'bg-[#5865F2]')} >
+      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'w-[50px] h-[50px]', rounded.includes("color") ? profileColor : 'bg-[#5865F2]')} >
         <Image src="/dc.svg" color="white" width={props.edit ? 16 : 30} height={props.edit ? 16 : 30} className={props.edit ? 'text-white/75' : 'text-white'} alt='Discord Logo' />
       </div>
     );
@@ -216,7 +223,7 @@ const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
     const borderRadius = getBorderRadius(rounded);
 
     return (
-      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'w-[50px] h-[50px]', rounded.includes("color") ? 'bg-gradient-to-br from-card-bg-light to-card-bg-dark' : 'bg-black')} >
+      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'w-[50px] h-[50px]', rounded.includes("color") ? profileColor : 'bg-black')} >
         <Image src="/github-mark-white.svg" color="white" width={props.edit ? 16 : 30} height={props.edit ? 16 : 30} className={props.edit ? 'text-white/75' : 'text-white'} alt='Discord Logo' />
       </div>
     );
@@ -226,7 +233,7 @@ const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
     const borderRadius = getBorderRadius(rounded);
 
     return (
-      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'w-[50px] h-[50px]', rounded.includes("color") ? 'bg-gradient-to-br from-card-bg-light to-card-bg-dark' : 'bg-[#1ED760]')} >
+      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'w-[50px] h-[50px]', rounded.includes("color") ? profileColor : 'bg-[#1ED760]')} >
         <Image src="/spotify.png" color="white" width={props.edit ? 16 : 30} height={props.edit ? 16 : 30} className={props.edit ? 'text-white/75' : 'text-white'} alt='Discord Logo' />
       </div>
     );
@@ -236,7 +243,7 @@ const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
     const borderRadius = getBorderRadius(rounded);
 
     return (
-      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'w-[50px] h-[50px]', rounded.includes("color") ? 'bg-gradient-to-br from-card-bg-light to-card-bg-dark' : 'bg-[#FF7100]')} >
+      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'w-[50px] h-[50px]', rounded.includes("color") ? profileColor : 'bg-[#FF7100]')} >
         <Image src="/soundcloud-1.svg" color="white" width={props.edit ? 16 : 36} height={props.edit ? 16 : 36} className={props.edit ? 'text-white/75' : 'text-white'} alt='Discord Logo' />
       </div>
     );
@@ -246,7 +253,7 @@ const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
     const borderRadius = getBorderRadius(rounded);
 
     return (
-      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'w-[50px] h-[50px]', rounded.includes("color") ? 'bg-gradient-to-br from-card-bg-light to-card-bg-dark' : 'bg-[#FF7100]')} >
+      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.2rem] w-[16px] h-[16px]' : 'w-[50px] h-[50px]', rounded.includes("color") ? profileColor : 'bg-[#FF7100]')} >
         <Image src="/whatsapp-com.svg" color="white" width={props.edit ? 16 : 32} height={props.edit ? 16 : 32} className={props.edit ? 'text-white/75' : 'text-white'} alt='Discord Logo' />
       </div>
     );
@@ -256,7 +263,7 @@ const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
     const borderRadius = getBorderRadius(rounded);
 
     return (
-      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.12rem] w-[16px] h-[16px]' : 'w-[50px] h-[50px]', rounded.includes("color") ? 'bg-gradient-to-br from-card-bg-light to-card-bg-dark' : 'bg-[#03D066]')} >
+      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.12rem] w-[16px] h-[16px]' : 'w-[50px] h-[50px]', rounded.includes("color") ? profileColor : 'bg-[#03D066]')} >
         <Image src="/wechat.svg" color="white" width={props.edit ? 16 : 66} height={props.edit ? 16 : 66} className={props.edit ? 'text-white/75' : 'text-white'} alt='Discord Logo' />
       </div>
     );
@@ -266,7 +273,7 @@ const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
     const borderRadius = getBorderRadius(rounded);
 
     return (
-      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.12rem] w-[16px] h-[16px]' : 'w-[50px] h-[50px]', rounded.includes("color") ? 'bg-gradient-to-br from-card-bg-light to-card-bg-dark' : 'bg-[#E72C32]')} >
+      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.12rem] w-[16px] h-[16px]' : 'w-[50px] h-[50px]', rounded.includes("color") ? profileColor : 'bg-[#E72C32]')} >
         <Image src="/pin.png" color="white" width={props.edit ? 16 : 20} height={props.edit ? 16 : 20} className={props.edit ? 'text-white/75' : 'text-white'} alt='Discord Logo' />
       </div>
     );
@@ -276,7 +283,7 @@ const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
     const borderRadius = getBorderRadius(rounded);
 
     return (
-      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.12rem] w-[16px] h-[16px]' : ' w-[50px] h-[50px]', rounded.includes("color") ? 'bg-gradient-to-br from-card-bg-light to-card-bg-dark' : 'bg-[#1AB7EA]')} >
+      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.12rem] w-[16px] h-[16px]' : ' w-[50px] h-[50px]', rounded.includes("color") ? profileColor : 'bg-[#1AB7EA]')} >
         <Image src="/v.svg" color="white" width={props.edit ? 16 : 26} height={props.edit ? 16 : 26} className={props.edit ? 'text-white/75' : 'mr-[.1rem] text-white'} alt='Discord Logo' />
       </div>
     );
@@ -286,7 +293,7 @@ const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
     const borderRadius = getBorderRadius(rounded);
 
     return (
-      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.12rem] w-[16px] h-[16px]' : ' w-[50px] h-[50px]', rounded.includes("color") ? 'bg-gradient-to-br from-card-bg-light to-card-bg-dark' : 'bg-[#FFE450]')} >
+      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.12rem] w-[16px] h-[16px]' : ' w-[50px] h-[50px]', rounded.includes("color") ? profileColor : 'bg-[#FFE450]')} >
         <Image src="/club2.svg" color="white" width={props.edit ? 16 : 32} height={props.edit ? 16 : 32} className={props.edit ? 'text-white/75' : 'mr-[.1rem] text-white'} alt='Discord Logo' />
       </div>
     );
@@ -296,7 +303,7 @@ const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
     const borderRadius = getBorderRadius(rounded);
 
     return (
-      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.12rem] w-[16px] h-[16px]' : 'w-[50px] h-[50px]', rounded.includes("color") ? 'bg-gradient-to-br from-card-bg-light to-card-bg-dark' : 'bg-[#32A5D8]')} >
+      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.12rem] w-[16px] h-[16px]' : 'w-[50px] h-[50px]', rounded.includes("color") ? profileColor : 'bg-[#32A5D8]')} >
         <Image src="/tele.png" color="white" width={props.edit ? 16 : 28} height={props.edit ? 16 : 28} className={props.edit ? 'text-white/75' : 'mr-1 text-white'} alt='Discord Logo' />
       </div>
     );
@@ -306,7 +313,7 @@ const MySocialIcon: React.FC<MySocialIconProps> = ({ network, ...props }) => {
     const borderRadius = getBorderRadius(rounded);
 
     return (
-      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.12rem] w-[16px] h-[16px]' : 'w-[50px] h-[50px]', rounded.includes("color") ? 'bg-gradient-to-br from-card-bg-light to-card-bg-dark' : 'bg-gradient-to-b from-[#F3586F] to-[#F4273D]')} >
+      <div className={cn(`flex items-center justify-center box-content ${borderRadius}`, props.edit ? 'p-[.12rem] w-[16px] h-[16px]' : 'w-[50px] h-[50px]', rounded.includes("color") ? profileColor : 'bg-gradient-to-b from-[#F3586F] to-[#F4273D]')} >
         <Image src="/am.png" color="white" width={props.edit ? 12 : 22} height={props.edit ? 12 : 20} className={props.edit ? 'text-white/75' : 'mr-1 text-white'} alt='Discord Logo' />
       </div>
     );

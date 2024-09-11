@@ -5,6 +5,7 @@ import { User } from "@/types";
 import React from "react";
 import { profileColors } from "@/constants";
 import { useUser } from "@/components/context/user-provider";
+import { cn } from "@/lib/utils";
 
 type Props = {
 };
@@ -14,6 +15,10 @@ const AddContactButton = ({ }: Props) => {
   const profileColor = profileColors.find(
     (color) => color.color === user.profile_color,
   )?.singleValue;
+
+  const borderColor = profileColors.find(
+    (color) => color.color === user.profile_color,
+  )?.lightValue;
 
   const handleButtonClick = () => {
     const vCard = [
@@ -35,8 +40,8 @@ const AddContactButton = ({ }: Props) => {
   };
   return (
     <Button
-      className="w-full py-7 z-50 -my-2 border-b-2 border-card-bg-light cursor-pointer text-md bg-card-bg-dark hover:bg-card-bg-light"
-      style={{ backgroundColor: profileColor }}
+      className={"w-full py-7 z-50 -my-2 cursor-pointer text-md hover:bg-card-bg-light border-b-2"}
+      style={{ backgroundColor: profileColor, borderColor: borderColor }}
       onClick={() => handleButtonClick()}
     >
       Add Contact

@@ -21,7 +21,7 @@ import { Info, Plus } from "lucide-react";
 import { Social } from "@/types";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import CustomSocialIcon from "../custom-social-icon";
+import MySocialIcon from "../custom-social-icon";
 import Link from "next/link";
 import {
   Tooltip,
@@ -104,7 +104,7 @@ const EditSocialForm = ({ social }: Props) => {
             <FormItem>
               <FormLabel className={cn("text-black text-lg flex items-center justify-between", color == "light" ? "text-black" : "text-white")}>
                 <div className="flex items-center">
-                  <CustomSocialIcon
+                  <MySocialIcon
                     edit="true"
                     size="16"
                     network={social.network}
