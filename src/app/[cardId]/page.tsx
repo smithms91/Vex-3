@@ -7,50 +7,20 @@ import AddContactButton from './_components/user-add-contact'
 import PaidFooter from './_components/paid-footer'
 import { cn } from '@/lib/utils'
 import { SparklesCore } from '@/components/sparkles'
+import Link from 'next/link'
+import VexLogo from './_components/vex-logo'
 
 const UserProfile = async ({ params }: { params: { cardId: string } }) => {
-  const user = await lookupUserOrCard(params.cardId)
-  const authId = await getUserId()
-  let darkText: boolean = false;
-
-  if (!user) {
-    redirect('/')
-  }
-
-  if (user.id === authId) {
-    redirect('/account')
-  }
-
-  // Eventually have to check to see if user is created if this matches a card ID.
-  if (params.cardId.includes('-')) {
-    redirect(`/${user.username}`)
-  }
-
-  if (user.direct) redirect(`${user.socials[0].url}${user.socials[0].value}`)
-
-  if (user && user.theme_color === 'light') {
-    darkText = true;
-  }
 
   return (
     <section className='flex flex-col min-h-screen w-full'>
-      <section className='p-4 sm:p-8 z-50'>
-        <div className="relative flex items-center justify-center mb-3">
-          <h1 className={cn(`absolute text-sm uppercase z-10 drop-shadow-md blur-sm`, user.theme_color === 'light' ? 'text-black' : 'text-white')}>Vex</h1>
-          <h1 className={cn(`text-sm uppercase z-10 drop-shadow-md`, user.theme_color === 'light' ? 'text-black' : 'text-white')}>Vex</h1>
-        </div>
-        <UserCard user={user} />
-        <AddContactButton user={user} />
-        <UserSocials user={user} darkText={darkText} />
+      <section className='p-4 sm:p-8 z-50 mb-[100px]'>
+        <VexLogo />
+        <UserCard />
+        <AddContactButton />
+        <UserSocials />
       </section>
-      <PaidFooter darkText={darkText} user={user} />
-      <SparklesCore id="tsparticlesfullpage"
-        background="transparent"
-        minSize={0.6}
-        maxSize={1.4}
-        particleDensity={100}
-        className="w-full h-full absolute top-0 left-0 z-0"
-        particleColor={darkText ? '#000000' : '#FFFFFF'} />
+      <PaidFooter />
     </section>
   )
 }

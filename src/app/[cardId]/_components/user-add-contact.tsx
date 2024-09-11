@@ -4,12 +4,13 @@ import { Button } from "@/components/ui/button";
 import { User } from "@/types";
 import React from "react";
 import { profileColors } from "@/constants";
+import { useUser } from "@/components/context/user-provider";
 
 type Props = {
-  user: User;
 };
 
-const AddContactButton = ({ user }: Props) => {
+const AddContactButton = ({ }: Props) => {
+  const user = useUser();
   const profileColor = profileColors.find(
     (color) => color.color === user.profile_color,
   )?.singleValue;

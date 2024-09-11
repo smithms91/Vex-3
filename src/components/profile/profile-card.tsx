@@ -10,29 +10,29 @@ import { cn } from '@/lib/utils';
 import EditPictureModal from '../modals/edit-picture-modal';
 import { useTheme } from 'next-themes';
 import { User } from '@/types';
+import { useUser } from '../context/user-provider';
 
 type Props = {
-  user: User
   email: string;
   options?: boolean
   className?: string
 }
 
-const ProfileCard = ({ user, email: authEmail, options, className }: Props) => {
-  const userData = user;
+const ProfileCard = ({ email: authEmail, options, className }: Props) => {
+  const user = useUser();
   const { setTheme } = useTheme();
-  const [firstName, setFirstName] = useState(userData.first_name || '')
-  const [lastName, setLastName] = useState(userData.last_name || '')
+  const [firstName, setFirstName] = useState(user.first_name || '')
+  const [lastName, setLastName] = useState(user.last_name || '')
   const [email, setEmail] = useState(authEmail || '')
-  const [phoneNumber, setPhoneNumber] = useState(userData.phone_number || '')
-  const [website, setWebsite] = useState(userData.website || '')
-  const [jobTitle, setJobTitle] = useState(userData.job_title || '')
+  const [phoneNumber, setPhoneNumber] = useState(user.phone_number || '')
+  const [website, setWebsite] = useState(user.website || '')
+  const [jobTitle, setJobTitle] = useState(user.job_title || '')
   const [pictureModalOpen, setPictureModalOpen] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [selectedFileUrl, setSelectedFileUrl] = useState<string | null>(userData.profile_picture || '/profile.jpg');
+  const [selectedFileUrl, setSelectedFileUrl] = useState<string | null>(user.profile_picture || '/profile.jpg');
 
   useEffect(() => {
-    setTheme(userData.profile_color); //set your theme here after component mounts
+    setTheme(user.profile_color); //set your theme here after component mounts
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -59,8 +59,8 @@ const ProfileCard = ({ user, email: authEmail, options, className }: Props) => {
       </section>
       {options &&
         <>
-          <ThemePicker user={userData} />
-          <OnboardingFormTwo options user={userData} setEmail={setEmail} setFirstName={setFirstName} setLastName={setLastName} setPhoneNumber={setPhoneNumber} setWebsite={setWebsite} setJobTitle={setJobTitle} />
+          <ThemePicker user={user} />
+          <OnboardingFormTwo options user={user} setEmail={setEmail} setFirstName={setFirstName} setLastName={setLastName} setPhoneNumber={setPhoneNumber} setWebsite={setWebsite} setJobTitle={setJobTitle} />
         </>
       }
       {pictureModalOpen && <EditPictureModal selectedFile={selectedFile!} selectedFileUrl={selectedFileUrl!} setSelectedFile={setSelectedFile} setSelectedFileUrl={setSelectedFileUrl} closeModal={() => setPictureModalOpen(false)} />}

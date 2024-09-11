@@ -6,13 +6,19 @@ import { User } from '@/types';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import MySocialIcon from '@/components/custom-social-icon';
+import { useUser } from '@/components/context/user-provider';
 
 type Props = {
-  user: User
-  darkText: boolean;
 }
 
-const UserSocials = ({ user, darkText }: Props) => {
+const UserSocials = ({ }: Props) => {
+  const user = useUser();
+  let darkText: boolean = false;
+
+  if (user && user.theme_color === 'light') {
+    darkText = true;
+  }
+
   return (
     <section className='w-full mt-4 z-50'>
       {user.socials && user.socials.length > 0 &&
@@ -25,7 +31,7 @@ const UserSocials = ({ user, darkText }: Props) => {
                 <p className={cn('text-lg', darkText ? 'text-black' : 'text-white')}>{social.title !== '' ? social.title : social.name}</p>
                 <p className={cn('text-xs', darkText ? 'text-black' : 'text-white')}>{social.value}</p>
               </div>
-              <ArrowRight size={16} color={darkText ? '#000000' : '#FFFFFF'} className='ml-auto mr-4 cursor-grab active:cursor-grabbing' />
+              <ArrowRight size={16} color={darkText ? '#000000' : '#FFFFFF'} className='ml-auto mr-4' />
             </Link>
           ))}
         </div>

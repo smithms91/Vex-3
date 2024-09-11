@@ -12,6 +12,8 @@ import IconBorderProvider from '@/components/context/icon-border-provider';
 import ThemeColorProvider from '@/components/context/theme-color-provider';
 import Container from '@/components/container';
 import Premium from '@/components/modals/premium';
+import UserProvider from '@/components/context/user-provider';
+import { User } from '@/types';
 
 type Props = {}
 
@@ -55,16 +57,17 @@ export default async function AccountLayout({
   return (
     <main className={cn('max-w-[450px] min-h-screen mx-auto', kanit.className)}>
       <ThemeProvider
-        attribute="data-theme"
         defaultTheme={color}
         enableSystem
       >
         <IconBorderProvider roundedProp={user.data[0].border}>
           <ThemeColorProvider colorProp={themeColor || 'dark'}>
-            <Container>
-              {children}
-              <Premium />
-            </Container>
+            <UserProvider user={user.data[0] as User}>
+              <Container>
+                {children}
+                <Premium />
+              </Container>
+            </UserProvider>
           </ThemeColorProvider>
         </IconBorderProvider>
       </ThemeProvider>

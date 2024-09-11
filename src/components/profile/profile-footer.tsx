@@ -12,9 +12,7 @@ import { useRouter } from "next/navigation";
 import PremiumModal from "../modals/premium-modal";
 import LinkParam from "../link-param";
 
-type Props = {
-  user: User;
-};
+type Props = { user: User; };
 
 const ProfileFooter = ({ user }: Props) => {
   const { color } = useThemeColor();
@@ -23,33 +21,12 @@ const ProfileFooter = ({ user }: Props) => {
   if (preview) return null;
 
   return (
-    <footer
-      className={cn(
-        "fixed bottom-0 left-0 right-0 max-w-[450px] mx-auto rounded-t-[26px] h-20 p-4 flex items-center justify-around z-50 shadow-2xl",
-        color === "light" ? "bg-gray-200/95" : "bg-gray-800/95",
-        color === "black" && "bg-black/95",
-      )}
-    >
-      {/* <div onClick={handleOpenPremium} className="flex flex-col items-center"> */}
+    <footer className={cn("fixed bottom-0 left-0 right-0 max-w-[450px] mx-auto rounded-t-[26px] h-20 p-4 flex items-center justify-around z-50 shadow-2xl", color === "light" ? "bg-gray-200/95" : "bg-gray-800/95", color === "black" && "bg-black/95",)}>
       <LinkParam href={`${user.premium ? '/account/insights' : '?premium'}`} className="flex flex-col items-center">
         <TrendingUp size={22} color={color === "light" ? "black" : "white"} />
-        <p
-          className={cn(
-            "text-xs uppercase",
-            color === "light" ? "text-black" : "text-white",
-          )}
-        >
-          Insights
-        </p>
+        <p className={cn("text-xs uppercase", color === "light" ? "text-black" : "text-white",)}>Insights</p>
       </LinkParam>
-      {/* </div> */}
-      <Image
-        src={user.profile_picture || "/profile.jpg"}
-        className="rounded-full border-2 border-card-bg-light p-1 box-content w-9"
-        alt="Profile Picture"
-        width={22}
-        height={22}
-      />
+      <Image src={user.profile_picture || "/profile.jpg"} className="rounded-full border-2 border-card-bg-light p-1 box-content w-9" alt="Profile Picture" width={22} height={22} />
       <StyleThemeModal user={user} />
     </footer>
   );
