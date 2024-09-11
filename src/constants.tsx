@@ -242,56 +242,56 @@ export const profileColors = [
   {
     color: "red",
     css: "bg-gradient-to-br from-[#ef7272] to-[#8f0000]",
-    singleValue: "#8f0000",
+    darkValue: "#8f0000",
     lightValue: "#ef7272"
   },
   {
     color: "orange",
     css: "bg-gradient-to-br from-[#efc372] to-[#9b6500]",
-    singleValue: "#9b6500",
+    darkValue: "#9b6500",
     lightValue: "#efc372"
   },
   {
     color: "yellow",
     css: "bg-gradient-to-br from-[#efe772] to-[#b19f00]",
-    singleValue: "#b19f00",
+    darkValue: "#b19f00",
     lightValue: "#efe772"
   },
   {
     color: "green",
     css: "bg-gradient-to-br from-[#81ef72] to-[#118f00]",
-    singleValue: "#118f00",
+    darkValue: "#118f00",
     lightValue: "#81ef72"
   },
   {
     color: "blue",
     css: "bg-gradient-to-br from-[#72c6ef] to-[#004E8F]",
-    singleValue: "#004E8F",
+    darkValue: "#004E8F",
     lightValue: "#72c6ef"
   },
   {
     color: "indigo",
     css: "bg-gradient-to-br from-[#b772ef] to-[#4a008f]",
-    singleValue: "#4a008f",
+    darkValue: "#4a008f",
     lightValue: "#b772ef"
   },
   {
     color: "violet",
     css: "bg-gradient-to-br from-[#ef72e9] to-[#8f0088]",
-    singleValue: "#8f0088",
+    darkValue: "#8f0088",
     lightValue: "#ef72e9"
   },
   {
     color: "gray",
     css: "bg-gradient-to-br from-[#ebebeb] to-[#7c7c7c]",
-    singleValue: "#7c7c7c",
+    darkValue: "#7c7c7c",
     lightValue: "#ebebeb"
   },
   {
     color: "roseGold",
     css: "bg-gradient-to-br from-[#D4A4AA] to-[#8C5359]",
     complimentary: "#79B7A0",
-    singleValue: "#B76E79",
+    darkValue: "#B76E79",
     lightValue: "#D4A4AA",
     premium: true
   },
@@ -299,7 +299,7 @@ export const profileColors = [
     color: "teal",
     css: "bg-gradient-to-br from-[#33B2B2] to-[#005757]",
     complimentary: "#FF8000",
-    singleValue: "#008080",
+    darkValue: "#008080",
     lightValue: "#33B2B2",
     premium: true
   },
@@ -307,7 +307,7 @@ export const profileColors = [
     color: "midnightPurple",
     css: "bg-gradient-to-br from-[#604C9E] to-[#1B0033]",
     complimentary: "#08542E",
-    singleValue: "#2E0854",
+    darkValue: "#2E0854",
     lightValue: "#604C9E",
     premium: true
   },
@@ -315,7 +315,7 @@ export const profileColors = [
     color: "champagne",
     css: "bg-gradient-to-br from-[#FFFFFF] to-[#D2B48C]",
     complimentary: "#CECEF7",
-    singleValue: "#F7E7CE",
+    darkValue: "#F7E7CE",
     lightValue: "#FFFFFF",
     premium: true
   },
@@ -323,7 +323,7 @@ export const profileColors = [
     color: "emerald",
     css: "bg-gradient-to-br from-[#80D99E] to-[#3A9B6E]",
     complimentary: "#C75050",
-    singleValue: "#50C878",
+    darkValue: "#50C878",
     lightValue: "#80D99E",
     premium: true
   }
