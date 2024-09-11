@@ -22,6 +22,7 @@ import { decode } from "base64-arraybuffer";
 
 // Table of Contents (ctrl + f to goto function)
 // signUp               -> Sign up a user
+// signUpWithCard       -> Sign up a user with a card ID (Card Sign Up Route - only used when user scans a card with no user_id)
 // signIn               -> Sign in a user
 // signOut              -> Sign out a user
 // disableAccount       -> Disable a user account
@@ -111,6 +112,40 @@ export const signUp = async (values: z.infer<typeof SignInSchema>) => {
 
   return redirect("/sign-in?message=Check email for confirmation.");
 };
+
+export const signUpWithCard = async (values: z.infer<typeof SignInSchema>, cardId: string) => {
+  const { email, password } = values;
+  const supabase = createClient();
+
+  // Sign up the user
+  const { data, error } = await supabase.auth.signUp({
+    email,
+    password,
+  });
+
+  if (error) {
+    console.error("Error signing up:", error);
+    throw error;
+  }
+
+  if (!data.user) {
+    throw new Error("User creation failed");
+  }
+
+  console.log("data.user.id", data.user.id)
+  // Update the card table with the new user ID
+  const { error: updateError } = await supabase
+    .from('cards')
+    .update({ user_id: data.user.id })
+    .eq('id', cardId);
+
+  if (updateError) {
+    console.error("Error updating card:", updateError);
+    throw updateError;
+  }
+
+  return redirect("/sign-in?message=Check email for confirmation.");
+}
 
 export const signIn = async (values: z.infer<typeof SignInSchema>) => {
   const { email, password } = values;

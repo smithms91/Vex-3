@@ -23,7 +23,7 @@ const UserProfileLayout = async ({ children, params }: Props) => {
   let darkText = false;
 
   if (!user && params.cardId.includes('-')) {
-    redirect('/new-account')
+    redirect(`/new-account?id=${params.cardId}`)
   } else if (!user) {
     redirect(`/`)
   }
