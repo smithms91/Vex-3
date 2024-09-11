@@ -9,13 +9,13 @@ import Image from 'next/image';
 import { profileColors } from '@/constants';
 import { User } from '@/types';
 
-interface MySocialIconProps {
+interface CustomSocialIconProps {
   user?: User;
   network: string;
   [key: string]: any;
 }
 
-const MySocialIcon: React.FC<MySocialIconProps> = ({ user, network, ...props }) => {
+const CustomSocialIcon: React.FC<CustomSocialIconProps> = ({ user, network, ...props }) => {
   const { rounded, setRounded } = useIconBorder();
   const profileColor = profileColors.find(
     (color) => color.color === user?.profile_color
@@ -323,4 +323,4 @@ const MySocialIcon: React.FC<MySocialIconProps> = ({ user, network, ...props }) 
   return <SocialIcon className={`${borderRadius}`} style={props.edit ? { height: 25, width: 25 } : { height: 50, width: 50 }} network={network} {...props} />;
 };
 
-export default MySocialIcon;
+export default CustomSocialIcon;

@@ -1,7 +1,7 @@
 import { Social } from '@/types';
 import { Reorder, useDragControls, useMotionValue } from 'framer-motion';
 import React from 'react'
-import MySocialIcon from './custom-social-icon';
+import CustomSocialIcon from './custom-social-icon';
 import { cn } from '@/lib/utils';
 import { useThemeColor } from './context/theme-color-provider';
 import { useRouter } from 'next/navigation';
@@ -20,7 +20,7 @@ const Item = ({ item }: Props) => {
   return (
     <Reorder.Item as="div" key={item.id} value={item} className={cn("flex items-center text-white w-full p-2 z-50 rounded-md", color === "light" || color === "dark" ? "bg-slate-600/50" : "bg-gray-200/20",)} dragListener={false} dragControls={dragControls} style={{ boxShadow, y }}>
       <div className="flex items-center mr-auto" onClick={() => router.push(`/account/setup/edit/${item.id}`)}>
-        <MySocialIcon network={item.network} />
+        <CustomSocialIcon network={item.network} />
         <div className="ml-4">
           <p className={cn("text-lg", color === "light" ? "text-black" : "text-white",)}>{item.title !== "" ? item.title : item.network.charAt(0).toUpperCase() + item.network.slice(1)}</p>
           <p className={cn("text-sm", color === "light" ? "text-black" : "text-white",)}>{item.value}</p>

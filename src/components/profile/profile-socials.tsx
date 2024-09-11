@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
 import { usePreviewMode } from "../context/preview-mode-provider";
 import Link from "next/link";
 import Item from "../item";
-import MySocialIcon from "../custom-social-icon";
+import CustomSocialIcon from "../custom-social-icon";
 
 type Props = { socials: Social[]; };
 
@@ -37,7 +37,7 @@ const ProfileSocials = ({ socials }: Props) => {
             </div>
             {items && items.map((social, index) => (
               <Link key={social.id} className={cn("flex items-center bg-slate-600/50 text-white w-full p-2 z-50 cursor-pointer rounded-md", color === "light" || color === "dark" ? "bg-slate-600/50" : "bg-gray-200/20")} href={`${social.url}${social.value}`}>
-                <MySocialIcon network={social.network} />
+                <CustomSocialIcon network={social.network} />
                 <div className="ml-4">
                   <p className={cn("text-lg", color === "light" ? "text-black" : "text-white")}>{social.title !== "" ? social.title : social.network.charAt(0).toUpperCase() + social.network.slice(1)}</p>
                   <p className={cn("text-sm", color === "light" ? "text-black" : "text-white")}>{social.value}</p>

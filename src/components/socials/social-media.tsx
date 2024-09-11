@@ -3,7 +3,7 @@
 import { ArrowDown, ArrowLeft, ArrowRight, ArrowUp, Plus } from 'lucide-react'
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
-import MySocialIcon from '../custom-social-icon';
+import CustomSocialIcon from '../custom-social-icon';
 import { allSocials } from '@/constants';
 import { useThemeColor } from '../context/theme-color-provider';
 import { cn } from '@/lib/utils';
@@ -27,7 +27,7 @@ const SocialMedia = ({ type, title }: Props) => {
       <ul className='space-y-2 mt-2'>
         {itemsToShow.map((type, i) => (
           <li key={i} onClick={() => router.push(`/account/setup/add/${type.network}`)} className='flex items-center bg-gray-200 text-black w-full p-2 z-50 rounded-sm cursor-pointer'>
-            <MySocialIcon network={type.network} className='text-white' />
+            <CustomSocialIcon network={type.network} className='text-white' />
             <div className='ml-4'>
               <p className='text-lg'>{type.title}</p>
             </div>

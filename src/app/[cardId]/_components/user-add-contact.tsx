@@ -14,7 +14,7 @@ const AddContactButton = ({ }: Props) => {
   const user = useUser();
   const profileColor = profileColors.find(
     (color) => color.color === user.profile_color,
-  )?.darkValue;
+  )?.single;
 
   const borderColor = profileColors.find(
     (color) => color.color === user.profile_color,

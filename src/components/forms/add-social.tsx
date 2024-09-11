@@ -20,7 +20,7 @@ import { addUserSocial } from "@/queries";
 import { ClipboardPaste, Info, Plus } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import MySocialIcon from "../custom-social-icon";
+import CustomSocialIcon from "../custom-social-icon";
 import { allSocials } from "@/constants";
 import { useThemeColor } from "../context/theme-color-provider";
 import { cn } from "@/lib/utils";
@@ -85,7 +85,7 @@ const AddSocialForm = ({ network }: Props) => {
                 )}
               >
                 <div className="flex items-center">
-                  <MySocialIcon edit="true" size="16" network={network} />
+                  <CustomSocialIcon edit="true" size="16" network={network} />
                   <p className="ml-2">
                     {name}
                   </p>
