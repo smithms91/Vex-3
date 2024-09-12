@@ -242,48 +242,56 @@ export const profileColors = [
   {
     color: "red",
     css: "bg-gradient-to-br from-[#ef7272] to-[#8f0000]",
+    single: "#8f0000",
     darkValue: "#8f0000",
     lightValue: "#ef7272"
   },
   {
     color: "orange",
     css: "bg-gradient-to-br from-[#efc372] to-[#9b6500]",
+    single: "#9b6500",
     darkValue: "#9b6500",
     lightValue: "#efc372"
   },
   {
     color: "yellow",
     css: "bg-gradient-to-br from-[#efe772] to-[#b19f00]",
+    single: "#b19f00",
     darkValue: "#b19f00",
     lightValue: "#efe772"
   },
   {
     color: "green",
     css: "bg-gradient-to-br from-[#81ef72] to-[#118f00]",
+    single: "#118f00",
     darkValue: "#118f00",
     lightValue: "#81ef72"
   },
   {
     color: "blue",
     css: "bg-gradient-to-br from-[#72c6ef] to-[#004E8F]",
+    single: "#004E8F",
     darkValue: "#004E8F",
     lightValue: "#72c6ef"
   },
   {
     color: "indigo",
     css: "bg-gradient-to-br from-[#b772ef] to-[#4a008f]",
+    single: "#4a008f",
     darkValue: "#4a008f",
     lightValue: "#b772ef"
   },
   {
     color: "violet",
     css: "bg-gradient-to-br from-[#ef72e9] to-[#8f0088]",
+    single: "#8f0088",
     darkValue: "#8f0088",
     lightValue: "#ef72e9"
   },
   {
     color: "gray",
     css: "bg-gradient-to-br from-[#ebebeb] to-[#7c7c7c]",
+    single: "#7c7c7c",
     darkValue: "#7c7c7c",
     lightValue: "#ebebeb"
   },

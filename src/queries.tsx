@@ -132,13 +132,6 @@ export const signUpWithCard = async (values: z.infer<typeof SignInSchema>, cardI
     throw new Error("User creation failed");
   }
 
-  console.log("data.user.id", data.user.id)
-  // // Update the card table with the new user ID
-  // const { error: updateError } = await supabase
-  //   .from('cards')
-  //   .update({ user_id: data.user.id })
-  //   .eq('id', cardId);
-
   const { error: updateError } = await supabase.rpc('update_card_user', {
     p_card_id: cardId,
     p_user_id: data.user.id
@@ -149,6 +142,7 @@ export const signUpWithCard = async (values: z.infer<typeof SignInSchema>, cardI
     throw updateError;
   }
 
+  // Possibly just return data and handle success message on current route.
   return redirect("/sign-in?message=Check email for confirmation.");
 }
 
