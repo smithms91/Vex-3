@@ -46,9 +46,9 @@ export default async function Home() {
               <ArrowRight className="ml-2" size={16} />
             </p>
           </Link>
-          <Link href="/sign-up" className="max-w-[400px] mx-auto bg-dark-to block py-4 rounded-md mt-auto absolute bottom-10 left-8 right-8">
+          {/* <Link href="/sign-up" className="max-w-[400px] mx-auto bg-dark-to block py-4 rounded-md mt-auto absolute bottom-10 left-8 right-8">
             Sign Up
-          </Link>
+          </Link> */}
         </div>
         <SparklesCore
           id="tsparticlesfullpage"
