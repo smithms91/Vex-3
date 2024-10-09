@@ -24,13 +24,17 @@ const OnboardingPage = async (props: Props) => {
     redirect('/account')
   }
 
+  // if (user.data && user.data[0].username !== null) {
+  //   redirect('/account/onboarding/profile-card')
+  // }
+
   return (
     <main className='min-h-screen text-white max-w-[450px] px-6 text-center flex flex-col items-start justify-center bg-gradient-to-tl from-dark-from to-dark-to'>
       <div className='mb-10 space-y-4 mx-auto'>
         <h1 className='text-start z-10'>Hey, {user.data[0].email}</h1>
         <p className='z-10'>Tell us more about you!</p>
       </div>
-      <OnboardingForm />
+      <OnboardingForm user={user.data[0]} />
       <SparklesCore id="tsparticlesfullpage"
         background="transparent"
         minSize={0.6}

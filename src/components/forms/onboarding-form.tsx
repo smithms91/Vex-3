@@ -15,23 +15,26 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { updateProfile, verifyUsername } from '@/queries';
-import { OnboardingSchema } from '@/types';
+import { OnboardingSchema, User } from '@/types';
 import { setTimeout } from "timers";
 import { useRouter } from "next/navigation";
 
-type Props = {}
+type Props = {
+  user: User
+}
 
-const OnboardingForm = (props: Props) => {
-  const [usernameVerified, setUsernameVerified] = useState(false)
+const OnboardingForm = ({ user }: Props) => {
+  console.log('user', user)
+  const [usernameVerified, setUsernameVerified] = useState(user.username ? true : false)
   const [error, setError] = useState('')
   const router = useRouter()
 
   const form = useForm<z.infer<typeof OnboardingSchema>>({
     resolver: zodResolver(OnboardingSchema),
     defaultValues: {
-      username: "",
-      first_name: "",
-      last_name: "",
+      username: user.username || "",
+      first_name: user.first_name || "",
+      last_name: user.last_name || "",
     },
   })
 
@@ -74,7 +77,7 @@ const OnboardingForm = (props: Props) => {
           )}
         />
         <p className="text-xs">{error}</p>
-        <Button className="bg-card-bg-dark" onClick={verifyButton}>Verify Username</Button>
+        <Button type="button" className="bg-card-bg-dark" onClick={verifyButton}>Verify Username</Button>
         {usernameVerified && (
           <>
             <FormField

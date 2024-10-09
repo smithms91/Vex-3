@@ -43,7 +43,7 @@ export const OnboardingSchema = z.object({
   username: z
     .string()
     .min(1, { message: "This field has to be filled." })
-    .max(20, { message: "Username has to be less than 20 characters long." }),
+    .max(20, { message: "Username has to be less than 20 characters long." }).refine(val => !val.includes(' '), { message: 'Username cannot contain spaces' }),
   first_name: z.string().min(1, { message: "This field has to be filled." }),
   last_name: z.string().min(1, { message: "This field has to be filled." }),
 });
@@ -109,7 +109,7 @@ export const UpdatePasswordSchema = z.object({
 export const UpdateUsernameSchema = z.object({
   username: z
     .string()
-    .min(3, { message: "Username has to be at least 3 characters long." }),
+    .min(3, { message: "Username has to be at least 3 characters long." }).refine(val => !val.includes(' '), { message: 'Username cannot contain spaces' }),
   password: z
     .string()
     .min(7, { message: "Password has to be at least 7 characters long." }),

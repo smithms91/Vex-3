@@ -265,16 +265,46 @@ export const verifyUsername = async (username: string) => {
 
   if (username.length < 3 || username.length > 20) return false;
 
-  const user = await supabase
+  // Get the current authenticated user
+  const { data: { user } } = await supabase.auth.getUser();
+
+  if (!user) {
+    throw new Error("No authenticated user");
+  }
+
+  // Get the current user's profile
+  const { data: currentUserProfile, error: currentUserError } = await supabase
+    .from("profiles")
+    .select("username")
+    .eq("id", user.id)
+    .single();
+
+  if (currentUserError) {
+    console.error("Error fetching current user profile:", currentUserError);
+    return false;
+  }
+
+  // Check if the username belongs to the current user
+  if (currentUserProfile.username === username) {
+    return true; // Username is available (it's the user's current username)
+  }
+
+  // Check if the username is taken by another user
+  const { data: existingUser, error: existingUserError } = await supabase
     .from("profiles")
     .select()
     .eq("username", username);
 
-  if (user.data && user.data.length > 0) {
+  if (existingUserError) {
+    console.error("Error checking existing username:", existingUserError);
     return false;
   }
 
-  return true;
+  if (existingUser && existingUser.length > 0) {
+    return false; // Username is taken by another user
+  }
+
+  return true; // Username is available
 };
 
 // Gets the currently authenticated user's email
