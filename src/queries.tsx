@@ -1084,3 +1084,15 @@ export const lookupUserOrCard = async (id: string): Promise<User | null> => {
     return userResponse.data as User;
   }
 }
+
+export const getCardIdFromUserId = async (userId: string): Promise<string | null> => {
+  const supabase = createClient();
+
+  const cardResponse = await supabase
+    .from("cards")
+    .select("id")
+    .eq("user_id", userId)
+    .single();
+
+  return cardResponse.data?.id || null;
+}

@@ -10,6 +10,7 @@ import ProfileSocials from "@/components/profile/profile-socials";
 import PreviewModeProvider from "@/components/context/preview-mode-provider";
 import PaidFooter from "../[cardId]/_components/paid-footer";
 import { User } from "@/types";
+import { getCardIdFromUserId } from "@/queries";
 
 const AccountPage = async () => {
   const supabase = createClient();
@@ -33,11 +34,13 @@ const AccountPage = async () => {
   let socials = userData.socials;
   let themeColor = userData.theme_color;
 
+  const cardId = await getCardIdFromUserId(userData.id);
+
   return (
     <section className="z-50 min-h-screen max-w-[450px]">
       <PreviewModeProvider>
         <div className="p-2 xs:p-4 sm:p-6 max-w-[450px] mx-auto flex flex-col items-center">
-          <AccountHeader />
+          <AccountHeader cardId={cardId} />
           <ProfileCard email={data.user.email!} />
           <EditProfileButton />
           <ProfileSocials socials={socials} />

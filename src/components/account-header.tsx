@@ -14,7 +14,7 @@ import { cn } from "@/lib/utils";
 import { usePreviewMode } from "./context/preview-mode-provider";
 
 
-const AccountHeader = () => {
+const AccountHeader = ({ cardId }: { cardId: string | null }) => {
   const router = useRouter();
   const [modalOpen, setModalOpen] = useState(false);
   const [profilePicture, setProfilePicture] = useState("");
@@ -34,7 +34,7 @@ const AccountHeader = () => {
 
   const handleCopyClick = async () => {
     try {
-      await navigator.clipboard.writeText(`https://vex.cards/${userID}`);
+      await navigator.clipboard.writeText(`https://vex.cards/${cardId}`);
       toast("Copied to clipboard!", { position: "top-center" });
     } catch (error) {
       toast("Error copying to clipboard! " + error, { position: "top-center" });
@@ -47,7 +47,7 @@ const AccountHeader = () => {
         await navigator.share({
           title: "Vex Cards",
           text: "Check out this Vex Card!",
-          url: `https://vex.cards/${userID}`,
+          url: `https://vex.cards/${cardId}`,
         });
         toast("Content shared!", { position: "top-center" });
       } catch (error) {
